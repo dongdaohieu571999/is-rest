@@ -125,14 +125,6 @@ public class EmployeeInfo {
         this.id_labour_contract = id_labour_contract;
     }
 
-    public Integer getId_role() {
-        return id_role;
-    }
-
-    public void setId_role(Integer id_role) {
-        this.id_role = id_role;
-    }
-
     @Column(name = "name")
     private String name;
     @Column(name = "address")
@@ -159,6 +151,4 @@ public class EmployeeInfo {
     private Integer id_acc;
     @Column(name = "id_labour_contract")
     private Integer id_labour_contract;
-    @Column(name = "id_role")
-    private Integer id_role;
 }

@@ -43,7 +43,6 @@ public class EmployeeInfoService {
         existEmployeeInfo.setId_certificate(employee_info.getId_certificate());
         existEmployeeInfo.setId_labour_contract(employee_info.getId_labour_contract());
         existEmployeeInfo.setName(employee_info.getName());
-        existEmployeeInfo.setId_role(employee_info.getId_role());
         existEmployeeInfo.setPhone(employee_info.getPhone());
         existEmployeeInfo.setSex(employee_info.getSex());
         return employeeInfoRepository.save(existEmployeeInfo);

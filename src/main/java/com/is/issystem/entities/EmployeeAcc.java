@@ -14,6 +14,17 @@ public class EmployeeAcc {
     @Column(name = "status")
     private boolean status;
 
+    @Column(name = "id_role")
+    private Integer id_role;
+
+    public Integer getId_role() {
+        return id_role;
+    }
+
+    public void setId_role(Integer id_role) {
+        this.id_role = id_role;
+    }
+
     public int getId() {
         return id;
     }
