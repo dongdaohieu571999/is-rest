@@ -5,10 +5,16 @@ import java.util.List;
 import java.util.Optional;
 
 import com.is.issystem.entities.EmployeeAcc;
+import io.jsonwebtoken.Jwts;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.is.issystem.repository.EmployeeAccRepository;
+
+import static com.is.issystem.service.TokenAuthenticationService.SECRET;
+import static com.is.issystem.service.TokenAuthenticationService.TOKEN_PREFIX;
+import static java.util.Collections.emptyList;
 
 @Service
 @Transactional
@@ -26,6 +32,20 @@ public class EmployeeAccService {
 
     public Optional<EmployeeAcc> findEmployeeAccountByID(Integer id){
         return employeeAccRepository.findById(id);
+    }
+
+    public EmployeeAcc findEmployeeAccountByCode(String token_id){
+        if (token_id != null) {
+            String user = Jwts.parser()
+                    .setSigningKey(SECRET)
+                    .parseClaimsJws(token_id.replace(TOKEN_PREFIX, ""))
+                    .getBody()
+                    .getSubject();
+            EmployeeAcc employeeAcc = new EmployeeAcc();
+            employeeAcc.setId_role(Integer.parseInt(employeeAccRepository.getOneAcc(user)));
+            return employeeAcc;
+        }
+        return null;
     }
 
     public EmployeeAcc updateEmployeeAccount(EmployeeAcc employee_acc){
