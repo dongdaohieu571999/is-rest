@@ -1,69 +1,72 @@
-package com.is.issystem.entities;
+package com.is.issystem.dto;
+
+import com.is.issystem.entities.AddressInfo;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
 import java.util.Date;
+import java.util.List;
 
-@Entity
-@Table(name="customer_info")
-public class CustomerInfo {
-    @Id
-    @Column(name = "id")
+public class CustomerDTO {
     private Integer id;
-    @Column(name = "birth_date")
     private Date birth_date;
-    @Column(name = "age")
     private Integer age;
-    @Column(name = "birth_address")
     private String birth_address;
-    @Column(name = "types_identification")
     private String types_identification;
-    @Column(name = "ID_card")
     private String ID_card;
-    @Column(name = "nationality_1")
     private String nationality_1;
-    @Column(name = "nationality_2")
     private String nationality_2;
-    @Column(name = "nation")
     private String nation;
-    @Column(name = "job")
     private String job;
-    @Column(name = "career")
     private String career;
-    @Column(name = "position")
     private String position;
-    @Column(name = "occupation_group")
     private String occupation_group;
-    @Column(name = "company_name")
     private String company_name;
-    @Column(name = "main_business")
     private String main_business;
-    @Column(name = "specific_work")
     private String specific_work;
-    @Column(name = "monthly_income")
     private float monthly_income;
-    @Column(name = "id_current_address")
-    private Integer id_current_address;
-    @Column(name = "id_permanent_address")
-    private Integer id_permanent_address;
-    @Column(name = "id_contact_address")
-    private Integer id_contact_address;
-    @Column(name = "id_workplace_address")
-    private Integer id_workplace_address;
-    @Column(name = "email")
     private String email;
-    @Column(name = "phone_1")
     private String phone_1;
-    @Column(name = "phone_2")
     private String phone_2;
-    @Column(name = "id_account")
-    private Integer id_account;
-    @Column(name = "full_name")
+//    private Integer id_account;
     private String full_name;
+    private String code;
+    private boolean status;
+    private Integer id_role;
 
+    private List<AddressInfo> addressInfoList;
 
+//    private Integer id_current_address;
+//    private Integer id_permanent_address;
+//    private Integer id_contact_address;
+//    private Integer id_workplace_address;
+
+    public CustomerDTO(Integer id, Date birth_date, Integer age, String birth_address, String types_identification, String ID_card, String nationality_1, String nationality_2, String nation, String job, String career, String position, String occupation_group, String company_name, String main_business, String specific_work, float monthly_income, String email, String phone_1, String phone_2, String full_name, String code, boolean status, Integer id_role, List<AddressInfo> addressInfoList) {
+        this.id = id;
+        this.birth_date = birth_date;
+        this.age = age;
+        this.birth_address = birth_address;
+        this.types_identification = types_identification;
+        this.ID_card = ID_card;
+        this.nationality_1 = nationality_1;
+        this.nationality_2 = nationality_2;
+        this.nation = nation;
+        this.job = job;
+        this.career = career;
+        this.position = position;
+        this.occupation_group = occupation_group;
+        this.company_name = company_name;
+        this.main_business = main_business;
+        this.specific_work = specific_work;
+        this.monthly_income = monthly_income;
+        this.email = email;
+        this.phone_1 = phone_1;
+        this.phone_2 = phone_2;
+        this.full_name = full_name;
+        this.code = code;
+        this.status = status;
+        this.id_role = id_role;
+        this.addressInfoList = addressInfoList;
+    }
 
     public Integer getId() {
         return id;
@@ -201,38 +204,6 @@ public class CustomerInfo {
         this.monthly_income = monthly_income;
     }
 
-    public Integer getId_current_address() {
-        return id_current_address;
-    }
-
-    public void setId_current_address(Integer id_current_address) {
-        this.id_current_address = id_current_address;
-    }
-
-    public Integer getId_permanent_address() {
-        return id_permanent_address;
-    }
-
-    public void setId_permanent_address(Integer id_permanent_address) {
-        this.id_permanent_address = id_permanent_address;
-    }
-
-    public Integer getId_contact_address() {
-        return id_contact_address;
-    }
-
-    public void setId_contact_address(Integer id_contact_address) {
-        this.id_contact_address = id_contact_address;
-    }
-
-    public Integer getId_workplace_address() {
-        return id_workplace_address;
-    }
-
-    public void setId_workplace_address(Integer id_workplace_address) {
-        this.id_workplace_address = id_workplace_address;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -257,14 +228,6 @@ public class CustomerInfo {
         this.phone_2 = phone_2;
     }
 
-    public Integer getId_account() {
-        return id_account;
-    }
-
-    public void setId_account(Integer id_account) {
-        this.id_account = id_account;
-    }
-
     public String getFull_name() {
         return full_name;
     }
@@ -273,4 +236,35 @@ public class CustomerInfo {
         this.full_name = full_name;
     }
 
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+    public Integer getId_role() {
+        return id_role;
+    }
+
+    public void setId_role(Integer id_role) {
+        this.id_role = id_role;
+    }
+
+    public List<AddressInfo> getAddressInfoList() {
+        return addressInfoList;
+    }
+
+    public void setAddressInfoList(List<AddressInfo> addressInfoList) {
+        this.addressInfoList = addressInfoList;
+    }
 }
