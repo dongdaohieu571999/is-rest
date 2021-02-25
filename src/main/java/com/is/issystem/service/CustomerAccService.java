@@ -3,6 +3,7 @@ package com.is.issystem.service;
 
 import com.is.issystem.entities.CustomerAcc;
 import com.is.issystem.entities.EmployeeAcc;
+import com.is.issystem.repository.CustomerAccRepository;
 import com.is.issystem.repository.CustomerInfoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +15,7 @@ import java.util.List;
 @Transactional
 public class CustomerAccService {
     @Autowired
-    private CustomerInfoRepository customerInfoRepository;
+    private CustomerAccRepository customerInfoRepository;
 
     public List<CustomerAcc> findAll(){
         return customerInfoRepository.findAll();

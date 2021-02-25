@@ -1,7 +1,6 @@
 package com.is.issystem.controller;
 
 import com.is.issystem.entities.CustomerAcc;
-import com.is.issystem.entities.EmployeeAcc;
 import com.is.issystem.service.CustomerAccService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
