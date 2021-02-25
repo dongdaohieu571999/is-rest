@@ -1,5 +1,6 @@
 package com.is.issystem.service;
 
+import com.is.issystem.dto.CustomerDTO;
 import com.is.issystem.entities.CustomerInfo;
 import com.is.issystem.entities.EmployeeInfo;
 import com.is.issystem.repository.CustomerInfoRepository;
@@ -15,7 +16,7 @@ public class CustomerInfoService {
     @Autowired
     CustomerInfoRepository customerInfoRepository;
 
-    public List<CustomerInfo> findAll(){
+    public List<CustomerDTO> findAll(){
         return customerInfoRepository.findAll();
     }
 
