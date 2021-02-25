@@ -1,16 +1,15 @@
 package com.is.issystem.controller;
 
 import com.is.issystem.entities.EmployeeAcc;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.is.issystem.service.EmployeeAccService;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping(value = {"/employee"})
 public class EmployeeAccController {
     @Autowired
@@ -38,8 +37,8 @@ public class EmployeeAccController {
         return ResponseEntity.status(HttpStatus.OK).body(employee_acc);
     }
 
-    @GetMapping(value = {"/get_one_employee_acc/{id}"})
-    public ResponseEntity<?> getOneEmployeeAccount(@PathVariable int id){
-        return ResponseEntity.status(HttpStatus.OK).body(employeeAccService.findEmployeeAccountByID(id));
+    @GetMapping(value = {"/get_one_employee_acc/{token_id}"})
+    public ResponseEntity<?> getOneEmployeeAccount(@PathVariable String token_id){
+        return ResponseEntity.status(HttpStatus.OK).body(employeeAccService.findEmployeeAccountByCode(token_id));
     }
 }

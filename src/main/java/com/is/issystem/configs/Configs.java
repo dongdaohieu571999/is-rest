@@ -44,7 +44,6 @@ public class Configs extends WebSecurityConfigurerAdapter {
         auth.jdbcAuthentication().dataSource(dataSource)
                 .usersByUsernameQuery("select code,pass,status from employee_acc where code = ?")
                 .authoritiesByUsernameQuery("select code,id_role from employee_acc where code = ?");
-
     }
 
     @Bean
