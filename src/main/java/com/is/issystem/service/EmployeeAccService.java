@@ -12,7 +12,7 @@ import com.is.issystem.repository.EmployeeAccRepository;
 
 @Service
 @Transactional
-public class EmployeeAccService {
+public class    EmployeeAccService {
     @Autowired
     private EmployeeAccRepository employeeAccRepository;
 

@@ -16,7 +16,7 @@ public class EmployeeAccController {
     @Autowired
     private EmployeeAccService employeeAccService;
 
-    @GetMapping(value = {"/get_all_employee_acc"})
+    @GetMapping(value = {""})
     public ResponseEntity<?>  listEmployeeAccount(){
         List<EmployeeAcc> listAccEm = employeeAccService.findAll();
         return ResponseEntity.status(HttpStatus.OK).body(listAccEm);
