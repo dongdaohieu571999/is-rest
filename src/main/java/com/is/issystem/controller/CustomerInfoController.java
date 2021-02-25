@@ -1,5 +1,6 @@
 package com.is.issystem.controller;
 
+import com.is.issystem.dto.CustomerDTO;
 import com.is.issystem.entities.CustomerInfo;
 import com.is.issystem.service.CustomerInfoService;
 import org.springframework.beans.factory.annotation.Autowired;

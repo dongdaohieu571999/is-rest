@@ -4,5 +4,7 @@ import com.is.issystem.dto.CustomerDTO;
 import com.is.issystem.entities.CustomerInfo;
 
 public class CustomerMapper {
-    public static CustomerDTO(CustomerInfo)
+//    public static CustomerDTO(CustomerInfo customerInfo){
+//        CustomerDTO customerDTO = new CustomerDTO();
+//    }
 }

@@ -1,18 +1,28 @@
 package com.is.issystem.entities;
 
 public class AddressInfo {
+    private String typeAdd;
     private String district;
     private Integer id;
     private String no_street;
     private String city;
     private String wards;
 
-    public AddressInfo(String district, Integer id, String no_street, String city, String wards) {
+    public AddressInfo(String district, Integer id, String no_street, String city, String wards,String typeAdd) {
         this.district = district;
         this.id = id;
         this.no_street = no_street;
         this.city = city;
         this.wards = wards;
+        this.typeAdd = typeAdd;
+    }
+
+    public String getTypeAdd() {
+        return typeAdd;
+    }
+
+    public void setTypeAdd(String typeAdd) {
+        this.typeAdd = typeAdd;
     }
 
     public String getDistrict() {
