@@ -10,46 +10,81 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Date;
-import java.util.List;
 
+@Entity
 public class CustomerDTO {
+    @Id
+    @Column
     private Integer id;
+    @Column
     private Date birth_date;
+    @Column
     private Integer age;
+    @Column
     private String birth_address;
+    @Column
     private String types_identification;
+    @Column
     private String ID_card;
+    @Column
     private String nationality_1;
+    @Column
     private String nationality_2;
+    @Column
     private String nation;
+    @Column
     private String job;
+    @Column
     private String career;
+    @Column
     private String position;
+    @Column
     private String occupation_group;
+    @Column
     private String company_name;
+    @Column
     private String main_business;
+    @Column
     private String specific_work;
+    @Column
     private float monthly_income;
+    @Column
     private String email;
+    @Column
     private String phone_1;
+    @Column
     private String phone_2;
+    @Column
     private Integer id_account;
+    @Column
     private String full_name;
+    @Column
     private String code;
+    @Column
     private boolean status;
-    private Integer id_role;
-
+    @Column
     private String conadd_no_street;
+    @Column
     private String conadd_city;
+    @Column
     private String conadd_district;
+    @Column
     private String conadd_wards;
 
+    @Column
     private String curadd_no_street;
+    @Column
     private String curadd_city;
+    @Column
     private String curadd_district;
+    @Column
     private String curadd_wards;
 
+    @Column
     private String peradd_no_street;
 
     public String getConadd_no_street() {
@@ -212,67 +247,78 @@ public class CustomerDTO {
         this.id_workplace_address = id_workplace_address;
     }
 
-    public CustomerDTO(Integer id, Date birth_date, Integer age, String birth_address, String types_identification, String ID_card, String nationality_1, String nationality_2, String nation, String job, String career, String position, String occupation_group, String company_name, String main_business, String specific_work, float monthly_income, String email, String phone_1, String phone_2, Integer id_account, String full_name, String code, boolean status, Integer id_role, String conadd_no_street, String conadd_city, String conadd_district, String conadd_wards, String curadd_no_street, String curadd_city, String curadd_district, String curadd_wards, String peradd_no_street, String peradd_city, String peradd_district, String peradd_wards, String workadd_no_street, String workadd_city, String workadd_district, String workadd_wards, Integer id_current_address, Integer id_permanent_address, Integer id_contact_address, Integer id_workplace_address) {
-        this.id = id;
-        this.birth_date = birth_date;
-        this.age = age;
-        this.birth_address = birth_address;
-        this.types_identification = types_identification;
-        this.ID_card = ID_card;
-        this.nationality_1 = nationality_1;
-        this.nationality_2 = nationality_2;
-        this.nation = nation;
-        this.job = job;
-        this.career = career;
-        this.position = position;
-        this.occupation_group = occupation_group;
-        this.company_name = company_name;
-        this.main_business = main_business;
-        this.specific_work = specific_work;
-        this.monthly_income = monthly_income;
-        this.email = email;
-        this.phone_1 = phone_1;
-        this.phone_2 = phone_2;
-        this.id_account = id_account;
-        this.full_name = full_name;
-        this.code = code;
-        this.status = status;
-        this.id_role = id_role;
-        this.conadd_no_street = conadd_no_street;
-        this.conadd_city = conadd_city;
-        this.conadd_district = conadd_district;
-        this.conadd_wards = conadd_wards;
-        this.curadd_no_street = curadd_no_street;
-        this.curadd_city = curadd_city;
-        this.curadd_district = curadd_district;
-        this.curadd_wards = curadd_wards;
-        this.peradd_no_street = peradd_no_street;
-        this.peradd_city = peradd_city;
-        this.peradd_district = peradd_district;
-        this.peradd_wards = peradd_wards;
-        this.workadd_no_street = workadd_no_street;
-        this.workadd_city = workadd_city;
-        this.workadd_district = workadd_district;
-        this.workadd_wards = workadd_wards;
-        this.id_current_address = id_current_address;
-        this.id_permanent_address = id_permanent_address;
-        this.id_contact_address = id_contact_address;
-        this.id_workplace_address = id_workplace_address;
-    }
+//    public CustomerDTO(Integer id, Date birth_date, Integer age, String birth_address, String types_identification, String ID_card, String nationality_1, String nationality_2, String nation, String job, String career, String position, String occupation_group, String company_name, String main_business, String specific_work, float monthly_income, String email, String phone_1, String phone_2, Integer id_account, String full_name, String code, boolean status, Integer id_role, String conadd_no_street, String conadd_city, String conadd_district, String conadd_wards, String curadd_no_street, String curadd_city, String curadd_district, String curadd_wards, String peradd_no_street, String peradd_city, String peradd_district, String peradd_wards, String workadd_no_street, String workadd_city, String workadd_district, String workadd_wards, Integer id_current_address, Integer id_permanent_address, Integer id_contact_address, Integer id_workplace_address) {
+//        this.id = id;
+//        this.birth_date = birth_date;
+//        this.age = age;
+//        this.birth_address = birth_address;
+//        this.types_identification = types_identification;
+//        this.ID_card = ID_card;
+//        this.nationality_1 = nationality_1;
+//        this.nationality_2 = nationality_2;
+//        this.nation = nation;
+//        this.job = job;
+//        this.career = career;
+//        this.position = position;
+//        this.occupation_group = occupation_group;
+//        this.company_name = company_name;
+//        this.main_business = main_business;
+//        this.specific_work = specific_work;
+//        this.monthly_income = monthly_income;
+//        this.email = email;
+//        this.phone_1 = phone_1;
+//        this.phone_2 = phone_2;
+//        this.id_account = id_account;
+//        this.full_name = full_name;
+//        this.code = code;
+//        this.status = status;
+//        this.id_role = id_role;
+//        this.conadd_no_street = conadd_no_street;
+//        this.conadd_city = conadd_city;
+//        this.conadd_district = conadd_district;
+//        this.conadd_wards = conadd_wards;
+//        this.curadd_no_street = curadd_no_street;
+//        this.curadd_city = curadd_city;
+//        this.curadd_district = curadd_district;
+//        this.curadd_wards = curadd_wards;
+//        this.peradd_no_street = peradd_no_street;
+//        this.peradd_city = peradd_city;
+//        this.peradd_district = peradd_district;
+//        this.peradd_wards = peradd_wards;
+//        this.workadd_no_street = workadd_no_street;
+//        this.workadd_city = workadd_city;
+//        this.workadd_district = workadd_district;
+//        this.workadd_wards = workadd_wards;
+//        this.id_current_address = id_current_address;
+//        this.id_permanent_address = id_permanent_address;
+//        this.id_contact_address = id_contact_address;
+//        this.id_workplace_address = id_workplace_address;
+//    }
 
+    @Column
     private String peradd_city;
+    @Column
     private String peradd_district;
+    @Column
     private String peradd_wards;
 
+    @Column
     private String workadd_no_street;
+    @Column
     private String workadd_city;
+    @Column
     private String workadd_district;
+    @Column
     private String workadd_wards;
 
 
+    @Column
     private Integer id_current_address;
+    @Column
     private Integer id_permanent_address;
+    @Column
     private Integer id_contact_address;
+    @Column
     private Integer id_workplace_address;
 
 
@@ -463,17 +509,5 @@ public class CustomerDTO {
 
     public boolean isStatus() {
         return status;
-    }
-
-    public void setStatus(boolean status) {
-        this.status = status;
-    }
-
-    public Integer getId_role() {
-        return id_role;
-    }
-
-    public void setId_role(Integer id_role) {
-        this.id_role = id_role;
     }
 }
