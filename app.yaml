@@ -1,0 +1,6 @@
+runtime: java
+env: flex
+
+handler:
+  - url: /.*
+  - script: noway

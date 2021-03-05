@@ -13,7 +13,6 @@ import javax.websocket.server.PathParam;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping(value = {"/customer"})
 public class CustomerInfoController {
     @Autowired
