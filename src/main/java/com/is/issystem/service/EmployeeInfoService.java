@@ -1,8 +1,8 @@
 package com.is.issystem.service;
 
-import com.is.issystem.entities.EmployeeAcc;
 import com.is.issystem.entities.EmployeeInfo;
-import com.is.issystem.repository.EmployeeAccRepository;
+import com.is.issystem.dto.EmployeeDTO;
+import com.is.issystem.repository.EmployeeInfoAccRepository;
 import com.is.issystem.repository.EmployeeInfoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +16,8 @@ import java.util.Optional;
 public class EmployeeInfoService {
     @Autowired
     private EmployeeInfoRepository employeeInfoRepository;
+    @Autowired
+    private EmployeeInfoAccRepository employeeInfoAccRepository;
 
     public List<EmployeeInfo> findAll(){
         return employeeInfoRepository.findAll();
@@ -50,5 +52,9 @@ public class EmployeeInfoService {
 
     public boolean checkExistEmployeeInfo(EmployeeInfo employee_info){
         return employeeInfoRepository.existsById(employee_info.getId());
+    }
+
+    public List<EmployeeDTO> getAllEmployee(){
+        return employeeInfoAccRepository.getEmployeeInfo();
     }
 }

@@ -1,8 +1,8 @@
 package com.is.issystem.controller;
 
-import com.is.issystem.entities.EmployeeAcc;
 import com.is.issystem.entities.EmployeeInfo;
-import com.is.issystem.service.EmployeeAccService;
+import com.is.issystem.dto.EmployeeDTO;
+import com.is.issystem.repository.EmployeeInfoAccRepository;
 import com.is.issystem.service.EmployeeInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -22,13 +22,19 @@ public class EmployeeInfoController {
         return employeeInfoService.findAll();
     }
 
+    @GetMapping(value = {"/get_all_employee_info_acc"})
+    public List<EmployeeDTO> getListEmployeeInfoAcc(){
+     return employeeInfoService.getAllEmployee();
+    }
+
     @PostMapping(value = "/add_employee_info")
     public void addEmployeeInfo(@RequestBody EmployeeInfo employeeInfo){
-        if(employeeInfoService.checkExistEmployeeInfo(employeeInfo)){
-            return;
-        } else {
-            employeeInfoService.addEmployeeInfo(employeeInfo);
-        }
+//        if(employeeInfoService.checkExistEmployeeInfo(employeeInfo)){
+//            return;
+//        } else {
+//            employeeInfoService.addEmployeeInfo(employeeInfo);
+//        }
+        employeeInfoService.addEmployeeInfo(employeeInfo);
     }
 
     @PutMapping(value = "/update_employee_info")

@@ -5,16 +5,15 @@ import java.util.List;
 import java.util.Optional;
 
 import com.is.issystem.entities.EmployeeAcc;
+import com.is.issystem.entities.EmployeeInfo;
 import io.jsonwebtoken.Jwts;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.is.issystem.repository.EmployeeAccRepository;
 
 import static com.is.issystem.service.TokenAuthenticationService.SECRET;
 import static com.is.issystem.service.TokenAuthenticationService.TOKEN_PREFIX;
-import static java.util.Collections.emptyList;
 
 @Service
 @Transactional
@@ -29,6 +28,7 @@ public class    EmployeeAccService {
     public void addEmployeeAccount(EmployeeAcc employee_acc){
         employeeAccRepository.save(employee_acc);
     }
+
 
     public Optional<EmployeeAcc> findEmployeeAccountByID(Integer id){
         return employeeAccRepository.findById(id);
@@ -59,4 +59,6 @@ public class    EmployeeAccService {
     public boolean checkExistEmployeeAccount(EmployeeAcc employee_acc){
         return employeeAccRepository.existsById(employee_acc.getId());
     }
+
+
 }

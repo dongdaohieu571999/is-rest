@@ -16,7 +16,11 @@ public class CustomerInfoService {
     CustomerInfoRepository customerInfoRepository;
 
     public List<CustomerDTO> findAll(){
-        return  customerInfoRepository.getall();
+        return  customerInfoRepository.getAllCustomerInfo();
+    }
+
+    public CustomerDTO getCustomerDetail(int id){
+        return customerInfoRepository.getCustomerInfobyID(id);
     }
 
 }

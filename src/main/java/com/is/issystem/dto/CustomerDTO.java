@@ -87,6 +87,50 @@ public class CustomerDTO {
     @Column
     private String peradd_no_street;
 
+    @Column
+    private String gender;
+
+    @Column
+    private String ethnic;
+
+    @Column
+    private int id_contract;
+
+    @Column
+    private int id_illustration;
+
+    public int getId_contract() {
+        return id_contract;
+    }
+
+    public void setId_contract(int id_contract) {
+        this.id_contract = id_contract;
+    }
+
+    public int getId_illustration() {
+        return id_illustration;
+    }
+
+    public void setId_illustration(int id_illustration) {
+        this.id_illustration = id_illustration;
+    }
+
+    public String getEthnic() {
+        return ethnic;
+    }
+
+    public void setEthnic(String ethnic) {
+        this.ethnic = ethnic;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
     public String getConadd_no_street() {
         return conadd_no_street;
     }
