@@ -17,7 +17,7 @@ import static com.is.issystem.service.TokenAuthenticationService.TOKEN_PREFIX;
 import static java.util.Collections.emptyList;
 
 @Service
-@Transactional
+@Transactional(rollbackFor = Exception.class)
 public class EmployeeAccService {
     @Autowired
     private EmployeeAccRepository employeeAccRepository;

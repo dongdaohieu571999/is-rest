@@ -87,6 +87,21 @@ public class CustomerDTO {
     @Column
     private String peradd_no_street;
 
+    @Column
+    private String code_em_spport;
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+    public String getCode_em_spport() {
+        return code_em_spport;
+    }
+
+    public void setCode_em_spport(String code_em_spport) {
+        this.code_em_spport = code_em_spport;
+    }
+
     public String getConadd_no_street() {
         return conadd_no_street;
     }
