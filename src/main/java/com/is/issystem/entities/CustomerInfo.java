@@ -62,8 +62,16 @@ public class CustomerInfo {
     private Integer id_account;
     @Column(name = "full_name")
     private String full_name;
+    @Column(name = "code_em_support")
+    private String code_em_support;
 
+    public String getCode_em_support() {
+        return code_em_support;
+    }
 
+    public void setCode_em_support(String code_em_support) {
+        this.code_em_support = code_em_support;
+    }
 
     public Integer getId() {
         return id;

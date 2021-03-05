@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@Transactional
+@Transactional(rollbackFor = Exception.class)
 public class EmployeeInfoService {
     @Autowired
     private EmployeeInfoRepository employeeInfoRepository;

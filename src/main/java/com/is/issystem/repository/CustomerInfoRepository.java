@@ -43,4 +43,6 @@ public interface CustomerInfoRepository extends JpaRepository<CustomerDTO,Intege
             "            INNER JOIN is_agency_db.contract as cont on ci.id = cont.id_customer\n" +
             "            INNER JOIN is_agency_db.illustration as illus on cont.id_illustration = illus.id WHERE ci.id = ?1")
     CustomerDTO getCustomerInfobyID(int id);
+
+
 }
