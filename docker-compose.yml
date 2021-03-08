@@ -1,22 +1,18 @@
 version: '3.3'
 
 services:
-    mysql-docker-container:
-        image: mysql
-        environment:
-          - MYSQL_ROOT_PASSWORD=daohieu571999
-          - MYSQL_DATABASE=is_agency_db
-          - MYSQL_USER=root
-          - MYSQL_PASSWORD=daohieu571999
-        volumes:
-          - mysql-data:/var/lib/mysql
-          - ./is_agency_db.sql:/docker-entrypoint-initdb.d/init.sql
     web:
-        image: is_rest_docker:latest
+        image: is_rest:latest
+        networks:
+          - web
+    frontend:
+        image: angular_ui_docker:latest
         ports:
-          - "8005:8080"
-        depends_on:
-          - mysql-docker-container
+          - "80:80"
+        networks:
+          - frontend
+          - web
 
-volumes:
-  mysql-data:
+networks:
+  web:
+  frontend:

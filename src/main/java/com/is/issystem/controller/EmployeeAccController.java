@@ -11,7 +11,7 @@ import com.is.issystem.service.EmployeeAccService;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = {"/employee"})
+@RequestMapping(value = {"/api/employee"})
 public class EmployeeAccController {
     @Autowired
     private EmployeeAccService employeeAccService;
