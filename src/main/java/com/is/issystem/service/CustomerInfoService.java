@@ -100,16 +100,87 @@ public class CustomerInfoService {
         }
     }
 
+    public void addCustomerInfo(CustomerDTO customerDTO){
+        CustomerDTO customerInfo = new CustomerDTO();
+        customerInfo.setBirth_date(customerDTO.getBirth_date());
+        customerInfo.setAge(customerDTO.getAge());
+        customerInfo.setBirth_address(customerDTO.getBirth_address());
+        customerInfo.setTypes_identification(customerDTO.getTypes_identification());
+        customerInfo.setID_card(customerDTO.getID_card());
+        customerInfo.setNationality_1(customerDTO.getNationality_1());
+        customerInfo.setNationality_2(customerDTO.getNationality_2());
+        customerInfo.setNation(customerDTO.getNation());
+        customerInfo.setJob(customerDTO.getJob());
+        customerInfo.setCareer(customerDTO.getCareer());
+        customerInfo.setPosition(customerDTO.getPosition());
+        customerInfo.setOccupation_group(customerDTO.getOccupation_group());
+        customerInfo.setCompany_name(customerDTO.getCompany_name());
+        customerInfo.setMain_business(customerDTO.getMain_business());
+        customerInfo.setSpecific_work(customerDTO.getSpecific_work());
+        customerInfo.setMonthly_income(customerDTO.getMonthly_income());
+        customerInfo.setEmail(customerDTO.getEmail());
+        customerInfo.setPhone_1(customerDTO.getPhone_1());
+        customerInfo.setPhone_2(customerDTO.getPhone_2());
+        customerInfo.setId_account(customerDTO.getId_account());
+        customerInfo.setFull_name(customerDTO.getFull_name());
+        customerInfo.setCode_em_support(customerDTO.getCode_em_support());
+
+
+
+        ContactAddress contactAddress = new ContactAddress();
+        contactAddress.setConadd_city(customerDTO.getConadd_city());
+        contactAddress.setConadd_district(customerDTO.getConadd_district());
+        contactAddress.setConadd_no_street(customerDTO.getConadd_no_street());
+        contactAddress.setConadd_wards(customerDTO.getConadd_wards());
+
+
+
+        CurrentAddress currentAddress = new CurrentAddress();
+        currentAddress.setCuradd_city(customerDTO.getCuradd_city());
+        currentAddress.setCuradd_district(customerDTO.getCuradd_district());
+        currentAddress.setCuradd_no_street(customerDTO.getCuradd_no_street());
+        currentAddress.setCuradd_wards(customerDTO.getCuradd_wards());
+
+
+
+        PermanentAddress permanentAddress = new PermanentAddress();
+        permanentAddress.setPeradd_city(customerDTO.getPeradd_city());
+        permanentAddress.setPeradd_district(customerDTO.getPeradd_district());
+        permanentAddress.setPeradd_no_street(customerDTO.getPeradd_no_street());
+        permanentAddress.setPeradd_wards(customerDTO.getPeradd_wards());
+
+
+
+        WorkplaceAddress workplaceAddress = new WorkplaceAddress();
+        workplaceAddress.setWorkadd_city(customerDTO.getWorkadd_city());
+        workplaceAddress.setWorkadd_district(customerDTO.getWorkadd_district());
+        workplaceAddress.setWorkadd_no_street(customerDTO.getWorkadd_no_street());
+        workplaceAddress.setWorkadd_wards(customerDTO.getWorkadd_wards());
+
+
+
+        if(customerInfo != null && contactAddress != null && currentAddress != null && permanentAddress != null && workplaceAddress != null){
+            customerInfoRepository.save(customerInfo);
+            contactAddressRepository.save(contactAddress);
+            currentAddressRepository.save(currentAddress);
+            permanentAddressRepository.save(permanentAddress);
+            workplaceRepository.save(workplaceAddress);
+        }
+    }
+
+
+//    public void addCustomer(CustomerDTO customerDTO){
+//        CustomerInfo customer = new CustomerInfo();
+//        customer.
+//
+//    }
+
     public CustomerDTO getOneInfo(Integer id,String code){
-        return customerDTORepository.getOneCustomerInfo(id,code);
+        return customerDTORepository.getCustomerInfobyID(id,code);
     }
 
-    public List<CustomerDTO> findAll(){
-        return  customerInfoRepository.getAllCustomerInfo();
-    }
-
-    public CustomerDTO getCustomerDetail(int id){
-        return customerInfoRepository.getCustomerInfobyID(id);
+    public List<CustomerDTO> findAll() {
+        return customerDTORepository.getAllCustomerInfo();
     }
 
 }
