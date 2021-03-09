@@ -15,9 +15,9 @@ public class MailController {
     @Autowired
     private MailService mailService;
 
-    @GetMapping("/")
+    @GetMapping("/abc")
     public ResponseEntity<?> viewAllMail(){
-        return ResponseEntity.status(HttpStatus.OK).body(mailService.getAllMails());
+        return ResponseEntity.status(HttpStatus.OK).body(mailService.getAllMail());
     }
 
 }
