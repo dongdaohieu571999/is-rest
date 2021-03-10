@@ -1,15 +1,12 @@
-package com.is.issystem.entities;
+package com.is.issystem.dto;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Table;
 import java.util.Date;
 
 @Entity
-@Table(name = "mail")
-public class Mail {
-
+public class MailDTO {
     @Id
     @Column(name = "id")
     private Integer id;
@@ -34,6 +31,12 @@ public class Mail {
 
     @Column(name = "receiver_id")
     private Integer receiverId;
+
+    @Column(name = "sender_name")
+    private String sender_name;
+
+    @Column(name = "receiver_name")
+    private String receiver_name;
 
     public Integer getId() {
         return id;
@@ -93,5 +96,21 @@ public class Mail {
 
     public void setReceiverId(Integer receiverId) {
         this.receiverId = receiverId;
+    }
+
+    public String getSender_name() {
+        return sender_name;
+    }
+
+    public void setSender_name(String sender_name) {
+        this.sender_name = sender_name;
+    }
+
+    public String getReceiver_name() {
+        return receiver_name;
+    }
+
+    public void setReceiver_name(String receiver_name) {
+        this.receiver_name = receiver_name;
     }
 }
