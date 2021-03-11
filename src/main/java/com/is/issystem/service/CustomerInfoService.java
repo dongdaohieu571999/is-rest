@@ -3,11 +3,13 @@ package com.is.issystem.service;
 import com.is.issystem.dto.CustomerDTO;
 import com.is.issystem.entities.*;
 import com.is.issystem.repository.*;
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.Transient;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,8 +34,11 @@ public class CustomerInfoService {
     @Autowired
     WorkplaceRepository workplaceRepository;
 
+    @Autowired
+    CustomerAccRepository customerAccRepository;
+
     public void updateCustomerInfo(CustomerDTO customerDTO){
-        Optional<CustomerDTO> customerInfo = customerInfoRepository.findById(customerDTO.getId());
+        Optional<CustomerInfo> customerInfo = customerInfoRepository.findById(customerDTO.getId());
         customerInfo.get().setBirth_date(customerDTO.getBirth_date());
         customerInfo.get().setAge(customerDTO.getAge());
         customerInfo.get().setBirth_address(customerDTO.getBirth_address());
@@ -55,7 +60,12 @@ public class CustomerInfoService {
         customerInfo.get().setPhone_2(customerDTO.getPhone_2());
         customerInfo.get().setId_account(customerDTO.getId_account());
         customerInfo.get().setFull_name(customerDTO.getFull_name());
+        customerInfo.get().setGender(customerDTO.getGender());
         customerInfo.get().setCode_em_support(customerDTO.getCode_em_support());
+        customerInfo.get().setUpdated_time(new Date());
+        customerInfo.get().setMarital_status(customerDTO.isMarital_status());
+        customerInfo.get().setSource(customerDTO.getSource());
+
 
 
 
@@ -101,7 +111,7 @@ public class CustomerInfoService {
     }
 
     public void addCustomerInfo(CustomerDTO customerDTO){
-        CustomerDTO customerInfo = new CustomerDTO();
+        CustomerInfo customerInfo = new CustomerInfo();
         customerInfo.setBirth_date(customerDTO.getBirth_date());
         customerInfo.setAge(customerDTO.getAge());
         customerInfo.setBirth_address(customerDTO.getBirth_address());
@@ -121,9 +131,22 @@ public class CustomerInfoService {
         customerInfo.setEmail(customerDTO.getEmail());
         customerInfo.setPhone_1(customerDTO.getPhone_1());
         customerInfo.setPhone_2(customerDTO.getPhone_2());
-        customerInfo.setId_account(customerDTO.getId_account());
+
         customerInfo.setFull_name(customerDTO.getFull_name());
         customerInfo.setCode_em_support(customerDTO.getCode_em_support());
+
+        customerInfo.setCreated_time(new Date());
+        customerInfo.setMarital_status(customerDTO.isMarital_status());
+        customerInfo.setSource(customerDTO.getSource());
+
+        // add temp account for customer first
+        CustomerAcc customerAcc = new CustomerAcc();
+        customerAcc.setStatus(false);
+        customerAccRepository.save(customerAcc);
+        customerInfo.setId_account(customerAcc.getId());
+
+
+
 
 
 
@@ -160,20 +183,21 @@ public class CustomerInfoService {
 
 
         if(customerInfo != null && contactAddress != null && currentAddress != null && permanentAddress != null && workplaceAddress != null){
-            customerInfoRepository.save(customerInfo);
+
             contactAddressRepository.save(contactAddress);
+            customerInfo.setId_contact_address(contactAddress.getConadd_id());
             currentAddressRepository.save(currentAddress);
+            customerInfo.setId_current_address(currentAddress.getCuradd_id());
             permanentAddressRepository.save(permanentAddress);
+            customerInfo.setId_permanent_address(permanentAddress.getPeradd_id());
             workplaceRepository.save(workplaceAddress);
+            customerInfo.setId_workplace_address(workplaceAddress.getWorkadd_id());
+
+            customerInfoRepository.save(customerInfo);
+
+
         }
     }
-
-
-//    public void addCustomer(CustomerDTO customerDTO){
-//        CustomerInfo customer = new CustomerInfo();
-//        customer.
-//
-//    }
 
     public CustomerDTO getOneInfo(Integer id,String code){
         return customerDTORepository.getCustomerInfobyID(id,code);

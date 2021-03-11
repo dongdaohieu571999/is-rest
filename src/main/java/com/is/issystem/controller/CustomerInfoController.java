@@ -47,6 +47,5 @@ public class CustomerInfoController {
     public ResponseEntity<?> getOneCustomerInfo(@RequestBody String data1){
         JSONObject data = new JSONObject(data1);
         return ResponseEntity.status(HttpStatus.OK).body(customerInfoService.getOneInfo( Integer.parseInt(data.get("id").toString()),Function.getCodeInTokenKey(data.get("token_key").toString())));
-//        return null;
     }
 }

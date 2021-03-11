@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface CustomerInfoRepository extends JpaRepository<CustomerDTO,Integer>{
+public interface CustomerInfoRepository extends JpaRepository<CustomerInfo,Integer>{
 
 }
