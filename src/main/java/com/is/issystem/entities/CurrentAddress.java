@@ -1,14 +1,12 @@
 package com.is.issystem.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "current_address")
 public class CurrentAddress {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "curadd_id")
     private Integer  curadd_id ;
     @Column(name = "curadd_no_street")
