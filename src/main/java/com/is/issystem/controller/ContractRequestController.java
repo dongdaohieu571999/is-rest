@@ -1,12 +1,16 @@
 package com.is.issystem.controller;
 
+import com.is.issystem.commons.Function;
 import com.is.issystem.dto.ContractDTO;
 import com.is.issystem.dto.ContractRequestDTO;
+import com.is.issystem.dto.DetailRequestDTO;
+import com.is.issystem.repository.DetailRequestRepository;
 import com.is.issystem.service.ContractRequestService;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,5 +23,17 @@ public class ContractRequestController {
     @GetMapping(value = "/get_all_contract_request")
     List<ContractRequestDTO> getAllContractRequest(){
         return contractRequestService.getAllContractRequest();
+    }
+
+//    @GetMapping(value = "/get_detail_contract_request")
+//    DetailRequestDTO getDetailContractRequest()
+//    {
+//        return contractRequestService.getDetailRequest();
+//    }
+    @PostMapping(value = "/get_detail_contract_request")
+    public ResponseEntity<?> getOneCustomerInfo(@RequestBody String data1)
+    {
+        JSONObject data = new JSONObject(data1);
+        return ResponseEntity.status(HttpStatus.OK).body(contractRequestService.getDetailRequest( Integer.parseInt(data.get("id").toString())));
     }
 }
