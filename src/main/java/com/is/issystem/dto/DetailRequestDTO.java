@@ -1,24 +1,28 @@
 package com.is.issystem.dto;
 
-import com.is.issystem.entities.AddressInfo;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
-import org.springframework.boot.autoconfigure.AutoConfigurationPackage;
-import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Component;
-
-import javax.persistence.*;
-import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import java.sql.Date;
 
 @Entity
-public class CustomerDTO {
+public class DetailRequestDTO
+{
     @Id
     @Column
-    private Integer id;
+    private int id_request;
     @Column
-    private Date birth_date;
+    private int id_employee;
+    @Column
+    private int id_contract;
+    @Column
+    private int id_illustration;
+    @Column
+    private Date start_time;
+    @Column
+    private int id;
+    @Column
+    private java.util.Date birth_date;
     @Column
     private Integer age;
     @Column
@@ -105,8 +109,6 @@ public class CustomerDTO {
     private String workadd_district;
     @Column
     private String workadd_wards;
-
-
     @Column
     private Integer id_current_address;
     @Column
@@ -116,59 +118,67 @@ public class CustomerDTO {
     @Column
     private Integer id_workplace_address;
     @Column
-    private Date updated_time;
+    private java.util.Date updated_time;
     @Column
     private boolean marital_status;
     @Column
-    private Date created_time;
+    private java.util.Date created_time;
     @Column
     private String source;
 
-    public Date getUpdated_time() {
-        return updated_time;
+    public int getId_request() {
+        return id_request;
     }
 
-    public void setUpdated_time(Date updated_time) {
-        this.updated_time = updated_time;
+    public void setId_request(int id_request) {
+        this.id_request = id_request;
     }
 
-    public boolean isMarital_status() {
-        return marital_status;
+    public int getId_employee() {
+        return id_employee;
     }
 
-    public void setMarital_status(boolean marital_status) {
-        this.marital_status = marital_status;
+    public void setId_employee(int id_employee) {
+        this.id_employee = id_employee;
     }
 
-    public Date getCreated_time() {
-        return created_time;
+    public int getId_contract() {
+        return id_contract;
     }
 
-    public void setCreated_time(Date created_time) {
-        this.created_time = created_time;
+    public void setId_contract(int id_contract) {
+        this.id_contract = id_contract;
     }
 
-    public String getSource() {
-        return source;
+    public int getId_illustration() {
+        return id_illustration;
     }
 
-    public void setSource(String source) {
-        this.source = source;
+    public void setId_illustration(int id_illustration) {
+        this.id_illustration = id_illustration;
     }
 
-    public Integer getId() {
+    public Date getStart_time() {
+        return start_time;
+    }
+
+    public void setStart_time(Date start_time) {
+        this.start_time = start_time;
+    }
+
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public Date getBirth_date() {
+    public java.util.Date getBirth_date() {
         return birth_date;
     }
 
-    public void setBirth_date(Date birth_date) {
+    public void setBirth_date(java.util.Date birth_date) {
         this.birth_date = birth_date;
     }
 
@@ -196,11 +206,11 @@ public class CustomerDTO {
         this.types_identification = types_identification;
     }
 
-    public String getID_card() {
+    public String getId_card() {
         return id_card;
     }
 
-    public void setID_card(String id_card) {
+    public void setId_card(String id_card) {
         this.id_card = id_card;
     }
 
@@ -428,7 +438,7 @@ public class CustomerDTO {
         this.code_em_support = code_em_support;
     }
 
-    public boolean getGender() {
+    public boolean isGender() {
         return gender;
     }
 
@@ -522,5 +532,37 @@ public class CustomerDTO {
 
     public void setId_workplace_address(Integer id_workplace_address) {
         this.id_workplace_address = id_workplace_address;
+    }
+
+    public java.util.Date getUpdated_time() {
+        return updated_time;
+    }
+
+    public void setUpdated_time(java.util.Date updated_time) {
+        this.updated_time = updated_time;
+    }
+
+    public boolean isMarital_status() {
+        return marital_status;
+    }
+
+    public void setMarital_status(boolean marital_status) {
+        this.marital_status = marital_status;
+    }
+
+    public java.util.Date getCreated_time() {
+        return created_time;
+    }
+
+    public void setCreated_time(java.util.Date created_time) {
+        this.created_time = created_time;
+    }
+
+    public String getSource() {
+        return source;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
     }
 }

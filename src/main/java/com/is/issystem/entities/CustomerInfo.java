@@ -1,9 +1,6 @@
 package com.is.issystem.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -11,6 +8,7 @@ import java.util.Date;
 public class CustomerInfo {
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(name = "birth_date")
     private Date birth_date;
@@ -20,8 +18,8 @@ public class CustomerInfo {
     private String birth_address;
     @Column(name = "types_identification")
     private String types_identification;
-    @Column(name = "ID_card")
-    private String ID_card;
+    @Column(name = "id_card")
+    private String id_card;
     @Column(name = "nationality_1")
     private String nationality_1;
     @Column(name = "nationality_2")
@@ -64,6 +62,55 @@ public class CustomerInfo {
     private String full_name;
     @Column(name = "code_em_support")
     private String code_em_support;
+    @Column(name = "gender")
+    private boolean gender;
+    private Date updated_time;
+    @Column
+    private boolean marital_status;
+    @Column
+    private Date created_time;
+    @Column
+    private String source;
+
+    public Date getUpdated_time() {
+        return updated_time;
+    }
+
+    public void setUpdated_time(Date updated_time) {
+        this.updated_time = updated_time;
+    }
+
+    public boolean isMarital_status() {
+        return marital_status;
+    }
+
+    public void setMarital_status(boolean marital_status) {
+        this.marital_status = marital_status;
+    }
+
+    public Date getCreated_time() {
+        return created_time;
+    }
+
+    public void setCreated_time(Date created_time) {
+        this.created_time = created_time;
+    }
+
+    public String getSource() {
+        return source;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
+    }
+
+    public boolean getGender() {
+        return gender;
+    }
+
+    public void setGender(boolean gender) {
+        this.gender = gender;
+    }
 
     public String getCode_em_support() {
         return code_em_support;
@@ -114,11 +161,11 @@ public class CustomerInfo {
     }
 
     public String getID_card() {
-        return ID_card;
+        return id_card;
     }
 
     public void setID_card(String ID_card) {
-        this.ID_card = ID_card;
+        this.id_card = ID_card;
     }
 
     public String getNationality_1() {

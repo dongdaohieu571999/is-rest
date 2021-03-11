@@ -3,7 +3,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="employee_acc")
-public class EmployeeAcc {
+public class   EmployeeAcc {
     @Id
     @Column(name = "id")
     private int id;
