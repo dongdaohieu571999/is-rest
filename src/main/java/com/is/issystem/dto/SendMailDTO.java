@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import java.util.Date;
 
 @Entity
-public class MailDTO {
+public class SendMailDTO {
     @Id
     @Column(name = "id")
     private Integer id;
@@ -26,8 +26,8 @@ public class MailDTO {
     @Column(name = "priority")
     private String priority;
 
-    @Column(name = "sender_name")
-    private String senderName;
+    @Column(name = "receiver_name_code")
+    private String receiverNameCode;
 
     public Integer getId() {
         return id;
@@ -73,11 +73,11 @@ public class MailDTO {
         this.priority = priority;
     }
 
-    public String getSenderName() {
-        return senderName;
+    public String getReceiverNameCode() {
+        return receiverNameCode;
     }
 
-    public void setSenderName(String senderName) {
-        this.senderName = senderName;
+    public void setReceiverNameCode(String receiverNameCode) {
+        this.receiverNameCode = receiverNameCode;
     }
 }

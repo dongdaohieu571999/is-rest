@@ -2,6 +2,7 @@ package com.is.issystem.controller;
 
 import com.is.issystem.commons.Function;
 import com.is.issystem.dto.MailDTO;
+import com.is.issystem.dto.SendMailDTO;
 import com.is.issystem.service.MailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,16 +28,29 @@ public class MailController {
         return ResponseEntity.status(HttpStatus.OK).body(mailService.getDetailMail(userCode, mailID));
     }
 
+//    @PostMapping("/add_mail/{token_key}")
+//    public ResponseEntity<?> addNewMail(@PathVariable("token_key") String token_key, @RequestBody MailDTO mail){
+//        String userCode = Function.getCodeInTokenKey(token_key);
+//        System.out.println(mail.toString());
+//        mailService.addNewMail(mail.getTitle(),
+//                userCode,
+//                mail.getReceiverName(),
+//                mail.getContent(),
+//                1,
+//                1);
+//        return ResponseEntity.status(HttpStatus.OK).body(mail);
+//    }
+
     @PostMapping("/add_mail/{token_key}")
-    public ResponseEntity<?> addNewMail(@PathVariable("token_key") String token_key, @RequestBody MailDTO mail){
-        String userCode = Function.getCodeInTokenKey(token_key);
-        System.out.println(mail.toString());
+    public ResponseEntity<?> addNewMail(@PathVariable("token_key") String token_key, @RequestBody SendMailDTO mail){
+        String senderNameCode = Function.getCodeInTokenKey(token_key);
         mailService.addNewMail(mail.getTitle(),
-                userCode,
-                mail.getReceiverName(),
+                senderNameCode,
+                mail.getReceiverNameCode(),
                 mail.getContent(),
                 1,
                 1);
-        return ResponseEntity.status(HttpStatus.OK).body(mail);
+        System.out.println("code: " + mail.getReceiverNameCode());
+        return ResponseEntity.status(HttpStatus.OK).body(null);
     }
 }
