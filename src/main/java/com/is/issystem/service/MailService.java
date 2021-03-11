@@ -1,9 +1,7 @@
 package com.is.issystem.service;
 
 import com.is.issystem.dto.MailDTO;
-import com.is.issystem.entities.Mail;
 import com.is.issystem.repository.MailDTORepository;
-import com.is.issystem.repository.MailRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,16 +13,18 @@ import java.util.List;
 public class MailService {
 
     @Autowired
-    private MailRepository mailRepository;
-
-    @Autowired
     private MailDTORepository mailDTORepository;
 
-    public List<Mail> getAllMail(String userCode){
-        return mailRepository.getAllMail(userCode);
+    public List<MailDTO> getAllMail(String userCode){
+        return mailDTORepository.getAllMail(userCode);
     }
 
-    public MailDTO getDetailMail(Integer mailId){
-        return mailDTORepository.getDetailMail(mailId);
+    public MailDTO getDetailMail(String userCode, Integer mailId){
+        return mailDTORepository.getDetailMail(userCode, mailId);
+    }
+
+    public Integer addNewMail(String title, String senderNameCode, String receiverNameCode,
+                              String content, Integer status, Integer priority){
+        return mailDTORepository.addNewMail(title, senderNameCode, receiverNameCode, content, status, priority);
     }
 }

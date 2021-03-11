@@ -26,17 +26,11 @@ public class MailDTO {
     @Column(name = "priority")
     private String priority;
 
-    @Column(name = "sender_id")
-    private Integer senderId;
-
-    @Column(name = "receiver_id")
-    private Integer receiverId;
-
     @Column(name = "sender_name")
-    private String sender_name;
+    private String senderName;
 
     @Column(name = "receiver_name")
-    private String receiver_name;
+    private String receiverName;
 
     public Integer getId() {
         return id;
@@ -82,35 +76,21 @@ public class MailDTO {
         this.priority = priority;
     }
 
-    public Integer getSenderId() {
-        return senderId;
+    public String getSenderName() {
+        return senderName;
     }
 
-    public void setSenderId(Integer senderId) {
-        this.senderId = senderId;
+    public void setSenderName(String senderName) {
+        this.senderName = senderName;
     }
 
-    public Integer getReceiverId() {
-        return receiverId;
+    public String getReceiverName() {
+        return receiverName;
     }
 
-    public void setReceiverId(Integer receiverId) {
-        this.receiverId = receiverId;
+    public void setReceiverName(String receiverId) {
+        this.receiverName = receiverId;
     }
 
-    public String getSender_name() {
-        return sender_name;
-    }
 
-    public void setSender_name(String sender_name) {
-        this.sender_name = sender_name;
-    }
-
-    public String getReceiver_name() {
-        return receiver_name;
-    }
-
-    public void setReceiver_name(String receiver_name) {
-        this.receiver_name = receiver_name;
-    }
 }
