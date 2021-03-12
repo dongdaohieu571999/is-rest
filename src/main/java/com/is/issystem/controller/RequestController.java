@@ -15,12 +15,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = {"/api/contractRequest"})
-public class ContractRequestController {
+@RequestMapping(value = {"/api/request"})
+public class RequestController {
     @Autowired
     private ContractRequestService contractRequestService;
 
-    @GetMapping(value = "/get_all_contract_request")
+    @GetMapping(value = "/get_all_request")
     List<ContractRequestDTO> getAllContractRequest(){
         return contractRequestService.getAllContractRequest();
     }
@@ -30,10 +30,11 @@ public class ContractRequestController {
 //    {
 //        return contractRequestService.getDetailRequest();
 //    }
-    @PostMapping(value = "/get_detail_contract_request")
+    @PostMapping(value = "/get_detail_request")
     public ResponseEntity<?> getOneCustomerInfo(@RequestBody String data1)
     {
         JSONObject data = new JSONObject(data1);
+        DetailRequestDTO detailRequestDTO = contractRequestService.getDetailRequest( Integer.parseInt(data.get("id").toString()));
         return ResponseEntity.status(HttpStatus.OK).body(contractRequestService.getDetailRequest( Integer.parseInt(data.get("id").toString())));
     }
 }
