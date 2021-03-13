@@ -32,7 +32,7 @@ public class TokenAuthenticationService {
         PrintWriter out = res.getWriter();
         JSONObject obj = new JSONObject();
         obj.put("token_key", TOKEN_PREFIX + JWT);
-        out.print(obj.toString());
+        out.print(obj.toString()); 
     }
 
     public static Authentication getAuthentication(HttpServletRequest request) {
