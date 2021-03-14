@@ -54,21 +54,16 @@ public class ContractDTO {
     @Column
     private Date date_changed_contract;
     @Column
-    private String description;
-    @Column
     private String approval_status_contract_change;
-    @Column
-    private int id_attachment_contract_change;
     @Column
     private int id_request;
     @Column
-    private String new_information;
-    @Column
-    private String old_information;
+    private int id_employee;
     @Column
     private String payment_amount_interset;
     @Column
     private String payment_amount_fee;
+
 
     public String getPayment_amount_interset() {
         return payment_amount_interset;
@@ -76,6 +71,14 @@ public class ContractDTO {
 
     public void setPayment_amount_interset(String payment_amount_interset) {
         this.payment_amount_interset = payment_amount_interset;
+    }
+
+    public int getId_employee() {
+        return id_employee;
+    }
+
+    public void setId_employee(int id_employee) {
+        this.id_employee = id_employee;
     }
 
     public String getPayment_amount_fee() {
@@ -262,13 +265,6 @@ public class ContractDTO {
         this.date_changed_contract = date_changed_contract;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 
     public String getApproval_status_contract_change() {
         return approval_status_contract_change;
@@ -278,13 +274,6 @@ public class ContractDTO {
         this.approval_status_contract_change = approval_status_contract_change;
     }
 
-    public int getId_attachment_contract_change() {
-        return id_attachment_contract_change;
-    }
-
-    public void setId_attachment_contract_change(int id_attachment_contract_change) {
-        this.id_attachment_contract_change = id_attachment_contract_change;
-    }
 
     public int getId_request() {
         return id_request;
@@ -293,20 +282,6 @@ public class ContractDTO {
     public void setId_request(int id_request) {
         this.id_request = id_request;
     }
-
-    public String getNew_information() {
-        return new_information;
-    }
-
-    public void setNew_information(String new_information) {
-        this.new_information = new_information;
-    }
-
-    public String getOld_information() {
-        return old_information;
-    }
-
-    public void setOld_information(String old_information) {
-        this.old_information = old_information;
-    }
 }
+
+
