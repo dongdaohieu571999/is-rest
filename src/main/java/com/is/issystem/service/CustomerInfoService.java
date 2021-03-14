@@ -131,6 +131,7 @@ public class CustomerInfoService {
         customerInfo.setEmail(customerDTO.getEmail());
         customerInfo.setPhone_1(customerDTO.getPhone_1());
         customerInfo.setPhone_2(customerDTO.getPhone_2());
+        customerInfo.setCode_em_support(customerDTO.getCode_em_support());
 
         customerInfo.setFull_name(customerDTO.getFull_name());
         customerInfo.setCode_em_support(customerDTO.getCode_em_support());
@@ -203,8 +204,8 @@ public class CustomerInfoService {
         return customerDTORepository.getCustomerInfobyID(id,code);
     }
 
-    public List<CustomerDTO> findAll() {
-        return customerDTORepository.getAllCustomerInfo();
+    public List<CustomerDTO> findAll(String code_em_support) {
+        return customerDTORepository.getAllCustomerInfo(code_em_support);
     }
 
 }

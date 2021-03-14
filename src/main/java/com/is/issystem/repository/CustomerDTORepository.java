@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public interface CustomerDTORepository extends JpaRepository<CustomerDTO,Integer>{
     @Query(nativeQuery = true,value = "SELECT ci.*,code ,ca.status ,\n" +
-            "\t\t\tconadd_city , conadd_district \n" +
+            "\tconadd_city , conadd_district \n" +
             "            ,conadd_no_street ,conadd_wards, \n" +
             "            curadd_city ,curadd_district ,\n" +
             "            curadd_no_street , curadd_wards,  \n" +
@@ -23,11 +23,11 @@ public interface CustomerDTORepository extends JpaRepository<CustomerDTO,Integer
             "            INNER JOIN contact_address as conadd ON conadd.conadd_id = ci.id_contact_address\n" +
             "            INNER JOIN current_address as curadd ON curadd.curadd_id = ci.id_current_address \n" +
             "            INNER JOIN permanent_address as peradd on peradd.peradd_id = ci.id_permanent_address \n" +
-            "            INNER JOIN workplace_address as workadd ON workadd.workadd_id = ci.id_workplace_address order by created_time desc")
-    List<CustomerDTO> getAllCustomerInfo();
+            "            INNER JOIN workplace_address as workadd ON workadd.workadd_id = ci.id_workplace_address where code_em_support = ?1 order by created_time desc")
+    List<CustomerDTO> getAllCustomerInfo(String code_em_support);
 
     @Query(nativeQuery = true,value = "SELECT ci.*,code ,ca.status ,\n" +
-            "\t\t\tconadd_city , conadd_district \n" +
+            "\tconadd_city , conadd_district \n" +
             "            ,conadd_no_street ,conadd_wards, \n" +
             "            curadd_city ,curadd_district ,\n" +
             "            curadd_no_street , curadd_wards,  \n" +
