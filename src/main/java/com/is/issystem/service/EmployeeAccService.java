@@ -42,14 +42,14 @@ import static com.is.issystem.service.TokenAuthenticationService.TOKEN_PREFIX;
                         .getBody()
                         .getSubject();
                 EmployeeAcc employeeAcc = new EmployeeAcc();
-                employeeAcc.setId_role(Integer.parseInt(employeeAccRepository.getOneAcc(user)));
+                employeeAcc.setId_role(employeeAccRepository.getOneAcc(user).getId_role());
                 return employeeAcc;
             }
             return null;
         }
 
         public EmployeeAcc updateEmployeeAccount(EmployeeAcc employee_acc) {
-            EmployeeAcc existEmployeeAcc = employeeAccRepository.findById(employee_acc.getId()).orElse(null);
+            EmployeeAcc existEmployeeAcc = employeeAccRepository.getOneAcc(employee_acc.getCode());
             existEmployeeAcc.setCode(employee_acc.getCode());
             existEmployeeAcc.setPass(employee_acc.getPass());
             existEmployeeAcc.setStatus(employee_acc.isStatus());
