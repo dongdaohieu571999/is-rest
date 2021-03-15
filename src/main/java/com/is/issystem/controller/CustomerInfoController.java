@@ -25,11 +25,6 @@ public class CustomerInfoController {
 
     }
 
-//    @GetMapping(value = "/get_detail_customer_info")
-//    CustomerDTO getCustomerDetail(int id){
-//        return customerInfoService.getCustomerDetail(id);
-//    }
-
     @PostMapping(value = "/update_one_customer_info")
     public ResponseEntity<?> updateOneCustomerInfo(@RequestBody CustomerDTO customerDTO){
         customerInfoService.updateCustomerInfo(customerDTO);
@@ -47,5 +42,6 @@ public class CustomerInfoController {
     public ResponseEntity<?> getOneCustomerInfo(@RequestBody String data1){
         JSONObject data = new JSONObject(data1);
         return ResponseEntity.status(HttpStatus.OK).body(customerInfoService.getOneInfo( Integer.parseInt(data.get("id").toString()),Function.getCodeInTokenKey(data.get("token_key").toString())));
+
     }
 }

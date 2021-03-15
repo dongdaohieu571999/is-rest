@@ -1,21 +1,46 @@
 package com.is.issystem.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
-public class Contract {
+public class ContractChangeHistory {
     @Column
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column
     private int id_customer;
     @Column
+    private Date date;
+    @Column
+    private int id_request;
+    @Column
+    private int id_contract;
+    @Column
     private String name_contract_owner;
     @Column
     private String payment_period;
+    @Column
+    private String insurance_type;
+    @Column
+    private int id_main_interest;
+    @Column
+    private int id_illustration;
+    @Column
+    private Date start_time;
+    @Column
+    private Date end_time;
+    @Column
+    private Date date_next_payment;
+    @Column
+    private String status;
+    @Column
+    private String approval_status;
+    @Column
+    private int contract_total_value;
+    @Column
+    private int id_employee;
 
     public int getId() {
         return id;
@@ -31,6 +56,30 @@ public class Contract {
 
     public void setId_customer(int id_customer) {
         this.id_customer = id_customer;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public int getId_request() {
+        return id_request;
+    }
+
+    public void setId_request(int id_request) {
+        this.id_request = id_request;
+    }
+
+    public int getId_contract() {
+        return id_contract;
+    }
+
+    public void setId_contract(int id_contract) {
+        this.id_contract = id_contract;
     }
 
     public String getName_contract_owner() {
@@ -128,25 +177,4 @@ public class Contract {
     public void setId_employee(int id_employee) {
         this.id_employee = id_employee;
     }
-
-    @Column
-    private String insurance_type;
-    @Column
-    private int id_main_interest;
-    @Column
-    private int id_illustration;
-    @Column
-    private Date start_time;
-    @Column
-    private Date end_time;
-    @Column
-    private Date date_next_payment;
-    @Column
-    private String status;
-    @Column
-    private String approval_status;
-    @Column
-    private int contract_total_value;
-    @Column
-    private int id_employee;
 }
