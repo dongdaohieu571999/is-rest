@@ -21,8 +21,8 @@ public class CustomerInfoController {
 
     @PostMapping(value = "/get_all_customer_info")
     List<CustomerDTO> findAll(@RequestBody String code_em_support){
+        System.out.println(customerInfoService.findAll(code_em_support));
         return customerInfoService.findAll(code_em_support);
-
     }
 
     @PostMapping(value = "/update_one_customer_info")
