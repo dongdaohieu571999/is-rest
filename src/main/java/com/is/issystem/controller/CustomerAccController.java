@@ -1,12 +1,16 @@
 package com.is.issystem.controller;
 
+import com.is.issystem.dto.CustomerAccountDTO;
 import com.is.issystem.entities.CustomerAcc;
+import com.is.issystem.repository.CustomerAccountDTORepository;
 import com.is.issystem.service.CustomerAccService;
 import com.is.issystem.service.CustomerInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(value = {"/api/customer"})
@@ -23,6 +27,12 @@ public class CustomerAccController {
             customerAccService.addCustomerAccount(customerAcc);
             return ResponseEntity.status(HttpStatus.OK).body(customerAcc.getId());
         }
+    }
+
+    @GetMapping(value = "/get_customer_account_dto" +
+            "")
+    public List<CustomerAccountDTO> getAllCustomerAccountDTO(){
+        return customerAccService.getAllCustomerAccountDTO();
     }
 
 }

@@ -19,10 +19,9 @@ public class CustomerInfoController {
     @Autowired
     private CustomerInfoService customerInfoService;
 
-    @GetMapping(value = "/get_all_customer_info")
+    @PostMapping(value = "/get_all_customer_info")
     List<CustomerDTO> findAll(){
         return customerInfoService.findAll();
-
     }
 
 //    @GetMapping(value = "/get_detail_customer_info")
