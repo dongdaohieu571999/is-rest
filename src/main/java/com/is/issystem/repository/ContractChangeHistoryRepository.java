@@ -13,3 +13,5 @@ public interface ContractChangeHistoryRepository extends JpaRepository<ContractC
     @Query(nativeQuery = true,value = "SELECT * FROM is_agency_db.contract_change_history where id_contract = ?1")
     List<ContractChangeHistory> getAllContractChange(int id);
 }
+
+

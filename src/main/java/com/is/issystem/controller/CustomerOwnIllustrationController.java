@@ -1,6 +1,7 @@
 package com.is.issystem.controller;
 
 import com.is.issystem.dto.CustomerOwnIlustrationDTO;
+import com.is.issystem.entities.ContractChangeHistory;
 import com.is.issystem.entities.CustomerOwnIllustration;
 import com.is.issystem.service.CustomerOwnIllustrationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,11 @@ public class CustomerOwnIllustrationController {
     public List<CustomerOwnIlustrationDTO> getAllCustomerOwnIllustration(){
         return customerOwnIllustrationService.getAllCustomerOwnIllustration();
     }
+
+//    @GetMapping(value = "/get_all_illustration_belong_customer/{id}")
+//    List<ContractChangeHistory> getAllContractHistory(@PathVariable("id") int id){
+//        return CustomerOwnIllustrationController.getAllContractHistory(id);
+//    }
 
     @PostMapping(value = "/add_one_customer_own_illustration")
     public void addOneCustomerOwnIllustration(@RequestBody String code){
