@@ -1,8 +1,7 @@
 package com.is.issystem.service;
 
-import com.is.issystem.dto.ContractDTO;
-import com.is.issystem.entities.illstration;
-import com.is.issystem.repository.illstrationRepository;
+import com.is.issystem.entities.Illustration;
+import com.is.issystem.repository.IllustrationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,9 +12,9 @@ import java.util.List;
 @Transactional(rollbackFor = Exception.class)
 public class IllstrationService {
     @Autowired
-    private illstrationRepository illRepository;
+    private IllustrationRepository illRepository;
 
-    public List<illstration> getAllillstration(int id){
+    public List<Illustration> getAllillstration(int id){
         return illRepository.listIllustrationCustomerOwn(id);
     }
 
