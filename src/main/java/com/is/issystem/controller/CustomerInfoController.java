@@ -3,6 +3,7 @@ package com.is.issystem.controller;
 import com.is.issystem.commons.Function;
 import com.is.issystem.dto.CustomerDTO;
 import com.is.issystem.entities.CustomerInfo;
+import com.is.issystem.entities.illstration;
 import com.is.issystem.service.CustomerInfoService;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,17 @@ public class CustomerInfoController {
         return customerInfoService.findAll(code_em_support);
     }
 
+    @GetMapping(value = "/get_all_customer_info_admin")
+    List<CustomerDTO> getAllCustomerInfoAdmin(){
+        return customerInfoService.getAllCustomerInfoAdmin();
+    }
+
+    @GetMapping(value = "/get_detail_customer_info_admin/{id}")
+    public CustomerDTO getAllContractHistory(@PathVariable("id") int id){
+        return customerInfoService.getOneInfo(id);
+    }
+
+
     @PostMapping(value = "/update_one_customer_info")
     public ResponseEntity<?> updateOneCustomerInfo(@RequestBody CustomerDTO customerDTO){
         customerInfoService.updateCustomerInfo(customerDTO);
@@ -42,6 +54,5 @@ public class CustomerInfoController {
     public ResponseEntity<?> getOneCustomerInfo(@RequestBody String data1){
         JSONObject data = new JSONObject(data1);
         return ResponseEntity.status(HttpStatus.OK).body(customerInfoService.getOneInfo( Integer.parseInt(data.get("id").toString()),Function.getCodeInTokenKey(data.get("token_key").toString())));
-
     }
 }
