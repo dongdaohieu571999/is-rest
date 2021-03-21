@@ -21,12 +21,11 @@ public class CustomerInfoService {
 
     @Autowired
     CustomerInfoRepository customerInfoRepository;
+    @Autowired
+    ContractRepository contractRepository;
 
     @Autowired
     PermanentAddressRepository permanentAddressRepository;
-
-    @Autowired
-    ContractRepository contractRepository;
 
     @Autowired
     ContactAddressRepository contactAddressRepository;
