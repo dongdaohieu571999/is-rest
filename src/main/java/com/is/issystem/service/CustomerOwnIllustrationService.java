@@ -1,9 +1,8 @@
 package com.is.issystem.service;
 
 import com.is.issystem.dto.CustomerOwnIlustrationDTO;
-import com.is.issystem.entities.CustomerOwnIllustration;
-import com.is.issystem.repository.CustomerOwnIllustrationDTORepository;
-import com.is.issystem.repository.CustomerOwnIllustrationRepository;
+import com.is.issystem.repository.entity_dto_repository.CustomerOwnIllustrationDTORepository;
+import com.is.issystem.repository.entity_repository.CustomerOwnIllustrationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

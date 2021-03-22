@@ -2,13 +2,12 @@ package com.is.issystem.service;
 
 import com.is.issystem.dto.CustomerDTO;
 import com.is.issystem.entities.*;
-import com.is.issystem.repository.*;
-import org.hibernate.Session;
+import com.is.issystem.repository.entity_dto_repository.CustomerDTORepository;
+import com.is.issystem.repository.entity_repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.Transient;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;

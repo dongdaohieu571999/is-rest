@@ -2,7 +2,6 @@ package com.is.issystem.controller;
 
 import com.is.issystem.entities.EmployeeInfo;
 import com.is.issystem.dto.EmployeeDTO;
-import com.is.issystem.repository.EmployeeInfoAccRepository;
 import com.is.issystem.service.EmployeeInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

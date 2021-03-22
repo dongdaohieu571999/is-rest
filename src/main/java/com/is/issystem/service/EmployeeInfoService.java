@@ -2,8 +2,8 @@ package com.is.issystem.service;
 
 import com.is.issystem.entities.EmployeeInfo;
 import com.is.issystem.dto.EmployeeDTO;
-import com.is.issystem.repository.EmployeeInfoAccRepository;
-import com.is.issystem.repository.EmployeeInfoRepository;
+import com.is.issystem.repository.entity_repository.EmployeeInfoAccRepository;
+import com.is.issystem.repository.entity_repository.EmployeeInfoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

@@ -1,53 +1,30 @@
 package com.is.issystem.entities;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import com.sun.istack.Nullable;
+import lombok.Getter;
+import lombok.Setter;
+
+import javax.persistence.*;
 import java.util.Date;
 
+@Getter
+@Setter
 @Entity
+@Table(name = "illustration")
 public class Illustration {
-    @Column
+    @Column(name = "id")
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column
-    private int id_customer;
+    @Column(name = "id_customer_info")
+    private int id_customer_info;
 
-    @Column
+    @Column(name = "create_time")
     private Date create_time;
 
-    @Column
-    private String main_interest_name;
+    @Column(name = "total_fee")
+    private Integer total_fee;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getId_customer() {
-        return id_customer;
-    }
-
-    public void setId_customer(int id_customer) {
-        this.id_customer = id_customer;
-    }
-
-    public Date getCreate_time() {
-        return create_time;
-    }
-
-    public void setCreate_time(Date create_time) {
-        this.create_time = create_time;
-    }
-
-    public String getMain_interest_name() {
-        return main_interest_name;
-    }
-
-    public void setMain_interest_name(String main_interest_name) {
-        this.main_interest_name = main_interest_name;
-    }
+    @Column(name = "payment_period")
+    private Integer payment_period;
 }

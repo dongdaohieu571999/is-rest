@@ -1,7 +1,7 @@
 package com.is.issystem.service;
 
 import com.is.issystem.dto.MailDTO;
-import com.is.issystem.repository.MailDTORepository;
+import com.is.issystem.repository.entity_dto_repository.MailDTORepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
