@@ -5,7 +5,7 @@ import com.is.issystem.entities.Contract;
 import com.is.issystem.entities.ContractChangeHistory;
 import com.is.issystem.entities.FeePaymentHistory;
 import com.is.issystem.entities.IntersetPaymentHistory;
-import com.is.issystem.repository.ContractRepository;
+import com.is.issystem.repository.entity_repository.ContractRepository;
 import com.is.issystem.service.ContractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

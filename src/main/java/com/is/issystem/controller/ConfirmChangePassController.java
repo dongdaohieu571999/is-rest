@@ -1,9 +1,7 @@
 package com.is.issystem.controller;
 
-import com.is.issystem.commons.Constant;
 import com.is.issystem.commons.Function;
 import com.is.issystem.entities.EmployeeAcc;
-import com.is.issystem.repository.EmployeeAccRepository;
 import com.is.issystem.service.EmployeeAccService;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMailMessage;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 

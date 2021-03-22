@@ -6,12 +6,11 @@ import java.util.Optional;
 
 import com.is.issystem.entities.CustomerAcc;
 import com.is.issystem.entities.EmployeeAcc;
-import com.is.issystem.entities.EmployeeInfo;
 import io.jsonwebtoken.Jwts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import com.is.issystem.repository.EmployeeAccRepository;
+import com.is.issystem.repository.entity_repository.EmployeeAccRepository;
 
 import static com.is.issystem.service.TokenAuthenticationService.SECRET;
 import static com.is.issystem.service.TokenAuthenticationService.TOKEN_PREFIX;

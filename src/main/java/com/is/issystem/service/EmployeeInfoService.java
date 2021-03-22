@@ -4,7 +4,12 @@ import com.is.issystem.dto.EmployeeAccDTO;
 import com.is.issystem.dto.EmployeeInfoDTO;
 import com.is.issystem.entities.*;
 import com.is.issystem.dto.EmployeeDTO;
+<<<<<<< HEAD
 import com.is.issystem.repository.*;
+=======
+import com.is.issystem.repository.entity_repository.EmployeeInfoAccRepository;
+import com.is.issystem.repository.entity_repository.EmployeeInfoRepository;
+>>>>>>> hieu
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

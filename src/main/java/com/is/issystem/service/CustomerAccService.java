@@ -2,7 +2,7 @@ package com.is.issystem.service;
 
 
 import com.is.issystem.entities.CustomerAcc;
-import com.is.issystem.repository.CustomerAccRepository;
+import com.is.issystem.repository.entity_repository.CustomerAccRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
