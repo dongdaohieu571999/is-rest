@@ -21,9 +21,30 @@ public class ContractRequestDTO {
     @Column
     private String employee_name;
     @Column
+    private String description;
+    @Column
     private String name_contract_owner;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     @Column
     private String approval_status;
+    @Column
+    private String status;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public int getId_request() {
         return id_request;

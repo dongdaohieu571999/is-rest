@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface DetailRequestRepository extends JpaRepository<DetailRequestDTO,Integer> {
-    @Query(nativeQuery = true,value = "SELECT re.id as id_request,re.date as start_time,re.id_contract,ei.id as id_employee,\n" +
+    @Query(nativeQuery = true,value = "SELECT re.id as id_request,re.date as start_time,re.id_contract,ei.id as id_employee,re.status as request_status,\n" +
             "\tcont.id_illustration,\n" +
             "           customerinfo.*\n" +
             "\tFROM is_agency_db.request as re\n" +

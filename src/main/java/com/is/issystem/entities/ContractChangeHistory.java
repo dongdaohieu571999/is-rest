@@ -34,7 +34,7 @@ public class ContractChangeHistory {
     @Column
     private Date date_next_payment;
     @Column
-    private String status;
+    private boolean status;
     @Column
     private String approval_status;
     @Column
@@ -146,11 +146,11 @@ public class ContractChangeHistory {
         this.date_next_payment = date_next_payment;
     }
 
-    public String getStatus() {
+    public boolean isStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(boolean status) {
         this.status = status;
     }
 

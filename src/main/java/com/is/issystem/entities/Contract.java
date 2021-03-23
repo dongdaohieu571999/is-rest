@@ -97,13 +97,7 @@ public class Contract {
         this.date_next_payment = date_next_payment;
     }
 
-    public String getStatus() {
-        return status;
-    }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
 
     public String getApproval_status() {
         return approval_status;
@@ -137,12 +131,21 @@ public class Contract {
     private int id_illustration;
     @Column
     private Date start_time;
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
     @Column
     private Date end_time;
     @Column
     private Date date_next_payment;
     @Column
-    private String status;
+    private boolean status;
     @Column
     private String approval_status;
     @Column

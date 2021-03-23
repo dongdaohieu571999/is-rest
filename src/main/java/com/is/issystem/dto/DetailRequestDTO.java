@@ -18,6 +18,8 @@ public class DetailRequestDTO
     @Column
     private int id_employee;
     @Column
+    private String request_status;
+    @Column
     private int id_contract;
     @Column
     private int id_illustration;

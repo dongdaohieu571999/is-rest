@@ -1,15 +1,9 @@
 package com.is.issystem.service;
 
 import com.is.issystem.dto.ContractDTO;
-import com.is.issystem.entities.Contract;
-import com.is.issystem.entities.ContractChangeHistory;
-import com.is.issystem.entities.FeePaymentHistory;
-import com.is.issystem.entities.IntersetPaymentHistory;
+import com.is.issystem.entities.*;
 import com.is.issystem.repository.entity_dto_repository.ContractDTORepository;
-import com.is.issystem.repository.entity_repository.ContractChangeHistoryRepository;
-import com.is.issystem.repository.entity_repository.ContractRepository;
-import com.is.issystem.repository.entity_repository.FeePaymentHistoryRepository;
-import com.is.issystem.repository.entity_repository.IntersetPaymentHistoryRepository;
+import com.is.issystem.repository.entity_repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,10 +24,14 @@ public class ContractService {
     private FeePaymentHistoryRepository feePaymentHistoryRepository;
     @Autowired
     private IntersetPaymentHistoryRepository intersetPaymentHistoryRepository;
+    @Autowired
+    private RequestRepository requestRepository;
 
     public List<ContractDTO> getAllContract(){
         return contractDTORepository.getAllContract();
     }
+
+
 
     public ContractDTO getDetailContract(int id){
         return contractDTORepository.getDetailContract(id);
@@ -53,6 +51,28 @@ public class ContractService {
     public List<IntersetPaymentHistory> getAllIntersetPaymentHistory(int id){
         return intersetPaymentHistoryRepository.getAllIntersetPayment(id);
     }
+    public void setUpdateContract(int id_contract,int id_request,String description){
+        Optional<Contract> contract = contractRepository.findById(id_contract);
+        contract.get().setApproval_status("DXD");
+        contract.get().setStatus(true);
+
+        Optional<Request> request = requestRepository.findById(id_request);
+
+        request.get().setDescription(description);
+        request.get().setStatus("DXD");
+
+    }
+
+    public void setUpdateContractDecline(int id_contract,int id_request,String description){
+
+        Optional<Contract> contract = contractRepository.findById(id_contract);
+        contract.get().setApproval_status("TC");
+        contract.get().setStatus(false);
+
+        Optional<Request> request = requestRepository.findById(id_request);
+        request.get().setDescription(description);
+        request.get().setStatus("TC");
+    }
 
 
     public void updateContract(Contract cont){
@@ -71,7 +91,7 @@ public class ContractService {
         HistoryContract.setId_illustration(oldContract.get().getId_illustration());
         HistoryContract.setStart_time(oldContract.get().getStart_time());
         HistoryContract.setEnd_time(oldContract.get().getEnd_time());
-        HistoryContract.setStatus(oldContract.get().getStatus());
+        HistoryContract.setStatus(oldContract.get().isStatus());
         HistoryContract.setContract_total_value(oldContract.get().getContract_total_value());
         HistoryContract.setDate_next_payment(oldContract.get().getDate_next_payment());
         HistoryContract.setId_employee(oldContract.get().getId_employee());
