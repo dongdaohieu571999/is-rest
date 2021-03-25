@@ -18,7 +18,7 @@ public class IllustrationController {
     private IllustrationService illustrationService;
 
     @GetMapping(value = "/get_all_illustration_belong_customer/{id}")
-    List<IllustrationItemOfList> getAllContractHistory(@PathVariable("id") int id){
+    List<IllustrationItemOfList> getAllIllustration(@PathVariable("id") int id){
         return illustrationService.getAllillstration(id);
     }
 
