@@ -19,7 +19,7 @@ public class IllustrationController {
 
     @GetMapping(value = "/get_all_illustration_belong_customer/{id}")
     List<IllustrationItemOfList> getAllIllustration(@PathVariable("id") int id){
-        return illustrationService.getAllillstration(id);
+        return illustrationService.getAllIllustration(id);
     }
 
     @PostMapping(value = "/add_one_illustration")
