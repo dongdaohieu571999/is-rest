@@ -31,7 +31,7 @@ public class IllustrationService {
     @Autowired
     private IllustrationSubInterestRepository subInterestRepository;
 
-    public List<IllustrationItemOfList> getAllillstration(int id){
+    public List<IllustrationItemOfList> getAllIllustration(int id){
         return illustrationItemOfListRepository.listIllustrationCustomerOwn(id);
     }
 
