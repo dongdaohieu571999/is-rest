@@ -63,6 +63,7 @@ public class CustomerDTO {
     private String code;
     @Column
     private boolean status;
+
     @Column
     private String conadd_no_street;
     @Column

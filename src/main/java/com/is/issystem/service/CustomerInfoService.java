@@ -20,6 +20,8 @@ public class CustomerInfoService {
 
     @Autowired
     CustomerInfoRepository customerInfoRepository;
+    @Autowired
+    ContractRepository contractRepository;
 
     @Autowired
     PermanentAddressRepository permanentAddressRepository;
@@ -35,6 +37,7 @@ public class CustomerInfoService {
 
     @Autowired
     CustomerAccRepository customerAccRepository;
+
 
     public void updateCustomerInfo(CustomerDTO customerDTO){
         Optional<CustomerInfo> customerInfo = customerInfoRepository.findById(customerDTO.getId());
@@ -203,8 +206,17 @@ public class CustomerInfoService {
         return customerDTORepository.getCustomerInfobyID(id,code);
     }
 
+    public CustomerDTO getOneInfo(Integer id){
+        return customerDTORepository.getCustomerInfobyIDAdmin(id);
+    }
+
     public List<CustomerDTO> findAll(String code_em_support) {
         return customerDTORepository.getAllCustomerInfo(code_em_support);
     }
+
+    public List<CustomerDTO> getAllCustomerInfoAdmin() {
+        return customerDTORepository.getAllCustomerInfoAdmin();
+    }
+
 
 }

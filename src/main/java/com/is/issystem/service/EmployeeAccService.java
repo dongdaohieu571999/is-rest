@@ -4,6 +4,7 @@ package com.is.issystem.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.is.issystem.entities.CustomerAcc;
 import com.is.issystem.entities.EmployeeAcc;
 import io.jsonwebtoken.Jwts;
 import org.springframework.beans.factory.annotation.Autowired;

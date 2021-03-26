@@ -10,6 +10,77 @@ public class EmployeeInfo {
     @Column(name = "id")
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
+    @Column(name = "name")
+    private String name;
+    @Column(name = "address")
+    private String address;
+    @Column(name = "date_of_birth")
+    private Date date_of_birth;
+    @Column(name = "email")
+    private String email;
+    @Column(name = "phone")
+    private String phone;
+    @Column(name = "ID_card")
+    private String id_card;
+    @Column(name = "id_certificate")
+    private Integer id_certificate;
+    @Column(name = "start_time")
+    private Date start_time;
+    @Column(name = "end_time")
+    private Date end_time;
+    @Column(name = "dept_id")
+    private Integer dept_id;
+    @Column(name = "id_acc")
+    private Integer id_acc;
+    @Column(name = "id_labour_contract")
+    private Integer id_labour_contract;
+    @Column
+    private boolean gender;
+    @Column
+    private boolean marital_status;
+    @Column
+    private String national;
+    @Column
+    private int age;
+    @Column(name = "id_current_address")
+    private Integer id_current_address;
+    @Column(name = "id_permanent_address")
+    private Integer id_permanent_address;
+
+    public Integer getId_current_address() {
+        return id_current_address;
+    }
+
+    public String getNational() {
+        return national;
+    }
+
+    public void setNational(String national) {
+        this.national = national;
+    }
+
+    public void setId_current_address(Integer id_current_address) {
+        this.id_current_address = id_current_address;
+    }
+
+    public Integer getId_permanent_address() {
+        return id_permanent_address;
+    }
+
+    public void setId_permanent_address(Integer id_permanent_address) {
+        this.id_permanent_address = id_permanent_address;
+    }
+
+    public Integer getId_contact_address() {
+        return id_contact_address;
+    }
+
+    public void setId_contact_address(Integer id_contact_address) {
+        this.id_contact_address = id_contact_address;
+    }
+
+    @Column(name = "id_contact_address")
+    private Integer id_contact_address;
 
     public Integer getId() {
         return id;
@@ -59,12 +130,12 @@ public class EmployeeInfo {
         this.phone = phone;
     }
 
-    public String getID_card() {
-        return ID_card;
+    public String getId_card() {
+        return id_card;
     }
 
-    public void setID_card(String ID_card) {
-        this.ID_card = ID_card;
+    public void setId_card(String id_card) {
+        this.id_card = id_card;
     }
 
     public Integer getId_certificate() {
@@ -91,14 +162,6 @@ public class EmployeeInfo {
         this.end_time = end_time;
     }
 
-    public Boolean getSex() {
-        return sex;
-    }
-
-    public void setSex(Boolean sex) {
-        this.sex = sex;
-    }
-
     public Integer getDept_id() {
         return dept_id;
     }
@@ -123,30 +186,28 @@ public class EmployeeInfo {
         this.id_labour_contract = id_labour_contract;
     }
 
-    @Column(name = "name")
-    private String name;
-    @Column(name = "address")
-    private String address;
-    @Column(name = "date_of_birth")
-    private Date date_of_birth;
-    @Column(name = "email")
-    private String email;
-    @Column(name = "phone")
-    private String phone;
-    @Column(name = "ID_card")
-    private String ID_card;
-    @Column(name = "id_certificate")
-    private Integer id_certificate;
-    @Column(name = "start_time")
-    private Date start_time;
-    @Column(name = "end_time")
-    private Date end_time;
-    @Column(name = "sex")
-    private Boolean sex;
-    @Column(name = "dept_id")
-    private Integer dept_id;
-    @Column(name = "id_acc")
-    private Integer id_acc;
-    @Column(name = "id_labour_contract")
-    private Integer id_labour_contract;
+    public boolean isGender() {
+        return gender;
+    }
+
+    public void setGender(boolean gender) {
+        this.gender = gender;
+    }
+
+    public boolean isMarital_status() {
+        return marital_status;
+    }
+
+    public void setMarital_status(boolean marital_status) {
+        this.marital_status = marital_status;
+    }
+
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
 }

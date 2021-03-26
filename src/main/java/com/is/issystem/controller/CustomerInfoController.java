@@ -25,6 +25,17 @@ public class CustomerInfoController {
         return customerInfoService.findAll(code_em_support);
     }
 
+    @GetMapping(value = "/get_all_customer_info_admin")
+    List<CustomerDTO> getAllCustomerInfoAdmin(){
+        return customerInfoService.getAllCustomerInfoAdmin();
+    }
+
+    @GetMapping(value = "/get_detail_customer_info_admin/{id}")
+    public CustomerDTO getAllContractHistory(@PathVariable("id") int id){
+        return customerInfoService.getOneInfo(id);
+    }
+
+
     @PostMapping(value = "/update_one_customer_info")
     public ResponseEntity<?> updateOneCustomerInfo(@RequestBody CustomerDTO customerDTO){
         customerInfoService.updateCustomerInfo(customerDTO);
@@ -43,6 +54,5 @@ public class CustomerInfoController {
         JSONObject data = new JSONObject(data1);
         System.out.println(customerInfoService.getOneInfo( Integer.parseInt(data.get("id").toString()),Function.getCodeInTokenKey(data.get("token_key").toString())));
         return ResponseEntity.status(HttpStatus.OK).body(customerInfoService.getOneInfo( Integer.parseInt(data.get("id").toString()),Function.getCodeInTokenKey(data.get("token_key").toString())));
-
     }
 }
