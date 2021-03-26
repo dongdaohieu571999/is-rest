@@ -20,6 +20,10 @@ public class ContractRequestService {
         return contractRequestRepository.getAllRequestContract();
     }
 
+    public List<ContractRequestDTO> getAllContractRequestApproval(){
+        return contractRequestRepository.getAllRequestContractApproval();
+    }
+
     public DetailRequestDTO getDetailRequest(int id){
         return detailRequestRepository.getRequestbyID(id);
     }

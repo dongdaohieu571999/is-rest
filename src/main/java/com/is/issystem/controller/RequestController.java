@@ -22,7 +22,13 @@ public class RequestController {
         return contractRequestService.getAllContractRequest();
     }
 
-//    @GetMapping(value = "/get_detail_contract_request")
+    @GetMapping(value = "/get_all_request_approval")
+    List<ContractRequestDTO> getAllContractRequestApproval(){
+        return contractRequestService.getAllContractRequestApproval();
+    }
+
+
+    //    @GetMapping(value = "/get_detail_contract_request")
 //    DetailRequestDTO getDetailContractRequest()
 //    {
 //        return contractRequestService.getDetailRequest();
