@@ -1,10 +1,12 @@
 package com.is.issystem.service;
 
+import com.is.issystem.dto.IllustrationContractCreateDTO;
 import com.is.issystem.dto.IllustrationDTO;
 import com.is.issystem.dto.IllustrationItemOfList;
 import com.is.issystem.entities.Illustration;
 import com.is.issystem.entities.IllustrationMainInterest;
 import com.is.issystem.entities.IllustrationSubInterest;
+import com.is.issystem.repository.entity_dto_repository.IllustrationContractCreateRepository;
 import com.is.issystem.repository.entity_dto_repository.IllustrationItemOfListRepository;
 import com.is.issystem.repository.entity_repository.IllustrationMainInterestRepository;
 import com.is.issystem.repository.entity_repository.IllustrationRepository;
@@ -31,8 +33,18 @@ public class IllustrationService {
     @Autowired
     private IllustrationSubInterestRepository subInterestRepository;
 
+    @Autowired
+    private IllustrationContractCreateRepository illustrationContractCreateRepository;
+
     public List<IllustrationItemOfList> getAllillstration(int id){
         return illustrationItemOfListRepository.listIllustrationCustomerOwn(id);
+    }
+
+    public List<Illustration> getAllillustration(){
+        return illRepository.findAll();
+    }
+    public IllustrationContractCreateDTO getIllustrationContractCreate(int id){
+        return illustrationContractCreateRepository.getIllustrationContract(id);
     }
 
     public void saveIllustration(IllustrationDTO illustrationDTO){
