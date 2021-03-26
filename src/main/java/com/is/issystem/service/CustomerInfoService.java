@@ -2,13 +2,12 @@ package com.is.issystem.service;
 
 import com.is.issystem.dto.CustomerDTO;
 import com.is.issystem.entities.*;
-import com.is.issystem.repository.*;
-import org.hibernate.Session;
+import com.is.issystem.repository.entity_dto_repository.CustomerDTORepository;
+import com.is.issystem.repository.entity_repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.Transient;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -21,6 +20,8 @@ public class CustomerInfoService {
 
     @Autowired
     CustomerInfoRepository customerInfoRepository;
+    @Autowired
+    ContractRepository contractRepository;
 
     @Autowired
     PermanentAddressRepository permanentAddressRepository;
@@ -36,6 +37,7 @@ public class CustomerInfoService {
 
     @Autowired
     CustomerAccRepository customerAccRepository;
+
 
     public void updateCustomerInfo(CustomerDTO customerDTO){
         Optional<CustomerInfo> customerInfo = customerInfoRepository.findById(customerDTO.getId());
@@ -204,8 +206,17 @@ public class CustomerInfoService {
         return customerDTORepository.getCustomerInfobyID(id,code);
     }
 
+    public CustomerDTO getOneInfo(Integer id){
+        return customerDTORepository.getCustomerInfobyIDAdmin(id);
+    }
+
     public List<CustomerDTO> findAll(String code_em_support) {
         return customerDTORepository.getAllCustomerInfo(code_em_support);
     }
+
+    public List<CustomerDTO> getAllCustomerInfoAdmin() {
+        return customerDTORepository.getAllCustomerInfoAdmin();
+    }
+
 
 }

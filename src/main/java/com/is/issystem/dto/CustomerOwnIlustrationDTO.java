@@ -20,6 +20,17 @@ public class CustomerOwnIlustrationDTO {
     @Column
     private String create_time;
 
+    @Column
+    private int id_customer;
+
+    public int getId_customer() {
+        return id_customer;
+    }
+
+    public void setId_customer(int id_customer) {
+        this.id_customer = id_customer;
+    }
+
     public String getCode() {
         return code;
     }

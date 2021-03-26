@@ -1,5 +1,6 @@
 package com.is.issystem.controller;
 
+import com.is.issystem.entities.CustomerAcc;
 import com.is.issystem.entities.EmployeeAcc;
 import com.is.issystem.entities.EmployeeInfo;
 import org.json.JSONObject;
@@ -24,13 +25,14 @@ public class EmployeeAccController {
 
     @PostMapping(value = "/add_employee_acc")
     public ResponseEntity<?> addEmployeeAccount(@RequestBody EmployeeAcc employee_acc){
-//        if(employeeAccService.checkExistEmployeeAccount(employee_acc)){
-//            return null;
-//        } else {
+        if(employeeAccService.checkExistEmployeeAccount(employee_acc)){
+            return null;
+        } else {
             employeeAccService.addEmployeeAccount(employee_acc);
-            return ResponseEntity.status(HttpStatus.OK).body(employee_acc);
-//        }
+            return ResponseEntity.status(HttpStatus.OK).body(employee_acc.getId());
+        }
     }
+
 
     @PutMapping(value = "/update_employee_acc")
     public ResponseEntity<?> updateEmployeeAccount(EmployeeAcc employee_acc){
