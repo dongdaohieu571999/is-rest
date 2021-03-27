@@ -36,7 +36,7 @@ public class IllustrationMainInterest {
     @Column(name = "insurance_buyer_relation_insured_person")
     String insurance_buyer_relation_insured_person;
     @Column(name = "fee_value")
-    Integer fee_value;
+    String fee_value;
     @Column(name = "denominations")
     Integer denominations;
 }

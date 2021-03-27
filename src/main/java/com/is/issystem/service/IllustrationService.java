@@ -39,7 +39,7 @@ public class IllustrationService {
         Illustration illustration= new Illustration();
         illustration.setCreate_time(illustrationDTO.getCreate_time());
         illustration.setId_customer_info(illustrationDTO.getId_customer_info());
-        illustration.setPayment_period(illustrationDTO.getPayment_period());
+        illustration.setPayment_period_id(illustrationDTO.getPayment_period_id());
         illustration.setTotal_fee(illustrationDTO.getTotal_fee());
 
         illRepository.save(illustration);
@@ -61,7 +61,7 @@ public class IllustrationService {
         Optional<Illustration> illustration =  illRepository.findById(illustrationDTO.getId());
         illustration.get().setCreate_time(illustrationDTO.getCreate_time());
         illustration.get().setId_customer_info(illustrationDTO.getId_customer_info());
-        illustration.get().setPayment_period(illustrationDTO.getPayment_period());
+        illustration.get().setPayment_period_id(illustrationDTO.getPayment_period_id());
         illustration.get().setTotal_fee(illustrationDTO.getTotal_fee());
 
         illRepository.save(illustration.get());
