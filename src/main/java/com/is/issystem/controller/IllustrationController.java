@@ -19,20 +19,14 @@ public class IllustrationController {
     @Autowired
     private IllustrationService illustrationService;
 
-
-    @GetMapping(value = "/get_all_illustration")
-    List<Illustration> getAllIllustration(){
-        return illustrationService.getAllillustration();
-    }
-
-    @GetMapping(value = "/get_illustration_contract_create/{id}")
-    IllustrationContractCreateDTO getIllustrationContractCreate(@PathVariable("id") int id){
-        return illustrationService.getIllustrationContractCreate(id);
-    }
+//    @GetMapping(value = "/get_illustration_contract_create/{id}")
+//    IllustrationContractCreateDTO getIllustrationContractCreate(@PathVariable("id") int id){
+//        return illustrationService.getIllustrationContractCreate(id);
+//    }
 
     @GetMapping(value = "/get_all_illustration_belong_customer/{id}")
-    List<IllustrationItemOfList> getAllContractHistory(@PathVariable("id") int id){
-        return illustrationService.getAllillstration(id);
+    List<IllustrationItemOfList> getAllIllustration(@PathVariable("id") int id){
+        return illustrationService.getAllIllustration(id);
     }
 
     @PostMapping(value = "/add_one_illustration")
