@@ -1,14 +1,9 @@
 package com.is.issystem.controller;
 
-import com.is.issystem.dto.IllustrationContractCreateDTO;
 import com.is.issystem.dto.IllustrationItemOfList;
-import com.is.issystem.entities.Illustration;
 import com.is.issystem.dto.IllustrationDTO;
-import com.is.issystem.repository.entity_dto_repository.IllustrationContractCreateRepository;
 import com.is.issystem.service.IllustrationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,10 +14,10 @@ public class IllustrationController {
     @Autowired
     private IllustrationService illustrationService;
 
-//    @GetMapping(value = "/get_illustration_contract_create/{id}")
-//    IllustrationContractCreateDTO getIllustrationContractCreate(@PathVariable("id") int id){
-//        return illustrationService.getIllustrationContractCreate(id);
-//    }
+    @GetMapping(value = "/get_illustration_contract_create/{id}")
+    IllustrationDTO getIllustrationContractCreate(@PathVariable("id") int id){
+        return illustrationService.getIllustrationContractCreate(id);
+    }
 
     @GetMapping(value = "/get_all_illustration_belong_customer/{id}")
     List<IllustrationItemOfList> getAllIllustration(@PathVariable("id") int id){

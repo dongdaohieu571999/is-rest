@@ -21,11 +21,12 @@ import java.util.Optional;
 public class ContractController {
     @Autowired
     private ContractService contractService;
+    @Autowired
     private ContractRepository contractRepository;
 
-    @GetMapping(value = "/get_all_contract")
-    List<ContractDTO> getAllContract(){
-        return contractService.getAllContract();
+    @PostMapping(value = "/get_all_contract_of_employee")
+    List<Contract> getAllContract(@RequestBody String code_em_support){
+        return contractService.getAllContract(code_em_support);
     }
 
     @GetMapping(value = "/get_all_contract_change_history/{id}")
@@ -56,8 +57,8 @@ public class ContractController {
     List<IntersetPaymentHistory> getAllIntersetPaymentHistory(@PathVariable("id") int id){
         return contractService.getAllIntersetPaymentHistory(id);
     }
-    @GetMapping(value = "/get_detail_contract/{id}")
-    ContractDTO getDetailContract(@PathVariable("id") int id){
+    @PostMapping(value = "/get_detail_contract")
+    Contract getDetailContract(@RequestBody Integer id){
         return contractService.getDetailContract(id);
     }
 
