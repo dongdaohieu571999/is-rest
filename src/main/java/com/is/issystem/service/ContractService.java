@@ -27,14 +27,12 @@ public class ContractService {
     @Autowired
     private RequestRepository requestRepository;
 
-    public List<ContractDTO> getAllContract(){
-        return contractDTORepository.getAllContract();
+    public List<Contract> getAllContract(String code_em_support){
+        return contractRepository.getAllContract(code_em_support);
     }
 
-
-
-    public ContractDTO getDetailContract(int id){
-        return contractDTORepository.getDetailContract(id);
+    public Contract getDetailContract(int id){
+         return contractRepository.getDetailContract(id);
     }
     public Optional<ContractChangeHistory> getDetailContractChange(int id){
         return contractChangeHistoryRepository.findById(id);
@@ -80,29 +78,29 @@ public class ContractService {
 
         ContractChangeHistory HistoryContract = new ContractChangeHistory();
         HistoryContract.setId_contract(oldContract.get().getId());
-        HistoryContract.setDate(oldContract.get().getStart_time());
+        HistoryContract.setCreate_time(oldContract.get().getStart_time());
         HistoryContract.setId_request(1);
         HistoryContract.setApproval_status(oldContract.get().getApproval_status());
         HistoryContract.setId_customer(oldContract.get().getId_customer());
         HistoryContract.setName_contract_owner(oldContract.get().getName_contract_owner());
-        HistoryContract.setPayment_period(oldContract.get().getPayment_period());
+        HistoryContract.setPayment_period_id(oldContract.get().getPayment_period_id());
         HistoryContract.setInsurance_type(oldContract.get().getInsurance_type());
         HistoryContract.setId_main_interest(oldContract.get().getId_main_interest());
         HistoryContract.setId_illustration(oldContract.get().getId_illustration());
         HistoryContract.setStart_time(oldContract.get().getStart_time());
         HistoryContract.setEnd_time(oldContract.get().getEnd_time());
-        HistoryContract.setStatus(oldContract.get().isStatus());
+        HistoryContract.setStatus(oldContract.get().getStatus());
         HistoryContract.setContract_total_value(oldContract.get().getContract_total_value());
-        HistoryContract.setDate_next_payment(oldContract.get().getDate_next_payment());
-        HistoryContract.setId_employee(oldContract.get().getId_employee());
+        HistoryContract.setCreate_time(oldContract.get().getCreate_time());
+        HistoryContract.setCode_em_support(oldContract.get().getCode_em_support());
         contractChangeHistoryRepository.save(HistoryContract);
 
 
         oldContract.get().setContract_total_value(cont.getContract_total_value());
         oldContract.get().setName_contract_owner(cont.getName_contract_owner());
-        oldContract.get().setDate_next_payment(cont.getDate_next_payment());
+        oldContract.get().setCreate_time(cont.getCreate_time());
         oldContract.get().setEnd_time(cont.getEnd_time());
-        oldContract.get().setPayment_period(cont.getPayment_period());
+        oldContract.get().setPayment_period_id(cont.getPayment_period_id());
         oldContract.get().setId_illustration(cont.getId_illustration());
         oldContract.get().setInsurance_type(cont.getInsurance_type());
         oldContract.get().setId_main_interest(cont.getId_illustration());
