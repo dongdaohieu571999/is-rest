@@ -49,7 +49,6 @@ public class CustomerInfoController {
     @PostMapping(value = "/get_one_customer_info")
     public ResponseEntity<?> getOneCustomerInfo(@RequestBody String data1){
         JSONObject data = new JSONObject(data1);
-        System.out.println(customerInfoService.getOneInfo( Integer.parseInt(data.get("id").toString()),Function.getCodeInTokenKey(data.get("token_key").toString())));
         return ResponseEntity.status(HttpStatus.OK).body(customerInfoService.getOneInfo( Integer.parseInt(data.get("id").toString()),Function.getCodeInTokenKey(data.get("token_key").toString())));
     }
 }

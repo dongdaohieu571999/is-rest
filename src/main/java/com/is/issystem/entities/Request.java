@@ -23,9 +23,9 @@ public class Request {
     @Column
     private Integer requestcol;
     @Column
-    private Integer id_sender;
+    private String code_sender;
     @Column
-    private Integer id_reciever;
+    private String code_reciever;
     @Column
     private String description;
     @Column

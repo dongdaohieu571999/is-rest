@@ -1,9 +1,6 @@
 package com.is.issystem.controller;
-
-import com.is.issystem.dto.ContractRequestDTO;
-import com.is.issystem.dto.DetailRequestDTO;
-import com.is.issystem.service.ContractRequestService;
-import org.json.JSONObject;
+import com.is.issystem.entities.Request;
+import com.is.issystem.service.RequestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,29 +12,26 @@ import java.util.List;
 @RequestMapping(value = {"/api/request"})
 public class RequestController {
     @Autowired
-    private ContractRequestService contractRequestService;
+    private RequestService requestService;
 
     @GetMapping(value = "/get_all_request")
-    List<ContractRequestDTO> getAllContractRequest(){
-        return contractRequestService.getAllContractRequest();
+    List<Request> getAllContractRequest(){
+        return requestService.getAllUncheckReq();
     }
 
     @GetMapping(value = "/get_all_request_approval")
-    List<ContractRequestDTO> getAllContractRequestApproval(){
-        return contractRequestService.getAllContractRequestApproval();
+    List<Request> getAllContractRequestApproval(){
+        return requestService.getAllContractRequestApproval();
     }
 
-
-    //    @GetMapping(value = "/get_detail_contract_request")
-//    DetailRequestDTO getDetailContractRequest()
-//    {
-//        return contractRequestService.getDetailRequest();
-//    }
     @PostMapping(value = "/get_detail_request")
-    public ResponseEntity<?> getOneCustomerInfo(@RequestBody String data1)
+    public ResponseEntity<?> getdetailRequest(@RequestBody Integer id)
     {
-        JSONObject data = new JSONObject(data1);
-        DetailRequestDTO detailRequestDTO = contractRequestService.getDetailRequest( Integer.parseInt(data.get("id").toString()));
-        return ResponseEntity.status(HttpStatus.OK).body(contractRequestService.getDetailRequest( Integer.parseInt(data.get("id").toString())));
+        return ResponseEntity.status(HttpStatus.OK).body(requestService.getDetailRequest(id));
+    }
+
+    @PostMapping(value = "/add_one_request")
+    public ResponseEntity<?> addOneRequest(@RequestBody Request request){
+        return ResponseEntity.status(HttpStatus.OK).body(requestService.addOneReq(request));
     }
 }

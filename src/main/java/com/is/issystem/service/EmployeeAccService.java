@@ -60,6 +60,10 @@ import static com.is.issystem.service.TokenAuthenticationService.TOKEN_PREFIX;
             return employeeAccRepository.existsById(employee_acc.getId());
         }
 
+        public List<EmployeeAcc> getAllEmployeeByIdRole(Integer id_role){
+            return employeeAccRepository.getAllEmaccByIdRole(id_role);
+        }
+
 
     }
 

@@ -37,14 +37,7 @@ public class ContractController {
     @PostMapping(value = "/set_active_contract")
     public ResponseEntity<?> setActiveContract(@RequestBody String data1){
         JSONObject data = new JSONObject(data1);
-        contractService.setUpdateContract(Integer.parseInt(data.get("id_contract").toString()),Integer.parseInt(data.get("id_request").toString()),data.get("description").toString());
-        return ResponseEntity.status(HttpStatus.OK).body(data1);
-    }
-
-    @PostMapping(value = "/set_decline_contract")
-    public ResponseEntity<?> setDeclineContract(@RequestBody String data1){
-        JSONObject data = new JSONObject(data1);
-        contractService.setUpdateContractDecline(Integer.parseInt(data.get("id_contract").toString()),Integer.parseInt(data.get("id_request").toString()),data.get("description").toString());
+        contractService.setUpdateContract(Integer.parseInt(data.get("id_contract").toString()),Integer.parseInt(data.get("id_request").toString()),data.get("description").toString(),data.get("approval_status").toString());
         return ResponseEntity.status(HttpStatus.OK).body(data1);
     }
 

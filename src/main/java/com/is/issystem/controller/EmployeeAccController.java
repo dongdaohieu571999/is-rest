@@ -33,6 +33,10 @@ public class EmployeeAccController {
         }
     }
 
+    @PostMapping(value = "/get_all_employee_acc_by_idRole")
+    public ResponseEntity<?> getAllEmaccByIdRole(@RequestBody Integer id_role){
+        return ResponseEntity.status(HttpStatus.OK).body(employeeAccService.getAllEmployeeByIdRole(id_role));
+    }
 
     @PutMapping(value = "/update_employee_acc")
     public ResponseEntity<?> updateEmployeeAccount(EmployeeAcc employee_acc){

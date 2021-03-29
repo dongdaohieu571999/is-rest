@@ -45,7 +45,7 @@ public class CustomerInfoService {
         customerInfo.get().setAge(customerDTO.getAge());
         customerInfo.get().setBirth_address(customerDTO.getBirth_address());
         customerInfo.get().setTypes_identification(customerDTO.getTypes_identification());
-        customerInfo.get().setID_card(customerDTO.getID_card());
+        customerInfo.get().setID_card(customerDTO.getId_card());
         customerInfo.get().setNationality_1(customerDTO.getNationality_1());
         customerInfo.get().setNationality_2(customerDTO.getNationality_2());
         customerInfo.get().setNation(customerDTO.getNation());
@@ -62,7 +62,7 @@ public class CustomerInfoService {
         customerInfo.get().setPhone_2(customerDTO.getPhone_2());
         customerInfo.get().setId_account(customerDTO.getId_account());
         customerInfo.get().setFull_name(customerDTO.getFull_name());
-        customerInfo.get().setGender(customerDTO.getGender());
+        customerInfo.get().setGender(customerDTO.isGender());
         customerInfo.get().setCode_em_support(customerDTO.getCode_em_support());
         customerInfo.get().setUpdated_time(new Date());
         customerInfo.get().setMarital_status(customerDTO.isMarital_status());
@@ -118,7 +118,7 @@ public class CustomerInfoService {
         customerInfo.setAge(customerDTO.getAge());
         customerInfo.setBirth_address(customerDTO.getBirth_address());
         customerInfo.setTypes_identification(customerDTO.getTypes_identification());
-        customerInfo.setID_card(customerDTO.getID_card());
+        customerInfo.setID_card(customerDTO.getId_card());
         customerInfo.setNationality_1(customerDTO.getNationality_1());
         customerInfo.setNationality_2(customerDTO.getNationality_2());
         customerInfo.setNation(customerDTO.getNation());

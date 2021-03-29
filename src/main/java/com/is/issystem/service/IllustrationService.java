@@ -77,7 +77,10 @@ public class IllustrationService {
         illustMainInterestRepository.save(illustrationDTO.getIllustrationMainInterest());
 
         if(illustrationDTO.getIllustrationSubInterestList() != null && illustrationDTO.getIllustrationSubInterestList().size() != 0){
-            illustSubInterestRepository.saveAll(illustrationDTO.getIllustrationSubInterestList());
+            for(IllustrationSubInterest illustSub : illustrationDTO.getIllustrationSubInterestList()){
+                illustSub.setId_illustration(illustration.getId());
+                illustSubInterestRepository.save(illustSub  );
+            }
         }
     }
 
