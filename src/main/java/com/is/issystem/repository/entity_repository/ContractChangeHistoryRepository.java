@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface ContractChangeHistoryRepository extends JpaRepository<ContractChangeHistory, Integer> {
     @Query(nativeQuery = true,value = "SELECT * FROM is_agency_db.contract_change_history where id_contract = ?1")
-    List<ContractChangeHistory> getAllContractChange(int id);
+    List<ContractChangeHistory> getAllContractChange(Integer id);
 }
 
 

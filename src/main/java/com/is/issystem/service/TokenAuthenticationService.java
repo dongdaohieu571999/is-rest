@@ -32,10 +32,10 @@ public class TokenAuthenticationService {
         PrintWriter out = res.getWriter();
         JSONObject obj = new JSONObject();
         obj.put("token_key", TOKEN_PREFIX + JWT);
-        out.print(obj.toString()); 
+        out.print(obj.toString());
     }
 
-    public static Authentication getAuthentication(HttpServletRequest request) {
+    public static Authentication getAuthentication(HttpServletRequest request) throws IOException {
         String token = request.getParameter("token_key");
         if (token != null) {
             // parse the token.
@@ -48,13 +48,18 @@ public class TokenAuthenticationService {
             return user != null ?
                     new UsernamePasswordAuthenticationToken(user, null, emptyList()) :
                     null;
+        } else {
+            return null;
         }
-        return null;
+
     }
 
-    public String getRoleUser(){
-
-        return "";
+    public static void FailAuthentication(HttpServletResponse res) throws IOException {
+        res.setContentType("application/json");
+        PrintWriter out = res.getWriter();
+        JSONObject obj = new JSONObject();
+        obj.put("status_code", "not ok");
+        out.print(obj.toString());
     }
 
 
