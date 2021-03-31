@@ -1,25 +1,178 @@
 package com.is.issystem.dto;
-
-import com.is.issystem.entities.AddressInfo;
 import lombok.*;
-import org.springframework.boot.autoconfigure.AutoConfigurationPackage;
-import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @Getter
 @Setter
+@AllArgsConstructor
+@NamedNativeQuery(
+        name = "find_stock_akhir_dto",
+        query =
+                "SELECT ci.*,code ,ca.status ,\n" +
+                        "ct.id as id_contract, il.id as id_illustration,\n" +
+                        "            conadd_city , conadd_district \n" +
+                        "            ,conadd_no_street ,conadd_wards, \n" +
+                        "            curadd_city ,curadd_district ,\n" +
+                        "            curadd_no_street , curadd_wards,  \n" +
+                        "            peradd_city,peradd_district,peradd_no_street,peradd_wards,\n" +
+                        "            workadd_city,workadd_district,workadd_no_street,workadd_wards\n" +
+                        "            FROM is_agency_db.customer_info as ci\n" +
+                        "            LEFT JOIN is_agency_db.contract as ct on ct.id_customer = ci.id\n" +
+                        "            LEFT JOIN is_agency_db.illustration as il on il.id = ct.id_illustration \n" +
+                        "            LEFT JOIN is_agency_db.customer_acc as ca on ci.id_account = ca.id \n" +
+                        "            INNER JOIN contact_address as conadd ON conadd.conadd_id = ci.id_contact_address\n" +
+                        "            INNER JOIN current_address as curadd ON curadd.curadd_id = ci.id_current_address \n" +
+                        "            INNER JOIN permanent_address as peradd on peradd.peradd_id = ci.id_permanent_address \n" +
+                        "            INNER JOIN workplace_address as workadd ON workadd.workadd_id = ci.id_workplace_address where ci.code_em_support = ?1 order by created_time desc",
+        resultSetMapping = "stock_akhir_dto"
+)
+@NamedNativeQuery(
+        name = "getAllCustomerInfoByAdmin",
+        query =
+                "SELECT ci.*,code ,ca.status ,\n" +
+                        "ct.id as id_contract, il.id as id_illustration,\n" +
+                        "            conadd_city , conadd_district \n" +
+                        "            ,conadd_no_street ,conadd_wards, \n" +
+                        "            curadd_city ,curadd_district ,\n" +
+                        "            curadd_no_street , curadd_wards,  \n" +
+                        "            peradd_city,peradd_district,peradd_no_street,peradd_wards,\n" +
+                        "            workadd_city,workadd_district,workadd_no_street,workadd_wards\n" +
+                        "            FROM is_agency_db.customer_info as ci\n" +
+                        "            LEFT JOIN is_agency_db.contract as ct on ct.id_customer = ci.id\n" +
+                        "            LEFT JOIN is_agency_db.illustration as il on il.id = ct.id_illustration \n" +
+                        "            LEFT JOIN is_agency_db.customer_acc as ca on ci.id_account = ca.id \n" +
+                        "            INNER JOIN contact_address as conadd ON conadd.conadd_id = ci.id_contact_address\n" +
+                        "            INNER JOIN current_address as curadd ON curadd.curadd_id = ci.id_current_address \n" +
+                        "            INNER JOIN permanent_address as peradd on peradd.peradd_id = ci.id_permanent_address \n" +
+                        "            INNER JOIN workplace_address as workadd ON workadd.workadd_id = ci.id_workplace_address order by created_time desc",
+        resultSetMapping = "stock_akhir_dto"
+)
+@NamedNativeQuery(
+        name = "getCustomerInfoDetail",
+        query =
+                "SELECT ci.*,code ,ca.status ,\n" +
+                        "ct.id as id_contract, il.id as id_illustration,\n" +
+                        "            conadd_city , conadd_district \n" +
+                        "            ,conadd_no_street ,conadd_wards, \n" +
+                        "            curadd_city ,curadd_district ,\n" +
+                        "            curadd_no_street , curadd_wards,  \n" +
+                        "            peradd_city,peradd_district,peradd_no_street,peradd_wards,\n" +
+                        "            workadd_city,workadd_district,workadd_no_street,workadd_wards\n" +
+                        "            FROM is_agency_db.customer_info as ci\n" +
+                        "            LEFT JOIN is_agency_db.contract as ct on ct.id_customer = ci.id\n" +
+                        "            LEFT JOIN is_agency_db.illustration as il on il.id = ct.id_illustration \n" +
+                        "            LEFT JOIN is_agency_db.customer_acc as ca on ci.id_account = ca.id \n" +
+                        "            INNER JOIN contact_address as conadd ON conadd.conadd_id = ci.id_contact_address\n" +
+                        "            INNER JOIN current_address as curadd ON curadd.curadd_id = ci.id_current_address \n" +
+                        "            INNER JOIN permanent_address as peradd on peradd.peradd_id = ci.id_permanent_address \n" +
+                        "            INNER JOIN workplace_address as workadd ON workadd.workadd_id = ci.id_workplace_address where ci.id = ?1 and ci.code_em_support = ?2 order by created_time desc",
+        resultSetMapping = "stock_akhir_dto"
+)
+@NamedNativeQuery(
+        name = "getCustomerInfoDetailByAdmin",
+        query =
+                "SELECT ci.*,code ,ca.status ,\n" +
+                        "ct.id as id_contract, il.id as id_illustration,\n" +
+                        "            conadd_city , conadd_district \n" +
+                        "            ,conadd_no_street ,conadd_wards, \n" +
+                        "            curadd_city ,curadd_district ,\n" +
+                        "            curadd_no_street , curadd_wards,  \n" +
+                        "            peradd_city,peradd_district,peradd_no_street,peradd_wards,\n" +
+                        "            workadd_city,workadd_district,workadd_no_street,workadd_wards\n" +
+                        "            FROM is_agency_db.customer_info as ci\n" +
+                        "            LEFT JOIN is_agency_db.contract as ct on ct.id_customer = ci.id\n" +
+                        "            LEFT JOIN is_agency_db.illustration as il on il.id = ct.id_illustration \n" +
+                        "            LEFT JOIN is_agency_db.customer_acc as ca on ci.id_account = ca.id \n" +
+                        "            INNER JOIN contact_address as conadd ON conadd.conadd_id = ci.id_contact_address\n" +
+                        "            INNER JOIN current_address as curadd ON curadd.curadd_id = ci.id_current_address \n" +
+                        "            INNER JOIN permanent_address as peradd on peradd.peradd_id = ci.id_permanent_address \n" +
+                        "            INNER JOIN workplace_address as workadd ON workadd.workadd_id = ci.id_workplace_address where ci.id = ?1 order by created_time desc",
+        resultSetMapping = "stock_akhir_dto"
+)
+@SqlResultSetMapping(
+        name = "stock_akhir_dto",
+        classes = @ConstructorResult(
+                targetClass = CustomerDTO.class,
+                columns = {
+                        @ColumnResult(name = "id", type = Long.class),
+                        @ColumnResult(name = "birth_date", type = Date.class),
+                        @ColumnResult(name = "age", type = Long.class),
+                        @ColumnResult(name = "birth_address", type = String.class),
+                        @ColumnResult(name = "types_identification", type = String.class),
+                        @ColumnResult(name = "id_card", type = String.class),
+                        @ColumnResult(name = "nationality_1", type = String.class),
+                        @ColumnResult(name = "nationality_2", type = String.class),
+                        @ColumnResult(name = "nation", type = String.class),
+                        @ColumnResult(name = "job", type = String.class),
+                        @ColumnResult(name = "career", type = String.class),
+                        @ColumnResult(name = "position", type = String.class),
+                        @ColumnResult(name = "occupation_group", type = String.class),
+                        @ColumnResult(name = "company_name", type = String.class),
+                        @ColumnResult(name = "main_business", type = String.class),
+                        @ColumnResult(name = "specific_work", type = String.class),
+                        @ColumnResult(name = "monthly_income", type = Float.class),
+                        @ColumnResult(name = "email", type = String.class),
+                        @ColumnResult(name = "phone_1", type = String.class),
+                        @ColumnResult(name = "phone_2", type = String.class),
+                        @ColumnResult(name = "id_account", type = Long.class),
+                        @ColumnResult(name = "full_name", type = String.class),
+                        @ColumnResult(name = "code", type = String.class),
+                        @ColumnResult(name = "status", type = Long.class),
+
+
+                        @ColumnResult(name = "conadd_no_street", type = String.class),
+                        @ColumnResult(name = "conadd_city", type = String.class),
+                        @ColumnResult(name = "conadd_district", type = String.class),
+                        @ColumnResult(name = "conadd_wards", type = String.class),
+
+                        @ColumnResult(name = "curadd_no_street", type = String.class),
+                        @ColumnResult(name = "curadd_city", type = String.class),
+                        @ColumnResult(name = "curadd_district", type = String.class),
+                        @ColumnResult(name = "curadd_wards", type = String.class),
+
+                        @ColumnResult(name = "peradd_no_street", type = String.class),
+                        @ColumnResult(name = "peradd_city", type = String.class),
+                        @ColumnResult(name = "peradd_district", type = String.class),
+                        @ColumnResult(name = "peradd_wards", type = String.class),
+
+                        @ColumnResult(name = "workadd_no_street", type = String.class),
+                        @ColumnResult(name = "workadd_city", type = String.class),
+                        @ColumnResult(name = "workadd_district", type = String.class),
+                        @ColumnResult(name = "workadd_wards", type = String.class),
+
+
+                        @ColumnResult(name = "id_contract", type = Long.class),
+                        @ColumnResult(name = "id_illustration", type = Long.class),
+
+                        @ColumnResult(name = "code_em_support", type = String.class),
+                        @ColumnResult(name = "gender", type = Long.class),
+                        @ColumnResult(name = "id_current_address", type = Long.class),
+                        @ColumnResult(name = "id_permanent_address", type = Long.class),
+                        @ColumnResult(name = "id_contact_address", type = Long.class),
+                        @ColumnResult(name = "id_workplace_address", type = Long.class),
+                        @ColumnResult(name = "updated_time", type = Date.class),
+                        @ColumnResult(name = "marital_status", type = Long.class),
+                        @ColumnResult(name = "created_time", type = Date.class),
+                        @ColumnResult(name = "source", type = String.class)
+
+
+
+
+                }
+        )
+)
 public class CustomerDTO {
     @Id
     @Column
-    private Integer id;
+    private Long id;
     @Column
     private Date birth_date;
     @Column
-    private Integer age;
+    private Long age;
     @Column
     private String birth_address;
     @Column
@@ -47,7 +200,7 @@ public class CustomerDTO {
     @Column
     private String specific_work;
     @Column
-    private float monthly_income;
+    private Float monthly_income;
     @Column
     private String email;
     @Column
@@ -55,13 +208,13 @@ public class CustomerDTO {
     @Column
     private String phone_2;
     @Column
-    private Integer id_account;
+    private Long id_account;
     @Column
     private String full_name;
     @Column
     private String code;
     @Column
-    private boolean status;
+    private Long status;
 
     @Column
     private String conadd_no_street;
@@ -83,13 +236,6 @@ public class CustomerDTO {
 
     @Column
     private String peradd_no_street;
-
-    @Column
-    private String code_em_support;
-
-    @Column
-    private boolean gender;
-
     @Column
     private String peradd_city;
     @Column
@@ -106,21 +252,31 @@ public class CustomerDTO {
     @Column
     private String workadd_wards;
 
+    @Column
+    private Long id_contract;
+    @Column
+    private Long id_illustration;
 
     @Column
-    private Integer id_current_address;
+    private String code_em_support;
+
     @Column
-    private Integer id_permanent_address;
+    private Long gender;
     @Column
-    private Integer id_contact_address;
+    private Long id_current_address;
     @Column
-    private Integer id_workplace_address;
+    private Long id_permanent_address;
+    @Column
+    private Long id_contact_address;
+    @Column
+    private Long id_workplace_address;
     @Column
     private Date updated_time;
     @Column
-    private boolean marital_status;
+    private Long marital_status;
     @Column
     private Date created_time;
     @Column
     private String source;
+
 }

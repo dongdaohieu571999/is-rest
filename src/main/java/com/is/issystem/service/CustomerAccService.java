@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional(rollbackFor = Exception.class)
@@ -22,6 +23,14 @@ public class CustomerAccService {
 
     public void addCustomerAccount(CustomerAcc customerAcc){
         customerInfoRepository.save(customerAcc);
+    }
+
+    public void updateCustomerAccount(CustomerAcc customerAcc){
+        Optional<CustomerAcc> acc = customerInfoRepository.findById(customerAcc.getId());
+        acc.get().setCode(customerAcc.getCode());
+        acc.get().setPass(customerAcc.getPass());
+        acc.get().setStatus(customerAcc.isStatus());
+        customerInfoRepository.save(acc.get());
     }
 
     public void findCustomerAccountById(Integer id){

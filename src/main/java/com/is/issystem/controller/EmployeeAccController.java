@@ -1,9 +1,6 @@
 package com.is.issystem.controller;
 
-import com.is.issystem.entities.CustomerAcc;
 import com.is.issystem.entities.EmployeeAcc;
-import com.is.issystem.entities.EmployeeInfo;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -40,7 +37,7 @@ public class EmployeeAccController {
 
     @PutMapping(value = "/update_employee_acc")
     public ResponseEntity<?> updateEmployeeAccount(EmployeeAcc employee_acc){
-        employeeAccService.updateEmployeeAccount(employee_acc);
+        employeeAccService.updateEmployeeAccountByCode(employee_acc);
         return ResponseEntity.status(HttpStatus.OK).body(employee_acc);
     }
 

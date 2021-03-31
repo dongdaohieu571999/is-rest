@@ -16,9 +16,9 @@ public class CustomerOwnIllustrationController {
     @Autowired
     CustomerOwnIllustrationService customerOwnIllustrationService;
 
-    @GetMapping(value = "/get_all_customer_own_illustration")
-    public List<CustomerOwnIlustrationDTO> getAllCustomerOwnIllustration(){
-        return customerOwnIllustrationService.getAllCustomerOwnIllustration();
+    @PostMapping(value = "/get_all_customer_own_illustration")
+    public List<CustomerOwnIlustrationDTO> getAllCustomerOwnIllustration(@RequestBody String code_em_support){
+        return customerOwnIllustrationService.getAllCustomerOwnIllustration(code_em_support);
     }
 
 //    @GetMapping(value = "/get_all_illustration_belong_customer/{id}")

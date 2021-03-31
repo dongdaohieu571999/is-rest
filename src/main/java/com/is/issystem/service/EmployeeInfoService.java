@@ -38,6 +38,11 @@ public class EmployeeInfoService {
         return employeeInfoAccRepository.getDetailEmployeeInfobyID(id);
     }
 
+    public EmployeeInfoDTO getDetailEmployeebyCode(String code){
+        return employeeInfoAccRepository.getDetailEmployeeInfobyCode(code);
+    }
+
+
     public void addEmployeeInfo(EmployeeInfoDTO employeeInfoDTO){
         EmployeeInfo employeeInfo = new EmployeeInfo();
         employeeInfo.setName(employeeInfoDTO.getName());
@@ -55,12 +60,6 @@ public class EmployeeInfoService {
         employeeInfo.setMarital_status(employeeInfoDTO.isMarital_status());
         employeeInfo.setNational(employeeInfoDTO.getNational());
         employeeInfo.setAge(employeeInfoDTO.getAge());
-
-        //add term add count for employee
-        EmployeeAcc employeeAcc = new EmployeeAcc();
-        employeeAcc.setStatus(false);
-        employeeAccRepository.save(employeeAcc);
-        employeeInfo.setId(employeeAcc.getId());
 
 
         ContactAddress contactAddress = new ContactAddress();
