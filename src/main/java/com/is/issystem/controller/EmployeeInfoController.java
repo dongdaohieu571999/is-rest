@@ -16,11 +16,6 @@ public class EmployeeInfoController {
     @Autowired
     EmployeeInfoService employeeInfoService;
 
-//    @GetMapping(value = {"/get_all_employee_info"})
-//    public List<EmployeeInfo> listEmployeeInfo(){
-//        return employeeInfoService.findAll();
-//    }
-
     @GetMapping(value = {"/get_all_employee_info_acc"})
     public List<EmployeeDTO> getListEmployeeInfoAcc(){
      return employeeInfoService.getAllEmployee();
@@ -33,6 +28,11 @@ public class EmployeeInfoController {
     @GetMapping(value = {"/get_detail_employee_info/{id}"})
     public EmployeeInfoDTO getDetailEmployeeInfo(@PathVariable("id") int id){
         return employeeInfoService.getDetailEmployeebyID(id);
+    }
+
+    @PostMapping(value = {"/get_detail_employee_info_by_code/"})
+    public EmployeeInfoDTO getDetailEmployeeInfo(@RequestBody String code){
+        return employeeInfoService.getDetailEmployeebyCode(code);
     }
 
     @PostMapping(value = "/update_employee_info")

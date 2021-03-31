@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 public class CustomerAccController {
     @Autowired
     private CustomerAccService customerAccService;
+    @Autowired
     private CustomerInfoService customerInfoService;
 
     @PostMapping(value = "/add_customer_acc")
@@ -21,6 +22,16 @@ public class CustomerAccController {
             return null;
         } else {
             customerAccService.addCustomerAccount(customerAcc);
+            return ResponseEntity.status(HttpStatus.OK).body(customerAcc.getId());
+        }
+    }
+
+    @PostMapping(value = "/update_customer_acc")
+    public ResponseEntity<?> updateEmployeeAccount(@RequestBody CustomerAcc customerAcc){
+        if(customerAccService.checkExistCustomerAccount(customerAcc)){
+            return null;
+        } else {
+            customerAccService.updateCustomerAccount(customerAcc);
             return ResponseEntity.status(HttpStatus.OK).body(customerAcc.getId());
         }
     }

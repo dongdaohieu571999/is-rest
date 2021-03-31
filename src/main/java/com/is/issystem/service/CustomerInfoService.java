@@ -40,12 +40,12 @@ public class CustomerInfoService {
 
 
     public void updateCustomerInfo(CustomerDTO customerDTO){
-        Optional<CustomerInfo> customerInfo = customerInfoRepository.findById(customerDTO.getId());
+        Optional<CustomerInfo> customerInfo = customerInfoRepository.findById(Math.toIntExact(customerDTO.getId()));
         customerInfo.get().setBirth_date(customerDTO.getBirth_date());
         customerInfo.get().setAge(customerDTO.getAge());
         customerInfo.get().setBirth_address(customerDTO.getBirth_address());
         customerInfo.get().setTypes_identification(customerDTO.getTypes_identification());
-        customerInfo.get().setID_card(customerDTO.getID_card());
+        customerInfo.get().setId_card(customerDTO.getId_card());
         customerInfo.get().setNationality_1(customerDTO.getNationality_1());
         customerInfo.get().setNationality_2(customerDTO.getNationality_2());
         customerInfo.get().setNation(customerDTO.getNation());
@@ -65,13 +65,13 @@ public class CustomerInfoService {
         customerInfo.get().setGender(customerDTO.getGender());
         customerInfo.get().setCode_em_support(customerDTO.getCode_em_support());
         customerInfo.get().setUpdated_time(new Date());
-        customerInfo.get().setMarital_status(customerDTO.isMarital_status());
+        customerInfo.get().setMarital_status(customerDTO.getMarital_status());
         customerInfo.get().setSource(customerDTO.getSource());
 
 
 
 
-        Optional<ContactAddress> contactAddress = contactAddressRepository.findById(customerDTO.getId_contact_address());
+        Optional<ContactAddress> contactAddress = contactAddressRepository.findById(Math.toIntExact(customerDTO.getId_contact_address()));
         contactAddress.get().setConadd_city(customerDTO.getConadd_city());
         contactAddress.get().setConadd_district(customerDTO.getConadd_district());
         contactAddress.get().setConadd_no_street(customerDTO.getConadd_no_street());
@@ -79,7 +79,7 @@ public class CustomerInfoService {
 
 
 
-        Optional<CurrentAddress> currentAddress = currentAddressRepository.findById(customerDTO.getId_current_address());
+        Optional<CurrentAddress> currentAddress = currentAddressRepository.findById(Math.toIntExact(customerDTO.getId_current_address()));
         currentAddress.get().setCuradd_city(customerDTO.getCuradd_city());
         currentAddress.get().setCuradd_district(customerDTO.getCuradd_district());
         currentAddress.get().setCuradd_no_street(customerDTO.getCuradd_no_street());
@@ -87,7 +87,7 @@ public class CustomerInfoService {
 
 
 
-        Optional<PermanentAddress> permanentAddress = permanentAddressRepository.findById(customerDTO.getId_permanent_address());
+        Optional<PermanentAddress> permanentAddress = permanentAddressRepository.findById(Math.toIntExact(customerDTO.getId_permanent_address()));
         permanentAddress.get().setPeradd_city(customerDTO.getPeradd_city());
         permanentAddress.get().setPeradd_district(customerDTO.getPeradd_district());
         permanentAddress.get().setPeradd_no_street(customerDTO.getPeradd_no_street());
@@ -95,7 +95,7 @@ public class CustomerInfoService {
 
 
 
-        Optional<WorkplaceAddress> workplaceAddress = workplaceRepository.findById(customerDTO.getId_workplace_address());
+        Optional<WorkplaceAddress> workplaceAddress = workplaceRepository.findById(Math.toIntExact(customerDTO.getId_workplace_address()));
         workplaceAddress.get().setWorkadd_city(customerDTO.getWorkadd_city());
         workplaceAddress.get().setWorkadd_district(customerDTO.getWorkadd_district());
         workplaceAddress.get().setWorkadd_no_street(customerDTO.getWorkadd_no_street());
@@ -118,7 +118,7 @@ public class CustomerInfoService {
         customerInfo.setAge(customerDTO.getAge());
         customerInfo.setBirth_address(customerDTO.getBirth_address());
         customerInfo.setTypes_identification(customerDTO.getTypes_identification());
-        customerInfo.setID_card(customerDTO.getID_card());
+        customerInfo.setId_card(customerDTO.getId_card());
         customerInfo.setNationality_1(customerDTO.getNationality_1());
         customerInfo.setNationality_2(customerDTO.getNationality_2());
         customerInfo.setNation(customerDTO.getNation());
@@ -139,19 +139,8 @@ public class CustomerInfoService {
         customerInfo.setCode_em_support(customerDTO.getCode_em_support());
 
         customerInfo.setCreated_time(new Date());
-        customerInfo.setMarital_status(customerDTO.isMarital_status());
+        customerInfo.setMarital_status(customerDTO.getMarital_status());
         customerInfo.setSource(customerDTO.getSource());
-
-        // add temp account for customer first
-        CustomerAcc customerAcc = new CustomerAcc();
-        customerAcc.setStatus(false);
-        customerAccRepository.save(customerAcc);
-        customerInfo.setId_account(customerAcc.getId());
-
-
-
-
-
 
         ContactAddress contactAddress = new ContactAddress();
         contactAddress.setConadd_city(customerDTO.getConadd_city());

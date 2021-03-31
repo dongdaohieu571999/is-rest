@@ -48,7 +48,7 @@ import static com.is.issystem.service.TokenAuthenticationService.TOKEN_PREFIX;
             return null;
         }
 
-        public EmployeeAcc updateEmployeeAccount(EmployeeAcc employee_acc) {
+        public EmployeeAcc updateEmployeeAccountByCode(EmployeeAcc employee_acc) {
             EmployeeAcc existEmployeeAcc = employeeAccRepository.getOneAcc(employee_acc.getCode());
             existEmployeeAcc.setCode(employee_acc.getCode());
             existEmployeeAcc.setPass(employee_acc.getPass());
@@ -56,8 +56,20 @@ import static com.is.issystem.service.TokenAuthenticationService.TOKEN_PREFIX;
             return employeeAccRepository.save(existEmployeeAcc);
         }
 
+    public EmployeeAcc updateEmployeeAccountById(EmployeeAcc employee_acc) {
+        Optional<EmployeeAcc> existEmployeeAcc = employeeAccRepository.findById(employee_acc.getId());
+        existEmployeeAcc.get().setCode(employee_acc.getCode());
+        existEmployeeAcc.get().setPass(employee_acc.getPass());
+        existEmployeeAcc.get().setStatus(employee_acc.isStatus());
+        return employeeAccRepository.save(existEmployeeAcc.get());
+    }
+
         public boolean checkExistEmployeeAccount(EmployeeAcc employee_acc) {
-            return employeeAccRepository.existsById(employee_acc.getId());
+            return employeeAccRepository.getOneAcc(employee_acc.getCode()) == null ?false:true;
+        }
+
+        public List<EmployeeAcc> getAllEmployeeByIdRole(Integer id_role){
+            return employeeAccRepository.getAllEmaccByIdRole(id_role);
         }
 
 

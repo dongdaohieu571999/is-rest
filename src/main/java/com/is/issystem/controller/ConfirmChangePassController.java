@@ -43,6 +43,6 @@ public class ConfirmChangePassController {
         employeeAcc.setPass(jsonObject.get("password").toString());
         employeeAcc.setStatus(true);
         employeeAcc.setCode(Function.getCodeInTokenKey(jsonObject.get("token_key").toString()));
-        return ResponseEntity.status(HttpStatus.OK).body(employeeAccService.updateEmployeeAccount(employeeAcc));
+        return ResponseEntity.status(HttpStatus.OK).body(employeeAccService.updateEmployeeAccountByCode(employeeAcc));
     }
 }

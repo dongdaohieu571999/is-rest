@@ -49,27 +49,20 @@ public class ContractService {
     public List<IntersetPaymentHistory> getAllIntersetPaymentHistory(int id){
         return intersetPaymentHistoryRepository.getAllIntersetPayment(id);
     }
-    public void setUpdateContract(int id_contract,int id_request,String description){
+    public void setUpdateContract(int id_contract,Integer id_request,String description,String approval_status){
         Optional<Contract> contract = contractRepository.findById(id_contract);
-        contract.get().setApproval_status("DXD");
-        contract.get().setStatus(true);
+        contract.get().setApproval_status(approval_status);
+        contract.get().setStatus(approval_status.equals("DD")?true:false);
+        contractRepository.save(contract.get());
 
-        Optional<Request> request = requestRepository.findById(id_request);
+        if(id_request != -1){
+            Optional<Request> request = requestRepository.findById(id_request);
+            request.get().setDescription(description);
+            request.get().setStatus(approval_status);
+            requestRepository.save(request.get());
+        }
 
-        request.get().setDescription(description);
-        request.get().setStatus("DXD");
 
-    }
-
-    public void setUpdateContractDecline(int id_contract,int id_request,String description){
-
-        Optional<Contract> contract = contractRepository.findById(id_contract);
-        contract.get().setApproval_status("TC");
-        contract.get().setStatus(false);
-
-        Optional<Request> request = requestRepository.findById(id_request);
-        request.get().setDescription(description);
-        request.get().setStatus("TC");
     }
 
 
