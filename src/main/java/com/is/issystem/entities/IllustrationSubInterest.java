@@ -39,5 +39,7 @@ public class IllustrationSubInterest {
     String fee_value;
     @Column(name = "is_extra_insured_person")
     Boolean is_extra_insured_person;
+    @Column(name = "id_related_person")
+    Boolean id_related_person;
 
 }

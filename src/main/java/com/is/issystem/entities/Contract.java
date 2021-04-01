@@ -9,6 +9,7 @@ import java.sql.Date;
 @Entity
 @Getter
 @Setter
+@Table(name = "contract")
 public class Contract {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
