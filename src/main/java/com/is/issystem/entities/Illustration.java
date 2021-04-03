@@ -25,6 +25,6 @@ public class Illustration {
     @Column(name = "total_fee")
     private Integer total_fee;
 
-    @Column(name = "payment_period")
-    private Integer payment_period;
+    @Column(name = "payment_period_id")
+    private Integer payment_period_id;
 }

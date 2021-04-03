@@ -14,7 +14,7 @@ public class IllustrationDTO {
     Integer id_customer_info;
     Date create_time;
     String interest_name;
-    Integer payment_period;
+    Integer payment_period_id;
     Integer total_fee;
 
 

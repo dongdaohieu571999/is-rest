@@ -16,8 +16,8 @@ public class CustomerOwnIllustrationService {
     @Autowired
     private CustomerOwnIllustrationRepository customerOwnIllustrationRepository;
 
-    public List<CustomerOwnIlustrationDTO> getAllCustomerOwnIllustration(){
-        return customerOwnIllustrationDTORepository.listCustomerOwnIllustration();
+    public List<CustomerOwnIlustrationDTO> getAllCustomerOwnIllustration(String code_em_support){
+        return customerOwnIllustrationDTORepository.listCustomerOwnIllustration(code_em_support);
     }
 
     public void addOneCustomerOwnIllustration(String code){

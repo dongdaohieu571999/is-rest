@@ -1,6 +1,5 @@
 package com.is.issystem.controller;
 
-import com.is.issystem.dto.ContractDTO;
 import com.is.issystem.entities.Contract;
 import com.is.issystem.entities.ContractChangeHistory;
 import com.is.issystem.entities.FeePaymentHistory;
@@ -21,11 +20,12 @@ import java.util.Optional;
 public class ContractController {
     @Autowired
     private ContractService contractService;
+    @Autowired
     private ContractRepository contractRepository;
 
-    @GetMapping(value = "/get_all_contract")
-    List<ContractDTO> getAllContract(){
-        return contractService.getAllContract();
+    @PostMapping(value = "/get_all_contract_of_employee")
+    List<Contract> getAllContract(@RequestBody String code_em_support){
+        return contractService.getAllContract(code_em_support);
     }
 
     @GetMapping(value = "/get_all_contract_change_history/{id}")
@@ -36,14 +36,7 @@ public class ContractController {
     @PostMapping(value = "/set_active_contract")
     public ResponseEntity<?> setActiveContract(@RequestBody String data1){
         JSONObject data = new JSONObject(data1);
-        contractService.setUpdateContract(Integer.parseInt(data.get("id_contract").toString()),Integer.parseInt(data.get("id_request").toString()),data.get("description").toString());
-        return ResponseEntity.status(HttpStatus.OK).body(data1);
-    }
-
-    @PostMapping(value = "/set_decline_contract")
-    public ResponseEntity<?> setDeclineContract(@RequestBody String data1){
-        JSONObject data = new JSONObject(data1);
-        contractService.setUpdateContractDecline(Integer.parseInt(data.get("id_contract").toString()),Integer.parseInt(data.get("id_request").toString()),data.get("description").toString());
+        contractService.setUpdateContract(Integer.parseInt(data.get("id_contract").toString()),Integer.parseInt(data.get("id_request").toString()),data.get("description").toString(),data.get("approval_status").toString());
         return ResponseEntity.status(HttpStatus.OK).body(data1);
     }
 
@@ -56,8 +49,8 @@ public class ContractController {
     List<IntersetPaymentHistory> getAllIntersetPaymentHistory(@PathVariable("id") int id){
         return contractService.getAllIntersetPaymentHistory(id);
     }
-    @GetMapping(value = "/get_detail_contract/{id}")
-    ContractDTO getDetailContract(@PathVariable("id") int id){
+    @PostMapping(value = "/get_detail_contract")
+    Contract getDetailContract(@RequestBody Integer id){
         return contractService.getDetailContract(id);
     }
 
