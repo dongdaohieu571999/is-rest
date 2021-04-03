@@ -40,6 +40,5 @@ public class IllustrationSubInterest {
     @Column(name = "is_extra_insured_person")
     Boolean is_extra_insured_person;
     @Column(name = "id_related_person")
-    Boolean id_related_person;
-
+    Integer id_related_person;
 }

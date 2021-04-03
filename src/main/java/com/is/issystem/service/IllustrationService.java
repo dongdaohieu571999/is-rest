@@ -32,6 +32,9 @@ public class IllustrationService {
     @Autowired
     private IllustrationSubInterestRepository illustSubInterestRepository;
 
+    public List<IllustrationItemOfList> getAllIllustrationCustOwn(int id){
+        return illustrationItemOfListRepository.listIllustrationCustomerOwn(id);
+    }
     @Autowired
     private MainInterestRepository mainInterestRepository;
 
@@ -47,6 +50,7 @@ public class IllustrationService {
         illustrationDTO.setTotal_fee(illustration.get().getTotal_fee());
 
 
+
         // lấy thông tin người hưởng quyền lợi chính
         IllustrationMainInterest illustrationMainInterest = illustMainInterestRepository.getIllustrationMainInterestByillustID(id);
         illustrationDTO.setIllustrationMainInterest(illustrationMainInterest);
@@ -58,6 +62,7 @@ public class IllustrationService {
 
         return illustrationDTO;
     }
+
 
     public List<IllustrationItemOfList> getAllIllustration(int id){
         return illustrationItemOfListRepository.listIllustrationCustomerOwn(id);
