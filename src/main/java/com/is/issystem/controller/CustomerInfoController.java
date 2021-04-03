@@ -2,6 +2,7 @@ package com.is.issystem.controller;
 
 import com.is.issystem.commons.Function;
 import com.is.issystem.dto.CustomerDTO;
+import com.is.issystem.entities.CustomerInfo;
 import com.is.issystem.service.CustomerInfoService;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,11 @@ import java.util.List;
 public class CustomerInfoController {
     @Autowired
     private CustomerInfoService customerInfoService;
+
+    @PostMapping(value = "/get_all_customer")
+    List<CustomerInfo> findAllCust(@RequestBody String code_em_support){
+        return customerInfoService.findAllCust(code_em_support);
+    }
 
     @PostMapping(value = "/get_all_customer_info")
     List<CustomerDTO> findAll(@RequestBody String code_em_support){

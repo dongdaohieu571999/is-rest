@@ -6,20 +6,19 @@ import com.is.issystem.repository.entity_dto_repository.CustomerDTORepository;
 import com.is.issystem.repository.entity_repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
 @Service
-@Transactional(rollbackFor = Exception.class)
 public class CustomerInfoService {
     @Autowired
     CustomerDTORepository customerDTORepository;
 
     @Autowired
     CustomerInfoRepository customerInfoRepository;
+
     @Autowired
     ContractRepository contractRepository;
 
@@ -199,8 +198,13 @@ public class CustomerInfoService {
         return customerDTORepository.getCustomerInfobyIDAdmin(id);
     }
 
+    // query tất cả khách hàng và illustration, contract các khách hàng đó
     public List<CustomerDTO> findAll(String code_em_support) {
         return customerDTORepository.getAllCustomerInfo(code_em_support);
+    }
+    // query tất cả khách hàng nhưng không có illustration, contract các khách hàng đó
+    public List<CustomerInfo> findAllCust(String code_em_support) {
+        return customerInfoRepository.getAllCustomerInfo(code_em_support);
     }
 
     public List<CustomerDTO> getAllCustomerInfoAdmin() {

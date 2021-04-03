@@ -69,12 +69,13 @@ public class CustomerInfo {
     private String code_em_support;
     @Column(name = "gender")
     private Long gender;
+    @Column(name = "updated_time")
     private Date updated_time;
-    @Column
+    @Column(name = "marital_status")
     private Long marital_status;
-    @Column
+    @Column(name = "created_time")
     private Date created_time;
-    @Column
+    @Column(name = "source")
     private String source;
 
 }

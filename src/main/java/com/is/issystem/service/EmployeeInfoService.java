@@ -54,10 +54,10 @@ public class EmployeeInfoService {
         employeeInfo.setId_certificate(employeeInfoDTO.getId_certificate());
         employeeInfo.setStart_time(employeeInfoDTO.getStart_time());
         employeeInfo.setEnd_time(employeeInfoDTO.getEnd_time());
-        employeeInfo.setGender(employeeInfoDTO.isGender());
+        employeeInfo.setGender(employeeInfoDTO.getGender());
         employeeInfo.setDept_id(employeeInfoDTO.getDept_id());
         employeeInfo.setId_labour_contract(employeeInfoDTO.getId_labour_contract());
-        employeeInfo.setMarital_status(employeeInfoDTO.isMarital_status());
+        employeeInfo.setMarital_status(employeeInfoDTO.getMarital_status());
         employeeInfo.setNational(employeeInfoDTO.getNational());
         employeeInfo.setAge(employeeInfoDTO.getAge());
 
@@ -108,10 +108,10 @@ public class EmployeeInfoService {
         employeeInfo.get().setId_certificate(employeeInfoDTO.getId_certificate());
         employeeInfo.get().setStart_time(employeeInfoDTO.getStart_time());
         employeeInfo.get().setEnd_time(employeeInfoDTO.getEnd_time());
-        employeeInfo.get().setGender(employeeInfoDTO.isGender());
+        employeeInfo.get().setGender(employeeInfoDTO.getGender());
         employeeInfo.get().setDept_id(employeeInfoDTO.getDept_id());
         employeeInfo.get().setId_labour_contract(employeeInfoDTO.getId_labour_contract());
-        employeeInfo.get().setMarital_status(employeeInfoDTO.isMarital_status());
+        employeeInfo.get().setMarital_status(employeeInfoDTO.getMarital_status());
         employeeInfo.get().setNational(employeeInfoDTO.getNational());
         employeeInfo.get().setAge(employeeInfoDTO.getAge());
         employeeInfo.get().setId_acc(employeeInfoDTO.getId_acc());

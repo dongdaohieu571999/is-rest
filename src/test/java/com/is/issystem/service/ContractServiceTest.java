@@ -1,7 +1,6 @@
 package com.is.issystem.service;
 
 import com.is.issystem.entities.*;
-import com.is.issystem.repository.entity_dto_repository.ContractDTORepository;
 import com.is.issystem.repository.entity_repository.*;
 import com.sun.tools.javac.util.Assert;
 import org.junit.jupiter.api.Test;

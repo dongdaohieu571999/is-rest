@@ -38,6 +38,6 @@ public class CustomerAccService {
     }
 
     public boolean checkExistCustomerAccount(CustomerAcc customerAcc){
-        return customerInfoRepository.getIdExist(customerAcc.getCode())!=null?true:false;
+        return customerInfoRepository.getAccExist(customerAcc.getCode(),customerAcc.getId()).size() > 0 ? true : false;
     }
 }

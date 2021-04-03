@@ -14,8 +14,8 @@ public class IllustrationController {
     @Autowired
     private IllustrationService illustrationService;
 
-    @GetMapping(value = "/get_illustration_contract_create/{id}")
-    IllustrationDTO getIllustrationContractCreate(@PathVariable("id") int id){
+    @PostMapping(value = "/get_illustration_contract_create/")
+    IllustrationDTO getIllustrationContractCreate(@RequestBody Integer id){
         return illustrationService.getIllustrationContractCreate(id);
     }
 

@@ -1,8 +1,6 @@
 package com.is.issystem.service;
 
-import com.is.issystem.dto.ContractDTO;
 import com.is.issystem.entities.*;
-import com.is.issystem.repository.entity_dto_repository.ContractDTORepository;
 import com.is.issystem.repository.entity_repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,8 +12,6 @@ import java.util.Optional;
 @Service
 @Transactional(rollbackFor = Exception.class)
 public class ContractService {
-    @Autowired
-    private ContractDTORepository contractDTORepository;
     @Autowired
     private ContractRepository contractRepository;
     @Autowired
