@@ -50,6 +50,7 @@ public class IllustrationService {
         illustrationDTO.setTotal_fee(illustration.get().getTotal_fee());
 
 
+
         // lấy thông tin người hưởng quyền lợi chính
         IllustrationMainInterest illustrationMainInterest = illustMainInterestRepository.getIllustrationMainInterestByillustID(id);
         illustrationDTO.setIllustrationMainInterest(illustrationMainInterest);
