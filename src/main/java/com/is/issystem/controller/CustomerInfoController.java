@@ -18,7 +18,7 @@ public class CustomerInfoController {
     private CustomerInfoService customerInfoService;
 
     @PostMapping(value = "/get_all_customer")
-    List<CustomerInfo> findAllCust(@RequestBody String code_em_support){
+    List<CustomerDTO> findAllCust(@RequestBody String code_em_support){
         return customerInfoService.findAllCust(code_em_support);
     }
 
@@ -33,7 +33,7 @@ public class CustomerInfoController {
     }
 
     @GetMapping(value = "/get_detail_customer_info_admin/{id}")
-    public CustomerDTO getAllContractHistory(@PathVariable("id") int id){
+    public List<CustomerDTO> getAllContractHistory(@PathVariable("id") int id){
         return customerInfoService.getOneInfo(id);
     }
 

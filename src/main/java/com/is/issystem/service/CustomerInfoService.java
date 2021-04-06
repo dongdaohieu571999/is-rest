@@ -1,5 +1,6 @@
 package com.is.issystem.service;
 
+import com.is.issystem.commons.Function;
 import com.is.issystem.dto.CustomerDTO;
 import com.is.issystem.entities.*;
 import com.is.issystem.repository.entity_dto_repository.CustomerDTORepository;
@@ -133,14 +134,28 @@ public class CustomerInfoService {
         customerInfo.setPhone_1(customerDTO.getPhone_1());
         customerInfo.setPhone_2(customerDTO.getPhone_2());
         customerInfo.setCode_em_support(customerDTO.getCode_em_support());
-
         customerInfo.setFull_name(customerDTO.getFull_name());
         customerInfo.setCode_em_support(customerDTO.getCode_em_support());
-
         customerInfo.setCreated_time(new Date());
         customerInfo.setMarital_status(customerDTO.getMarital_status());
         customerInfo.setSource(customerDTO.getSource());
 
+        // thêm acc tạm thời cho customer
+        CustomerAcc customerAcc = new CustomerAcc();
+        customerAcc.setStatus(false);
+        customerAcc.setPass(Function.generatePassword(8));
+        customerAccRepository.save(customerAcc);
+        // lưu xong acc và lấy ID acc đó để dùng generate code cho khách
+        Optional<CustomerAcc> customerAcc1 = customerAccRepository.findById(customerAcc.getId());
+        customerAcc1.get().setCode(Function.generateAccCust(String.valueOf(customerAcc.getId())));
+        customerAccRepository.save(customerAcc1.get());
+
+        // lưu Id acc vào bảng customer_info cột Id_account
+        customerInfo.setId_account(Long.valueOf(customerAcc.getId()));
+
+
+
+        // thêm các địa chỉ cho khách hàng
         ContactAddress contactAddress = new ContactAddress();
         contactAddress.setConadd_city(customerDTO.getConadd_city());
         contactAddress.setConadd_district(customerDTO.getConadd_district());
@@ -190,11 +205,11 @@ public class CustomerInfoService {
         }
     }
 
-    public CustomerDTO getOneInfo(Integer id,String code){
+    public List<CustomerDTO> getOneInfo(Integer id,String code){
         return customerDTORepository.getCustomerInfobyID(id,code);
     }
 
-    public CustomerDTO getOneInfo(Integer id){
+    public List<CustomerDTO> getOneInfo(Integer id){
         return customerDTORepository.getCustomerInfobyIDAdmin(id);
     }
 
@@ -203,8 +218,8 @@ public class CustomerInfoService {
         return customerDTORepository.getAllCustomerInfo(code_em_support);
     }
     // query tất cả khách hàng nhưng không có illustration, contract các khách hàng đó
-    public List<CustomerInfo> findAllCust(String code_em_support) {
-        return customerInfoRepository.getAllCustomerInfo(code_em_support);
+    public List<CustomerDTO> findAllCust(String code_em_support) {
+        return customerDTORepository.getCustomerInfobySaler(code_em_support);
     }
 
     public List<CustomerDTO> getAllCustomerInfoAdmin() {

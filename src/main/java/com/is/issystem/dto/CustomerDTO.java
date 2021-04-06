@@ -48,7 +48,7 @@ import java.util.Date;
                         "            INNER JOIN contact_address as conadd ON conadd.conadd_id = ci.id_contact_address\n" +
                         "            INNER JOIN current_address as curadd ON curadd.curadd_id = ci.id_current_address \n" +
                         "            INNER JOIN permanent_address as peradd on peradd.peradd_id = ci.id_permanent_address \n" +
-                        "            INNER JOIN workplace_address as workadd ON workadd.workadd_id = ci.id_workplace_address order by created_time desc",
+                        "            INNER JOIN workplace_address as workadd ON workadd.workadd_id = ci.id_workplace_address where ca.status = 1 order by created_time desc",
         resultSetMapping = "stock_akhir_dto"
 )
 @NamedNativeQuery(
@@ -70,6 +70,26 @@ import java.util.Date;
                         "            INNER JOIN current_address as curadd ON curadd.curadd_id = ci.id_current_address \n" +
                         "            INNER JOIN permanent_address as peradd on peradd.peradd_id = ci.id_permanent_address \n" +
                         "            INNER JOIN workplace_address as workadd ON workadd.workadd_id = ci.id_workplace_address where ci.id = ?1 and ci.code_em_support = ?2 order by created_time desc",
+        resultSetMapping = "stock_akhir_dto"
+)
+@NamedNativeQuery(
+        name = "getCustomerInfoDetailForSaler",
+        query =
+                "SELECT ci.*,code ,ca.status ,\n" +
+                        "null as id_contract, null id_illustration,\n"+
+                        "\tconadd_city , conadd_district \n" +
+                        "\t,conadd_no_street ,conadd_wards, \n" +
+                        "\tcuradd_city ,curadd_district ,\n" +
+                        "\tcuradd_no_street , curadd_wards,  \n" +
+                        "\tperadd_city,peradd_district,peradd_no_street,peradd_wards,\n" +
+                        "\tworkadd_city,workadd_district,workadd_no_street,workadd_wards\n" +
+                        "\tFROM is_agency_db.customer_info as ci\n" +
+                        "\tLEFT JOIN is_agency_db.customer_acc as ca on ci.id_account = ca.id \n" +
+                        "\tINNER JOIN contact_address as conadd ON conadd.conadd_id = ci.id_contact_address\n" +
+                        "\tINNER JOIN current_address as curadd ON curadd.curadd_id = ci.id_current_address\n" +
+                        "\tINNER JOIN permanent_address as peradd on peradd.peradd_id = ci.id_permanent_address\n" +
+                        "\tINNER JOIN workplace_address as workadd ON workadd.workadd_id = ci.id_workplace_address \n" +
+                        "    where ci.code_em_support = ?1  order by created_time desc",
         resultSetMapping = "stock_akhir_dto"
 )
 @NamedNativeQuery(

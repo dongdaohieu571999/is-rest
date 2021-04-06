@@ -6,6 +6,7 @@ import com.is.issystem.repository.entity_repository.CustomerOwnIllustrationRepos
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -20,7 +21,7 @@ public class CustomerOwnIllustrationService {
         return customerOwnIllustrationDTORepository.listCustomerOwnIllustration(code_em_support);
     }
 
-    public void addOneCustomerOwnIllustration(String code){
-         customerOwnIllustrationRepository.addOneCustomerOwnIllustration(code);
+    public void addOneCustomerOwnIllustration(String code, String end_time){
+         customerOwnIllustrationRepository.addOneCustomerOwnIllustration(code,end_time);
     }
 }

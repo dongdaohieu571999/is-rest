@@ -5,6 +5,9 @@ import org.json.JSONObject;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 public class Function {
@@ -18,5 +21,31 @@ public class Function {
                 .getSubject();
         return user;
 
+    }
+
+    public static String generateAccCust(String id){
+        String yearShort =  String.valueOf(Calendar.getInstance().get(Calendar.YEAR)).substring(2);
+        int dayShort = Calendar.getInstance().get(Calendar.DATE);
+        return "CTM"+yearShort+dayShort+id;
+    }
+
+    public static String generatePassword(int length) {
+        String capitalCaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        String lowerCaseLetters = "abcdefghijklmnopqrstuvwxyz";
+        String specialCharacters = "!@#$";
+        String numbers = "1234567890";
+        String combinedChars = capitalCaseLetters + lowerCaseLetters + specialCharacters + numbers;
+        Random random = new Random();
+        char[] password = new char[length];
+
+        password[0] = lowerCaseLetters.charAt(random.nextInt(lowerCaseLetters.length()));
+        password[1] = capitalCaseLetters.charAt(random.nextInt(capitalCaseLetters.length()));
+        password[2] = specialCharacters.charAt(random.nextInt(specialCharacters.length()));
+        password[3] = numbers.charAt(random.nextInt(numbers.length()));
+
+        for(int i = 4; i< length ; i++) {
+            password[i] = combinedChars.charAt(random.nextInt(combinedChars.length()));
+        }
+        return String.valueOf(password);
     }
 }

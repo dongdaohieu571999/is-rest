@@ -11,4 +11,7 @@ import java.util.List;
 public interface CustomerAccRepository extends JpaRepository<CustomerAcc,Integer> {
     @Query(value = "SELECT  * from customer_acc where code = ?1 and id != ?2",nativeQuery = true)
     List<CustomerAcc> getAccExist(String code,Integer id);
+
+    @Query(value = "SELECT * from customer_acc where id = ?1 \n",nativeQuery = true)
+    CustomerAcc getAcc(Long id);
 }

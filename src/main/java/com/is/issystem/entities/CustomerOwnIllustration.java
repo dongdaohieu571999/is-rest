@@ -1,9 +1,14 @@
 package com.is.issystem.entities;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@Getter
+@Setter
 @Table(name = "customer_own_illustration")
 public class CustomerOwnIllustration {
     @Id
@@ -13,28 +18,6 @@ public class CustomerOwnIllustration {
     private Integer id_customer;
     @Column(name = "create_time")
     private Date create_time;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getId_customer() {
-        return id_customer;
-    }
-
-    public void setId_customer(Integer id_customer) {
-        this.id_customer = id_customer;
-    }
-
-    public Date getCreate_time() {
-        return create_time;
-    }
-
-    public void setCreate_time(Date create_time) {
-        this.create_time = create_time;
-    }
+    @Column(name = "end_time")
+    private Date end_time;
 }
