@@ -27,6 +27,10 @@ public class ContractService {
         return contractRepository.getAllContract(code_em_support);
     }
 
+    public Integer getCountNewContract(String code_em_support,Integer monthDate){
+        return contractRepository.getAllContractCount(code_em_support,monthDate);
+    }
+
     public Contract getDetailContract(int id){
          return contractRepository.getDetailContract(id);
     }

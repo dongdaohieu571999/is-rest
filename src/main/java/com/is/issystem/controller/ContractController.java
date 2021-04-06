@@ -70,4 +70,10 @@ public class ContractController {
         contractService.updateContract(contract);
         return ResponseEntity.status(HttpStatus.OK).body(contract);
     }
+
+    @PostMapping(value = "/get_all_count_contract")
+    public ResponseEntity getAllCountContract(@RequestBody String data){
+        JSONObject monthRevenue = new JSONObject(data);
+        return ResponseEntity.status(HttpStatus.OK).body(contractService.getCountNewContract(monthRevenue.get("code_em_support").toString(),Integer.parseInt(monthRevenue.get("monthDate").toString())));
+    }
 }
