@@ -14,14 +14,14 @@ public class RequestController {
     @Autowired
     private RequestService requestService;
 
-    @GetMapping(value = "/get_all_request")
-    List<Request> getAllContractRequest(){
-        return requestService.getAllUncheckReq();
+    @PostMapping(value = "/get_all_request")
+    List<Request> getAllContractRequest(@RequestBody String code_appraiser){
+        return requestService.getAllUncheckReq(code_appraiser);
     }
 
-    @GetMapping(value = "/get_all_request_approval")
-    List<Request> getAllContractRequestApproval(){
-        return requestService.getAllContractRequestApproval();
+    @PostMapping(value = "/get_all_request_approval")
+    List<Request> getAllContractRequestApproval(@RequestBody String code_appraiser){
+        return requestService.getAllContractRequestApproval(code_appraiser);
     }
 
     @PostMapping(value = "/get_detail_request")

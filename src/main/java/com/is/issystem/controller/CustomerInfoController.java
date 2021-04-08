@@ -17,14 +17,17 @@ public class CustomerInfoController {
     @Autowired
     private CustomerInfoService customerInfoService;
 
+
     @PostMapping(value = "/get_all_customer")
     List<CustomerDTO> findAllCust(@RequestBody String code_em_support){
         return customerInfoService.findAllCust(code_em_support);
     }
 
+
     @PostMapping(value = "/get_all_customer_info")
     List<CustomerDTO> findAll(@RequestBody String code_em_support){
         return customerInfoService.findAll(code_em_support);
+
     }
 
     @GetMapping(value = "/get_all_customer_info_admin")

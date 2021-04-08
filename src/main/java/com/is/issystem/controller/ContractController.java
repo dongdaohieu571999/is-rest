@@ -1,5 +1,6 @@
 package com.is.issystem.controller;
 
+import com.is.issystem.dto.ContractDTO;
 import com.is.issystem.entities.Contract;
 import com.is.issystem.entities.ContractChangeHistory;
 import com.is.issystem.entities.FeePaymentHistory;
@@ -24,7 +25,7 @@ public class ContractController {
     private ContractRepository contractRepository;
 
     @PostMapping(value = "/get_all_contract_of_employee")
-    List<Contract> getAllContract(@RequestBody String code_em_support){
+    List<ContractDTO> getAllContract(@RequestBody String code_em_support){
         return contractService.getAllContract(code_em_support);
     }
 
@@ -49,9 +50,11 @@ public class ContractController {
     List<IntersetPaymentHistory> getAllIntersetPaymentHistory(@PathVariable("id") int id){
         return contractService.getAllIntersetPaymentHistory(id);
     }
+    // lấy tất cả hợp đồng của 1 saler
     @PostMapping(value = "/get_detail_contract")
-    Contract getDetailContract(@RequestBody Integer id){
-        return contractService.getDetailContract(id);
+    ContractDTO getDetailContract(@RequestBody String data){
+        JSONObject jsonObject = new JSONObject(data);
+        return contractService.getDetailContract(jsonObject.getString("code"),jsonObject.getInt("id"));
     }
 
     @GetMapping(value = "/get_detail_contract_change_history/{id}")
@@ -69,5 +72,11 @@ public class ContractController {
     public ResponseEntity<?> editContract(@RequestBody Contract contract){
         contractService.updateContract(contract);
         return ResponseEntity.status(HttpStatus.OK).body(contract);
+    }
+
+    @PostMapping(value = "/get_all_count_contract")
+    public ResponseEntity getAllCountContract(@RequestBody String data){
+        JSONObject monthRevenue = new JSONObject(data);
+        return ResponseEntity.status(HttpStatus.OK).body(contractService.getCountNewContract(monthRevenue.get("code_em_support").toString(),Integer.parseInt(monthRevenue.get("monthDate").toString())));
     }
 }

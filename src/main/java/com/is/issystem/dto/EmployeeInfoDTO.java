@@ -78,4 +78,6 @@ public class EmployeeInfoDTO {
     private String peradd_wards;
     @Column
     private int age;
+    @Column
+    private String code_ap_support;
 }

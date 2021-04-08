@@ -5,6 +5,7 @@ import org.json.JSONObject;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.util.Base64;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
@@ -47,5 +48,12 @@ public class Function {
             password[i] = combinedChars.charAt(random.nextInt(combinedChars.length()));
         }
         return String.valueOf(password);
+    }
+
+    public static String decodeBase64(String data){
+        return new String(Base64.getDecoder().decode(data));
+    }
+    public static String encodeBase64(String data){
+        return new String(Base64.getEncoder().encodeToString(data.getBytes()));
     }
 }

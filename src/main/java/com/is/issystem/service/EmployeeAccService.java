@@ -4,10 +4,16 @@ package com.is.issystem.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.is.issystem.commons.Function;
 import com.is.issystem.entities.CustomerAcc;
 import com.is.issystem.entities.EmployeeAcc;
+import com.is.issystem.entities.EmployeeInfo;
+import com.is.issystem.repository.entity_repository.EmployeeInfoRepository;
 import io.jsonwebtoken.Jwts;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailException;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.is.issystem.repository.entity_repository.EmployeeAccRepository;
@@ -19,14 +25,43 @@ import static com.is.issystem.service.TokenAuthenticationService.TOKEN_PREFIX;
 @Transactional(rollbackFor = Exception.class)
     public class EmployeeAccService {
         @Autowired
+        public JavaMailSender emailSender;
+        @Autowired
         private EmployeeAccRepository employeeAccRepository;
+        @Autowired
+        private EmployeeInfoRepository employeeInfoRepository;
 
         public List<EmployeeAcc> findAll() {
             return employeeAccRepository.findAll();
         }
 
-        public void addEmployeeAccount(EmployeeAcc employee_acc) {
-            employeeAccRepository.save(employee_acc);
+        public EmployeeAcc addEmployeeAccount(EmployeeAcc employee_acc,String email,String code_ap_support,Integer id_custInfo) {
+            // lưu tài khoản của nhân viên
+            EmployeeAcc employeeAcc = new EmployeeAcc();
+            employeeAcc.setStatus(true);
+            employeeAcc.setCode(employee_acc.getCode());
+            employeeAcc.setId_role(employee_acc.getId_role());
+            employeeAcc.setPass(Function.generatePassword(8));
+            employeeAccRepository.save(employeeAcc);
+
+            // thêm code của người giám sát cho nhân viên
+            Optional<EmployeeInfo> employeeInfo = employeeInfoRepository.findById(id_custInfo);
+            employeeInfo.get().setCode_ap_support(code_ap_support);
+            employeeInfoRepository.save(employeeInfo.get());
+
+            SimpleMailMessage message = new SimpleMailMessage();
+            message.setTo(email);
+            message.setSubject("THÔNG TIN TÀI KHOẢN NHÂN VIÊN");
+            message.setText("Bạn vui lòng dùng thông tin bên dưới để đăng nhập vào tài khoản của bạn:\n"
+            +"Tài Khoản: "+employee_acc.getCode()+"\n"
+            +"Mật Khẩu: "+employeeAcc.getPass());
+
+            try{
+                this.emailSender.send(message);
+            } catch (MailException e){
+                e.printStackTrace();
+            }
+        return employeeAcc;
         }
 
 

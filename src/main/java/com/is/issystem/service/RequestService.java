@@ -14,12 +14,12 @@ public class RequestService {
     @Autowired
     private RequestRepository requestRepository;
 
-    public List<Request> getAllContractRequestApproval() {
-        return requestRepository.getAllCheckReq();
+    public List<Request> getAllContractRequestApproval(String code_appraiser) {
+        return requestRepository.getAllCheckReq(code_appraiser);
     }
 
-    public List<Request> getAllUncheckReq(){
-        return requestRepository.getAllUncheckReq();
+    public List<Request> getAllUncheckReq(String code_appraiser){
+        return requestRepository.getAllUncheckReq(code_appraiser);
     }
 
     public Optional<Request> getDetailRequest(int id){

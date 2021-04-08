@@ -1,24 +1,42 @@
 package com.is.issystem.controller;
 
+<<<<<<< HEAD
+import com.is.issystem.dto.ContractDTO;
+import com.is.issystem.entities.Contract;
+import com.is.issystem.service.ContractService;
+import org.junit.Assert;
+=======
 import com.is.issystem.entities.Contract;
 import com.is.issystem.entities.ContractChangeHistory;
 import com.is.issystem.entities.FeePaymentHistory;
 import com.is.issystem.entities.IntersetPaymentHistory;
 import com.is.issystem.repository.entity_repository.ContractRepository;
 import com.is.issystem.service.ContractService;
+>>>>>>> hieu
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+<<<<<<< HEAD
+import org.mockito.Mockito;
+=======
+>>>>>>> hieu
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.ResponseEntity;
 
 import java.sql.Date;
+<<<<<<< HEAD
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+=======
 import java.time.LocalDate;
 import java.util.*;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
+>>>>>>> hieu
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -26,13 +44,18 @@ class ContractControllerTest {
 
     @Mock
     private ContractService mockContractService;
+<<<<<<< HEAD
+=======
     @Mock
     private ContractRepository mockContractRepository;
+>>>>>>> hieu
 
     @InjectMocks
     private ContractController contractControllerUnderTest;
 
     @Test
+<<<<<<< HEAD
+=======
     void testSetActiveContract() {
         // Setup
 
@@ -44,12 +67,22 @@ class ContractControllerTest {
     }
 
     @Test
+>>>>>>> hieu
     void testAddContract() {
         // Setup
         final Contract contract = new Contract();
         contract.setId(0);
         contract.setId_customer(0);
         contract.setName_contract_owner("name_contract_owner");
+<<<<<<< HEAD
+        contract.setPayment_period("payment_period");
+        contract.setInsurance_type("insurance_type");
+        contract.setId_main_interest(0);
+        contract.setId_illustration(0);
+        contract.setStart_time(new Date(0L));
+        contract.setEnd_time(new Date(0L));
+        contract.setDate_next_payment(new Date(0L));
+=======
         contract.setPayment_period_id(0);
         contract.setInsurance_type("insurance_type");
         contract.setId_main_interest(0);
@@ -71,6 +104,7 @@ class ContractControllerTest {
         contract1.setEnd_time(Date.valueOf(LocalDate.of(2020, 1, 1)));
         contract1.setCreate_time(Date.valueOf(LocalDate.of(2020, 1, 1)));
         when(mockContractRepository.save(any(Contract.class))).thenReturn(contract1);
+>>>>>>> hieu
 
         // Run the test
         final ResponseEntity<?> result = contractControllerUnderTest.addContract(contract);
@@ -79,6 +113,16 @@ class ContractControllerTest {
     }
 
     @Test
+<<<<<<< HEAD
+    void testGetAllContract() {
+        // Setup
+
+        // Run the test
+        final List<ContractDTO> result = contractControllerUnderTest.getAllContract();
+
+        // Verify the results
+        Assert.assertNotNull(result);
+=======
     void testEditContract() {
         // Setup
         final Contract contract = new Contract();
@@ -123,11 +167,21 @@ class ContractControllerTest {
         final List<Contract> result = contractControllerUnderTest.getAllContract("code_em_support");
 
         // Verify the results
+>>>>>>> hieu
     }
 
     @Test
     void testGetAllContract_ContractServiceReturnsNoItems() {
         // Setup
+<<<<<<< HEAD
+        when(mockContractService.getAllContract()).thenReturn(Collections.emptyList());
+
+        // Run the test
+        final List<ContractDTO> result = contractControllerUnderTest.getAllContract();
+
+        // Verify the results
+        Assert.assertNull(result);
+=======
         when(mockContractService.getAllContract("code_em_support")).thenReturn(Collections.emptyList());
 
         // Run the test
@@ -237,6 +291,7 @@ class ContractControllerTest {
         final List<IntersetPaymentHistory> result = contractControllerUnderTest.getAllIntersetPaymentHistory(0);
 
         // Verify the results
+>>>>>>> hieu
     }
 
     @Test
@@ -244,6 +299,17 @@ class ContractControllerTest {
         // Setup
 
         // Configure ContractService.getDetailContract(...).
+<<<<<<< HEAD
+        final ContractDTO contractDTO = new ContractDTO();
+        when(mockContractService.getDetailContract(3)).thenReturn(contractDTO);
+
+        // Run the test
+        final ContractDTO result = contractControllerUnderTest.getDetailContract(3);
+
+        // Verify the results
+        Assert.assertNotNull(result);
+        Assert.assertEquals(contractDTO, result);
+=======
         final Contract contract = new Contract();
         contract.setId(0);
         contract.setId_customer(0);
@@ -297,5 +363,6 @@ class ContractControllerTest {
         final Optional<ContractChangeHistory> result = contractControllerUnderTest.getDetailContractChange(0);
 
         // Verify the results
+>>>>>>> hieu
     }
 }

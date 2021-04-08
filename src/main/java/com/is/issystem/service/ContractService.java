@@ -1,6 +1,8 @@
 package com.is.issystem.service;
 
+import com.is.issystem.dto.ContractDTO;
 import com.is.issystem.entities.*;
+import com.is.issystem.repository.entity_dto_repository.ContractDTORepository;
 import com.is.issystem.repository.entity_repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +17,8 @@ public class ContractService {
     @Autowired
     private ContractRepository contractRepository;
     @Autowired
+    private ContractDTORepository contractDTORepository;
+    @Autowired
     private ContractChangeHistoryRepository contractChangeHistoryRepository;
     @Autowired
     private FeePaymentHistoryRepository feePaymentHistoryRepository;
@@ -23,12 +27,16 @@ public class ContractService {
     @Autowired
     private RequestRepository requestRepository;
 
-    public List<Contract> getAllContract(String code_em_support){
-        return contractRepository.getAllContract(code_em_support);
+    public List<ContractDTO> getAllContract(String code_em_support){
+        return contractDTORepository.getAllContractDTO(code_em_support);
     }
 
-    public Contract getDetailContract(int id){
-         return contractRepository.getDetailContract(id);
+    public Integer getCountNewContract(String code_em_support,Integer monthDate){
+        return contractRepository.getAllContractCount(code_em_support,monthDate);
+    }
+
+    public ContractDTO getDetailContract(String code,Integer id){
+         return contractDTORepository.getDetailContract(code,id);
     }
     public Optional<ContractChangeHistory> getDetailContractChange(int id){
         return contractChangeHistoryRepository.findById(id);
