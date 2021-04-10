@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.text.ParseException;
 import java.util.List;
 
 @RestController
@@ -27,7 +29,12 @@ public class CustomerInfoController {
     @PostMapping(value = "/get_all_customer_info")
     List<CustomerDTO> findAll(@RequestBody String code_em_support){
         return customerInfoService.findAll(code_em_support);
+    }
 
+    @PostMapping(value = "/search_all_customer_info")
+    List<CustomerDTO> searchAllCustomer(@RequestBody String data) throws ParseException {
+        JSONObject data1 = new JSONObject(data);
+        return customerInfoService.findAllSearch(data1.get("code_em_support").toString(),data1.get("dateFrom").toString(),data1.get("dateTo").toString(),data1.get("searchValue").toString());
     }
 
     @GetMapping(value = "/get_all_customer_info_admin")

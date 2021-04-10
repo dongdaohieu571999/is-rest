@@ -50,7 +50,7 @@ public class ContractController {
     List<IntersetPaymentHistory> getAllIntersetPaymentHistory(@PathVariable("id") int id){
         return contractService.getAllIntersetPaymentHistory(id);
     }
-    // lấy tất cả hợp đồng của 1 saler
+    // lấy hợp đồng của 1 saler
     @PostMapping(value = "/get_detail_contract")
     ContractDTO getDetailContract(@RequestBody String data){
         JSONObject jsonObject = new JSONObject(data);

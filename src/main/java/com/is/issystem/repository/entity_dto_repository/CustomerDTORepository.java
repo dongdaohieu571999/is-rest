@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.ColumnResult;
 import javax.persistence.ConstructorResult;
 import javax.persistence.SqlResultSetMapping;
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -15,6 +16,9 @@ public interface CustomerDTORepository extends JpaRepository<CustomerDTO,Integer
 
     @Query(nativeQuery = true,name = "find_stock_akhir_dto")
     List<CustomerDTO> getAllCustomerInfo(String code_em_support);
+
+    @Query(nativeQuery = true,name = "getAllCustomerInfoSearch")
+    List<CustomerDTO> getAllCustomerInfoSearch(String code_em_support, String dateFrom, String dateTo, String searchValue);
 
     @Query(nativeQuery = true,name = "getAllCustomerInfoByAdmin")
     List<CustomerDTO> getAllCustomerInfoAdmin();

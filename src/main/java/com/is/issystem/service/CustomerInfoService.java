@@ -8,6 +8,8 @@ import com.is.issystem.repository.entity_repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -217,6 +219,25 @@ public class CustomerInfoService {
     public List<CustomerDTO> findAll(String code_em_support) {
         return customerDTORepository.getAllCustomerInfo(code_em_support);
     }
+
+    public List<CustomerDTO> findAllSearch(String code_em_support,String dateFrom,String dateTo,String searchValue) throws ParseException {
+
+//        searchValue = "%"+searchValue+"%";
+//        String dateFr = "1900/01/01";
+//        String dateT = new SimpleDateFormat("yyyy/MM/dd").format(new Date());
+//        if(dateFrom=="null" && dateTo=="null"){
+//            return customerDTORepository.getAllCustomerInfoSearch(code_em_support,dateFr,dateT,searchValue);
+//        }
+//         else if(dateTo=="null" || dateFrom=="null"){
+//            return customerDTORepository.getAllCustomerInfoSearch(code_em_support,dateFrom=="null"?dateFr:dateFrom,dateTo=="null"?dateT:dateTo,searchValue);
+//        } else {
+//            return customerDTORepository.getAllCustomerInfoSearch(code_em_support,dateFrom,dateTo,searchValue);
+//        }
+
+        return customerDTORepository.getAllCustomerInfoSearch(code_em_support,dateFrom,dateTo,searchValue);
+
+    }
+
     // query tất cả khách hàng nhưng không có illustration, contract các khách hàng đó
     public List<CustomerDTO> findAllCust(String code_em_support) {
         return customerDTORepository.getCustomerInfobySaler(code_em_support);
