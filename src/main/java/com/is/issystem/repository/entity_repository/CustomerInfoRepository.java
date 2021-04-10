@@ -12,4 +12,7 @@ import java.util.List;
 public interface CustomerInfoRepository extends JpaRepository<CustomerInfo,Integer>{
     @Query(nativeQuery = true,value = "SELECT ci.* FROM is_agency_db.customer_info as ci where ci.code_em_support = ?1 order by created_time desc")
     public List<CustomerInfo> getAllCustomerInfo(String code_em_support);
+
+    @Query(nativeQuery = true,value = "SELECT ci.* FROM is_agency_db.customer_info as ci where ci.code_em_support = ?1 and ci.created_time between ?2 and ?3")
+    public List<CustomerInfo> getAllCustomerInfobyDate(String code_em_support,String dateFrom,String dateTo);
 }

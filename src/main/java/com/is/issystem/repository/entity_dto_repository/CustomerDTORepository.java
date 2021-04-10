@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.ColumnResult;
 import javax.persistence.ConstructorResult;
 import javax.persistence.SqlResultSetMapping;
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -30,6 +31,33 @@ public interface CustomerDTORepository extends JpaRepository<CustomerDTO,Integer
 //            "            INNER JOIN workplace_address as workadd ON workadd.workadd_id = ci.id_workplace_address where ci.code_em_support = ?1 order by created_time desc")
     @Query(nativeQuery = true,name = "find_stock_akhir_dto")
     List<CustomerDTO> getAllCustomerInfo(String code_em_support);
+
+    @Query(nativeQuery = true,name = "getAllCustomerInfoSearch")
+    List<CustomerDTO> getAllCustomerInfoSearch(String code_em_support, String dateFrom, String dateTo, String searchValue);
+
+//    @Query(nativeQuery = true,value = "  SELECT ci.*,code ,ca.status ,\n" +
+//            "                        ct.id as id_contract, il.id as id_illustration,\n" +
+//            "                                    conadd_city , conadd_district \n" +
+//            "                                    ,conadd_no_street ,conadd_wards, \n" +
+//            "                                   curadd_city ,curadd_district ,\n" +
+//            "                                    curadd_no_street , curadd_wards,  \n" +
+//            "                                    peradd_city,peradd_district,peradd_no_street,peradd_wards,\n" +
+//            "                                    workadd_city,workadd_district,workadd_no_street,workadd_wards\n" +
+//            "                                   FROM is_agency_db.customer_info as ci\n" +
+//            "                                   LEFT JOIN is_agency_db.contract as ct on ct.id_customer = ci.id\n" +
+//            "                                    LEFT JOIN is_agency_db.illustration as il on il.id = ct.id_illustration \n" +
+//            "                                    LEFT JOIN is_agency_db.customer_acc as ca on ci.id_account = ca.id \n" +
+//            "                                   INNER JOIN contact_address as conadd ON conadd.conadd_id = ci.id_contact_address\n" +
+//            "                                    INNER JOIN current_address as curadd ON curadd.curadd_id = ci.id_current_address \n" +
+//            "                                    INNER JOIN permanent_address as peradd on peradd.peradd_id = ci.id_permanent_address \n" +
+//            "                                    INNER JOIN workplace_address as workadd ON workadd.workadd_id = ci.id_workplace_address \n" +
+//            "                                    where (ci.code_em_support = ?1 and created_time between ?2 and ?3)\n" +
+//            "                                    and (ci.full_name LIKE '%?4%' or ci.id LIKE '%?4%'  or code LIKE '%?4%' or ct.id LIKE '%?4%' or conadd_city or '%?4%' or il.id LIKE '%?4%' or ci.phone_1 LIKE '%?4%'\n" +
+//            "\t\t\t\t\t\t\t\t\tor workadd_no_street LIKE '%?4%')\n" +
+//            "\t\t\t\t\t\t\t\t\t\n" +
+//            "                                    order by created_time desc")
+//    List<CustomerDTO> getAllCustomerInfoSearch(String code_em_support,String dateFrom,String dateTo,String searchValue);
+
 
 //    @Query(nativeQuery = true,value = "SELECT ci.*,code ,ca.status ,\n" +
 //            "\tconadd_city , conadd_district \n" +
