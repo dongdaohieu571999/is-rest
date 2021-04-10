@@ -32,7 +32,7 @@ public class FileManagementController {
     public ResponseEntity uploadFile(@RequestBody String fileName) throws IOException {
         BlobId blobId = BlobId.of("is-solution.appspot.com",fileName);
         BlobInfo blobInfo = BlobInfo.newBuilder(blobId).build();
-        File fileToRead = new File("C:\\Users\\ADMIN\\Downloads\\NguyeChiNgocMinh.pdf");
+        File fileToRead = new File("gcp-credencial.json");
         byte[] data = Files.readAllBytes(Paths.get(fileToRead.toURI()));
         storage.create(blobInfo,data);
         return ResponseEntity.status(HttpStatus.OK).body(fileName);
