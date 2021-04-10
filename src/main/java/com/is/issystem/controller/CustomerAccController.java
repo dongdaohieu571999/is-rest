@@ -28,7 +28,6 @@ public class CustomerAccController {
 
     @PostMapping(value = "/update_customer_acc")
     public ResponseEntity<?> updateEmployeeAccount(@RequestBody CustomerAcc customerAcc){
-        boolean ahihi = customerAccService.checkExistCustomerAccount(customerAcc);
         if(customerAccService.checkExistCustomerAccount(customerAcc)){
             return null;
         } else {

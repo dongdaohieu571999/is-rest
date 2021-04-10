@@ -20,11 +20,6 @@ public class CustomerInfoController {
     private CustomerInfoService customerInfoService;
 
 
-//    @GetMapping(value = "/get_all_customer_info")
-//    List<CustomerDTO> findAll() {
-//        return customerInfoService.findAll();
-//    }
-
     @PostMapping(value = "/get_all_customer")
     List<CustomerInfo> findAllCust(@RequestBody String code_em_support){
         return customerInfoService.findAllCust(code_em_support);

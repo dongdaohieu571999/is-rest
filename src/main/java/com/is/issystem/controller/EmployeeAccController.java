@@ -1,6 +1,7 @@
 package com.is.issystem.controller;
 
 import com.is.issystem.entities.EmployeeAcc;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,12 +22,13 @@ public class EmployeeAccController {
     }
 
     @PostMapping(value = "/add_employee_acc")
-    public ResponseEntity<?> addEmployeeAccount(@RequestBody EmployeeAcc employee_acc){
-        if(employeeAccService.checkExistEmployeeAccount(employee_acc)){
+    public ResponseEntity<?> addEmployeeAccount(@RequestBody String data){
+        JSONObject jsonObject = new JSONObject(data);
+        if(employeeAccService.checkExistEmployeeAccount((EmployeeAcc) jsonObject.get("emAcc"))){
             return null;
         } else {
-            employeeAccService.addEmployeeAccount(employee_acc);
-            return ResponseEntity.status(HttpStatus.OK).body(employee_acc.getId());
+            employeeAccService.addEmployeeAccount((EmployeeAcc) jsonObject.get("emAcc"),jsonObject.getString("email"));
+            return ResponseEntity.status(HttpStatus.OK).body(((EmployeeAcc) jsonObject.get("emAcc")).getId());
         }
     }
 
