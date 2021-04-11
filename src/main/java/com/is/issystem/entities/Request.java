@@ -9,6 +9,7 @@ import java.util.Date;
 @Entity
 @Getter
 @Setter
+@Table(name = "request")
 public class Request {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,9 +24,9 @@ public class Request {
     @Column
     private Integer requestcol;
     @Column
-    private Integer id_sender;
+    private String code_sender;
     @Column
-    private Integer id_reciever;
+    private String code_reciever;
     @Column
     private String description;
     @Column

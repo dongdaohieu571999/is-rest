@@ -13,14 +13,30 @@ import org.springframework.web.bind.annotation.*;
 public class CustomerAccController {
     @Autowired
     private CustomerAccService customerAccService;
+    @Autowired
     private CustomerInfoService customerInfoService;
 
+    @PostMapping(value = "/send_acc_for_customer")
+    public ResponseEntity<?> sendCustomerAccount(@RequestBody Integer id){
+        return ResponseEntity.status(HttpStatus.OK).body(customerAccService.sendCustomerAccount(id));
+    }
+
     @PostMapping(value = "/add_customer_acc")
-    public ResponseEntity<?> addEmployeeAccount(@RequestBody CustomerAcc customerAcc){
+    public ResponseEntity<?> addCustomerAccount(@RequestBody CustomerAcc customerAcc){
         if(customerAccService.checkExistCustomerAccount(customerAcc)){
             return null;
         } else {
             customerAccService.addCustomerAccount(customerAcc);
+            return ResponseEntity.status(HttpStatus.OK).body(customerAcc.getId());
+        }
+    }
+
+    @PostMapping(value = "/update_customer_acc")
+    public ResponseEntity<?> updateEmployeeAccount(@RequestBody CustomerAcc customerAcc){
+        if(customerAccService.checkExistCustomerAccount(customerAcc)){
+            return null;
+        } else {
+            customerAccService.updateCustomerAccount(customerAcc);
             return ResponseEntity.status(HttpStatus.OK).body(customerAcc.getId());
         }
     }

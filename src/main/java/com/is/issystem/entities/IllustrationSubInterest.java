@@ -36,8 +36,9 @@ public class IllustrationSubInterest {
     @Column(name = "denominations")
     Integer denominations;
     @Column(name = "fee_value")
-    Integer fee_value;
+    String fee_value;
     @Column(name = "is_extra_insured_person")
     Boolean is_extra_insured_person;
-
+    @Column(name = "id_related_person")
+    Integer id_related_person;
 }

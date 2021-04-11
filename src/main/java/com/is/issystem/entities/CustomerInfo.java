@@ -1,9 +1,14 @@
 package com.is.issystem.entities;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@Getter
+@Setter
 @Table(name="customer_info")
 public class CustomerInfo {
     @Id
@@ -13,7 +18,7 @@ public class CustomerInfo {
     @Column(name = "birth_date")
     private Date birth_date;
     @Column(name = "age")
-    private Integer age;
+    private Long age;
     @Column(name = "birth_address")
     private String birth_address;
     @Column(name = "types_identification")
@@ -57,275 +62,20 @@ public class CustomerInfo {
     @Column(name = "phone_2")
     private String phone_2;
     @Column(name = "id_account")
-    private Integer id_account;
+    private Long id_account;
     @Column(name = "full_name")
     private String full_name;
     @Column(name = "code_em_support")
     private String code_em_support;
     @Column(name = "gender")
-    private boolean gender;
+    private Long gender;
+    @Column(name = "updated_time")
     private Date updated_time;
-    @Column
-    private boolean marital_status;
-    @Column
+    @Column(name = "marital_status")
+    private Long marital_status;
+    @Column(name = "created_time")
     private Date created_time;
-    @Column
+    @Column(name = "source")
     private String source;
-
-    public Date getUpdated_time() {
-        return updated_time;
-    }
-
-    public void setUpdated_time(Date updated_time) {
-        this.updated_time = updated_time;
-    }
-
-    public boolean isMarital_status() {
-        return marital_status;
-    }
-
-    public void setMarital_status(boolean marital_status) {
-        this.marital_status = marital_status;
-    }
-
-    public Date getCreated_time() {
-        return created_time;
-    }
-
-    public void setCreated_time(Date created_time) {
-        this.created_time = created_time;
-    }
-
-    public String getSource() {
-        return source;
-    }
-
-    public void setSource(String source) {
-        this.source = source;
-    }
-
-    public boolean getGender() {
-        return gender;
-    }
-
-    public void setGender(boolean gender) {
-        this.gender = gender;
-    }
-
-    public String getCode_em_support() {
-        return code_em_support;
-    }
-
-    public void setCode_em_support(String code_em_support) {
-        this.code_em_support = code_em_support;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Date getBirth_date() {
-        return birth_date;
-    }
-
-    public void setBirth_date(Date birth_date) {
-        this.birth_date = birth_date;
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
-    public String getBirth_address() {
-        return birth_address;
-    }
-
-    public void setBirth_address(String birth_address) {
-        this.birth_address = birth_address;
-    }
-
-    public String getTypes_identification() {
-        return types_identification;
-    }
-
-    public void setTypes_identification(String types_identification) {
-        this.types_identification = types_identification;
-    }
-
-    public String getID_card() {
-        return id_card;
-    }
-
-    public void setID_card(String ID_card) {
-        this.id_card = ID_card;
-    }
-
-    public String getNationality_1() {
-        return nationality_1;
-    }
-
-    public void setNationality_1(String nationality_1) {
-        this.nationality_1 = nationality_1;
-    }
-
-    public String getNationality_2() {
-        return nationality_2;
-    }
-
-    public void setNationality_2(String nationality_2) {
-        this.nationality_2 = nationality_2;
-    }
-
-    public String getNation() {
-        return nation;
-    }
-
-    public void setNation(String nation) {
-        this.nation = nation;
-    }
-
-    public String getJob() {
-        return job;
-    }
-
-    public void setJob(String job) {
-        this.job = job;
-    }
-
-    public String getCareer() {
-        return career;
-    }
-
-    public void setCareer(String career) {
-        this.career = career;
-    }
-
-    public String getPosition() {
-        return position;
-    }
-
-    public void setPosition(String position) {
-        this.position = position;
-    }
-
-    public String getOccupation_group() {
-        return occupation_group;
-    }
-
-    public void setOccupation_group(String occupation_group) {
-        this.occupation_group = occupation_group;
-    }
-
-    public String getCompany_name() {
-        return company_name;
-    }
-
-    public void setCompany_name(String company_name) {
-        this.company_name = company_name;
-    }
-
-    public String getMain_business() {
-        return main_business;
-    }
-
-    public void setMain_business(String main_business) {
-        this.main_business = main_business;
-    }
-
-    public String getSpecific_work() {
-        return specific_work;
-    }
-
-    public void setSpecific_work(String specific_work) {
-        this.specific_work = specific_work;
-    }
-
-    public float getMonthly_income() {
-        return monthly_income;
-    }
-
-    public void setMonthly_income(float monthly_income) {
-        this.monthly_income = monthly_income;
-    }
-
-    public Integer getId_current_address() {
-        return id_current_address;
-    }
-
-    public void setId_current_address(Integer id_current_address) {
-        this.id_current_address = id_current_address;
-    }
-
-    public Integer getId_permanent_address() {
-        return id_permanent_address;
-    }
-
-    public void setId_permanent_address(Integer id_permanent_address) {
-        this.id_permanent_address = id_permanent_address;
-    }
-
-    public Integer getId_contact_address() {
-        return id_contact_address;
-    }
-
-    public void setId_contact_address(Integer id_contact_address) {
-        this.id_contact_address = id_contact_address;
-    }
-
-    public Integer getId_workplace_address() {
-        return id_workplace_address;
-    }
-
-    public void setId_workplace_address(Integer id_workplace_address) {
-        this.id_workplace_address = id_workplace_address;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPhone_1() {
-        return phone_1;
-    }
-
-    public void setPhone_1(String phone_1) {
-        this.phone_1 = phone_1;
-    }
-
-    public String getPhone_2() {
-        return phone_2;
-    }
-
-    public void setPhone_2(String phone_2) {
-        this.phone_2 = phone_2;
-    }
-
-    public Integer getId_account() {
-        return id_account;
-    }
-
-    public void setId_account(Integer id_account) {
-        this.id_account = id_account;
-    }
-
-    public String getFull_name() {
-        return full_name;
-    }
-
-    public void setFull_name(String full_name) {
-        this.full_name = full_name;
-    }
 
 }

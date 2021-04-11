@@ -6,5 +6,6 @@
 
 FROM openjdk:8-jdk-alpine
 ARG JAR_FILE=/build/libs/*.jar
+ADD /gcp-credencial.json gcp-credencial.json
 COPY ${JAR_FILE} app.jar
 ENTRYPOINT ["java","-jar","/app.jar"]
