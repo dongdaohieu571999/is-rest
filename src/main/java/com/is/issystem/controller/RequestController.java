@@ -1,6 +1,7 @@
 package com.is.issystem.controller;
 import com.is.issystem.entities.Request;
 import com.is.issystem.service.RequestService;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,10 +19,21 @@ public class RequestController {
     List<Request> getAllContractRequest(@RequestBody String code_appraiser){
         return requestService.getAllUncheckReq(code_appraiser);
     }
+    @PostMapping(value = "/search_all_request")
+    List<Request> searchAllContractRequest(@RequestBody String data){
+        JSONObject requestObject = new JSONObject(data);
+        return requestService.searchAllUncheckReq(requestObject.getString("code_appraiser"),requestObject.getString("dateFrom"),requestObject.getString("dateTo"),requestObject.getString("searchValue"));
+    }
 
     @PostMapping(value = "/get_all_request_approval")
     List<Request> getAllContractRequestApproval(@RequestBody String code_appraiser){
         return requestService.getAllContractRequestApproval(code_appraiser);
+    }
+
+    @PostMapping(value = "/search_all_request_approval")
+    List<Request> searchAllContractRequestApproval(@RequestBody String data){
+        JSONObject requestObject = new JSONObject(data);
+        return requestService.searchAllContractRequestApproval(requestObject.getString("code_appraiser"),requestObject.getString("dateFrom"),requestObject.getString("dateTo"),requestObject.getString("searchValue"));
     }
 
     @PostMapping(value = "/get_detail_request")
