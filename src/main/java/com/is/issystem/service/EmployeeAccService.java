@@ -76,9 +76,7 @@ import static com.is.issystem.service.TokenAuthenticationService.TOKEN_PREFIX;
                         .parseClaimsJws(token_id.replace(TOKEN_PREFIX, ""))
                         .getBody()
                         .getSubject();
-                EmployeeAcc employeeAcc = new EmployeeAcc();
-                employeeAcc.setId_role(employeeAccRepository.getOneAcc(user).getId_role());
-                return employeeAcc;
+                return employeeAccRepository.getOneAcc(user);
             }
             return null;
         }

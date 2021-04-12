@@ -44,8 +44,8 @@ public class EmployeeAccController {
         return ResponseEntity.status(HttpStatus.OK).body(employeeAccService.getAllEmployeeByIdRole(id_role));
     }
 
-    @PutMapping(value = "/update_employee_acc")
-    public ResponseEntity<?> updateEmployeeAccount(EmployeeAcc employee_acc){
+    @PostMapping(value = "/update_employee_acc")
+    public ResponseEntity<?> updateEmployeeAccount(@RequestBody EmployeeAcc employee_acc){
         employeeAccService.updateEmployeeAccountByCode(employee_acc);
         return ResponseEntity.status(HttpStatus.OK).body(employee_acc);
     }
