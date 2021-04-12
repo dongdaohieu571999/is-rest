@@ -1,5 +1,6 @@
 package com.is.issystem.controller;
 
+import com.is.issystem.dto.CustomerDTO;
 import com.is.issystem.entities.CustomerAcc;
 import com.is.issystem.service.CustomerAccService;
 import com.is.issystem.service.CustomerInfoService;
@@ -19,6 +20,11 @@ public class CustomerAccController {
     @PostMapping(value = "/send_acc_for_customer")
     public ResponseEntity<?> sendCustomerAccount(@RequestBody Integer id){
         return ResponseEntity.status(HttpStatus.OK).body(customerAccService.sendCustomerAccount(id));
+    }
+
+    @PostMapping(value = "/reset_acc_password_for_customer")
+    public ResponseEntity<?> resetCustomerAccount(@RequestBody CustomerDTO customerDTO){
+        return ResponseEntity.status(HttpStatus.OK).body(customerAccService.resetAccountPasswordCustomer(customerDTO));
     }
 
     @PostMapping(value = "/add_customer_acc")

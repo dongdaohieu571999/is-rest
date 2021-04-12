@@ -1,6 +1,7 @@
 package com.is.issystem.service;
 
 
+import com.is.issystem.commons.Function;
 import com.is.issystem.dto.CustomerDTO;
 import com.is.issystem.entities.CustomerAcc;
 import com.is.issystem.repository.entity_repository.CustomerAccRepository;
@@ -50,6 +51,23 @@ public class CustomerAccService {
             e.printStackTrace();
         }
         return customerAccRepository.getAcc(customerInfo.get(0).getId_account());
+    }
+
+    public CustomerAcc resetAccountPasswordCustomer(CustomerDTO customerDTO){
+        CustomerAcc customerAcc = customerAccRepository.getAcc(customerDTO.getId_account());
+        customerAcc.setPass(Function.generatePassword(8));
+        CustomerAcc customerAcc1 = customerAccRepository.save(customerAcc);
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(customerDTO.getEmail());
+        message.setSubject("THÔNG TIN MẬT KHẨU ĐĂNG NHẬP");
+        message.setText("QUÝ KHÁCH ĐÃ YÊU CẦU ĐẶT LẠI MẬT KHẨU,\nDưới đây là tài khoản và mật khẩu đăng nhập của Quý Khách:\nMã Đăng Nhập: " + customerAcc1.getCode() + "\n" +
+                "Mật Khẩu Đăng Nhập: "+customerAcc1.getPass() + "\nQuý Khách vui lòng dùng thông tin trên để đăng nhập tài khoản của mình, cảm ơn quý khách ! ");
+        try{
+            this.emailSender.send(message);
+        } catch (MailException e){
+            e.printStackTrace();
+        }
+        return customerAcc1;
     }
 
     public void updateCustomerAccount(CustomerAcc customerAcc){
