@@ -22,6 +22,11 @@ public class CustomerOwnIllustrationController {
     public List<CustomerOwnIlustrationDTO> getAllCustomerOwnIllustration(@RequestBody String code_em_support){
         return customerOwnIllustrationService.getAllCustomerOwnIllustration(code_em_support);
     }
+    @PostMapping(value = "/search_all_customer_own_illustration")
+    public List<CustomerOwnIlustrationDTO> searchAllCustomerOwnIllustration(@RequestBody String data){
+        JSONObject datajsObject = new JSONObject(data);
+        return customerOwnIllustrationService.searchAllCustomerOwnIllustration(datajsObject.getString("code_em_support"),datajsObject.getString("create_time"),datajsObject.getString("end_time"),datajsObject.getString("searchValue"));
+    }
 
     @PostMapping(value = "/add_one_customer_own_illustration")
     public void addOneCustomerOwnIllustration(@RequestBody String data){

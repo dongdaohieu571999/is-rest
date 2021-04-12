@@ -78,6 +78,30 @@ import java.util.Date;
         resultSetMapping = "stock_akhir_dto"
 )
 @NamedNativeQuery(
+        name = "searchAllCustomerInfoByAdmin",
+        query =
+                "SELECT ci.*,code ,ca.status ,\n" +
+                        "                        ct.id as id_contract, il.id as id_illustration,\n" +
+                        "                                    conadd_city , conadd_district \n" +
+                        "                                   ,conadd_no_street ,conadd_wards, \n" +
+                        "                                    curadd_city ,curadd_district ,\n" +
+                        "                                    curadd_no_street , curadd_wards, \n" +
+                        "\t\t\t\t\t            peradd_city,peradd_district,peradd_no_street,peradd_wards,\n" +
+                        "                                   workadd_city,workadd_district,workadd_no_street,workadd_wards\n" +
+                        "                                    FROM is_agency_db.customer_info as ci\n" +
+                        "                                    LEFT JOIN is_agency_db.contract as ct on ct.id_customer = ci.id\n" +
+                        "                                    LEFT JOIN is_agency_db.illustration as il on il.id = ct.id_illustration \n" +
+                        "                                    LEFT JOIN is_agency_db.customer_acc as ca on ci.id_account = ca.id \n" +
+                        "                                    INNER JOIN contact_address as conadd ON conadd.conadd_id = ci.id_contact_address\n" +
+                        "                                    INNER JOIN current_address as curadd ON curadd.curadd_id = ci.id_current_address \n" +
+                        "                                    INNER JOIN permanent_address as peradd on peradd.peradd_id = ci.id_permanent_address \n" +
+                        "                                    INNER JOIN workplace_address as workadd ON workadd.workadd_id = ci.id_workplace_address \n" +
+                        "                                    where (ca.status = 1 and ci.birth_date between ?1 and ?2) \n" +
+                        "                                    and (ci.id LIKE ?3 or ci.full_name LIKE ?3 or ci.phone_1 LIKE ?3 or ci.email LIKE ?3 )\n" +
+                        "                                    order by created_time desc",
+        resultSetMapping = "stock_akhir_dto"
+)
+@NamedNativeQuery(
         name = "getCustomerInfoDetail",
         query =
                 "SELECT ci.*,code ,ca.status ,\n" +

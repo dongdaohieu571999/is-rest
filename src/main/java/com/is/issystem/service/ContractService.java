@@ -31,6 +31,10 @@ public class ContractService {
         return contractDTORepository.getAllContractDTO(code_em_support);
     }
 
+    public List<ContractDTO> searchAllContract(String code_em_support,String dateFrom,String dateTo,String searchValue){
+        return contractDTORepository.searchAllContractDTO(code_em_support,dateFrom,dateTo,searchValue);
+    }
+
     public Integer getCountNewContract(String code_em_support,Integer monthDate){
         return contractRepository.getAllContractCount(code_em_support,monthDate);   
     }

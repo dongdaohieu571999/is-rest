@@ -68,6 +68,11 @@ public class IllustrationService {
         return illustrationItemOfListRepository.listIllustrationCustomerOwn(id);
     }
 
+    public List<IllustrationItemOfList> searchAllIllustration(int id,String dateFrom,String dateTo,String searchValue){
+        return illustrationItemOfListRepository.searchListIllustrationCustomerOwn(id,dateFrom,dateTo,searchValue);
+    }
+
+
     public void saveIllustration(IllustrationDTO illustrationDTO){
         Illustration illustration= new Illustration();
         illustration.setCreate_time(illustrationDTO.getCreate_time());

@@ -21,6 +21,10 @@ public class CustomerOwnIllustrationService {
         return customerOwnIllustrationDTORepository.listCustomerOwnIllustration(code_em_support);
     }
 
+    public List<CustomerOwnIlustrationDTO> searchAllCustomerOwnIllustration(String code_em_support,String create_time,String end_time,String searchValue){
+        return customerOwnIllustrationDTORepository.searchListCustomerOwnIllustration(code_em_support,create_time,end_time,searchValue);
+    }
+
     public void addOneCustomerOwnIllustration(String code, String end_time){
          customerOwnIllustrationRepository.addOneCustomerOwnIllustration(code,end_time);
     }

@@ -23,6 +23,9 @@ public interface CustomerDTORepository extends JpaRepository<CustomerDTO,Integer
     @Query(nativeQuery = true,name = "getAllCustomerInfoByAdmin")
     List<CustomerDTO> getAllCustomerInfoAdmin();
 
+    @Query(nativeQuery = true,name = "searchAllCustomerInfoByAdmin")
+    List<CustomerDTO> searchAllCustomerInfoAdmin(String dateFrom, String dateTo, String searchValue);
+
 
     @Query(nativeQuery = true,name = "getCustomerInfoDetail")
     List<CustomerDTO> getCustomerInfobyID(int id,String code);
