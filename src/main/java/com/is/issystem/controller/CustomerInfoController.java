@@ -42,6 +42,14 @@ public class CustomerInfoController {
         return customerInfoService.getAllCustomerInfoAdmin();
     }
 
+    @PostMapping(value = "/search_all_customer_info_admin")
+    List<CustomerDTO> searchAllCustomerInfoAdmin(@RequestBody String data){
+        JSONObject infoObject = new JSONObject(data);
+        return customerInfoService.searchAllCustomerInfoAdmin(infoObject.getString("dateFrom"),infoObject.getString("dateTo"),infoObject.getString("searchValue"));
+    }
+
+
+
     @GetMapping(value = "/get_detail_customer_info_admin/{id}")
     public List<CustomerDTO> getAllContractHistory(@PathVariable("id") int id){
         return customerInfoService.getOneInfo(id);

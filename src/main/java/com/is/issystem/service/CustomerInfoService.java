@@ -247,5 +247,9 @@ public class CustomerInfoService {
         return customerDTORepository.getAllCustomerInfoAdmin();
     }
 
+    public List<CustomerDTO> searchAllCustomerInfoAdmin(String dateFrom,String dateTo,String searchValue) {
+        return customerDTORepository.searchAllCustomerInfoAdmin(dateFrom,dateTo,searchValue);
+    }
+
 
 }

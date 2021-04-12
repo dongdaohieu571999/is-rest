@@ -4,6 +4,7 @@ import com.is.issystem.dto.EmployeeInfoDTO;
 import com.is.issystem.entities.EmployeeInfo;
 import com.is.issystem.dto.EmployeeDTO;
 import com.is.issystem.service.EmployeeInfoService;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,6 +20,12 @@ public class EmployeeInfoController {
     @GetMapping(value = {"/get_all_employee_info_acc"})
     public List<EmployeeDTO> getListEmployeeInfoAcc(){
      return employeeInfoService.getAllEmployee();
+    }
+
+    @PostMapping(value = "/search_all_employee_info_acc")
+    public List<EmployeeDTO> searchListEmployeeInfoAcc(@RequestBody String data){
+        JSONObject infoObject = new JSONObject(data);
+        return employeeInfoService.searchAllEmployee(infoObject.getString("dateFrom"),infoObject.getString("dateTo"),infoObject.getString("searchValue"));
     }
 
     @PostMapping(value = "/add_employee_info")

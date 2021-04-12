@@ -29,6 +29,13 @@ public class ContractController {
         return contractService.getAllContract(code_em_support);
     }
 
+    @PostMapping(value = "/search_all_contract_of_employee")
+    List<ContractDTO> searchAllContract(@RequestBody String data){
+        JSONObject contractObject = new JSONObject(data);
+        return contractService.searchAllContract(contractObject.getString("code_em_support"),contractObject.getString("dateFrom"),contractObject.getString("dateTo"),contractObject.getString("searchValue"));
+    }
+
+
     @GetMapping(value = "/get_all_contract_change_history/{id}")
     List<ContractChangeHistory> getAllContractHistory(@PathVariable("id") int id){
         return contractService.getAllContractHistory(id);

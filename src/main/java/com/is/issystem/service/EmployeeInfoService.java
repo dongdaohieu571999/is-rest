@@ -33,6 +33,11 @@ public class EmployeeInfoService {
     public List<EmployeeDTO> getAllEmployee(){
         return employeeDTORepository.getEmployeeInfo();
     }
+
+    public List<EmployeeDTO> searchAllEmployee(String dateFrom,String dateTo,String searchValue){
+        return employeeDTORepository.searchEmployeeInfo(dateFrom,dateTo,searchValue);
+    }
+
     public EmployeeInfoDTO getDetailEmployeebyID(int id){
         return employeeInfoAccRepository.getDetailEmployeeInfobyID(id);
     }
