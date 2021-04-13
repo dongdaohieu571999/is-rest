@@ -1,83 +1,43 @@
 package com.is.issystem.dto;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import lombok.Getter;
+import lombok.Setter;
+
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@Getter
+@Setter
 public class MailDTO {
     @Id
-    @Column(name = "id")
+    @Column
     private Integer id;
 
-    @Column(name = "title")
+    @Column
     private String title;
 
-    @Column(name = "content")
+    @Column
     private String content;
 
-    @Column(name = "time")
+    @Column
     private Date time;
 
-    @Column(name = "status")
+    @Column
     private String status;
 
-    @Column(name = "priority")
+    @Column
     private String priority;
 
-    @Column(name = "sender_name")
-    private String senderName;
+    @Column
+    private Integer sender_id;
 
-    public Integer getId() {
-        return id;
-    }
+    @Column
+    private Integer receiver_id;
 
-    public String getTitle() {
-        return title;
-    }
+    @Column
+    private String code;
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public Date getTime() {
-        return time;
-    }
-
-    public void setTime(Date time) {
-        this.time = time;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getPriority() {
-        return priority;
-    }
-
-    public void setPriority(String priority) {
-        this.priority = priority;
-    }
-
-    public String getSenderName() {
-        return senderName;
-    }
-
-    public void setSenderName(String senderName) {
-        this.senderName = senderName;
-    }
+    @Column
+    private String name;
 }

@@ -1,65 +1,85 @@
 package com.is.issystem.repository.entity_dto_repository;
 
 import com.is.issystem.dto.MailDTO;
+import com.is.issystem.entities.Mail;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-public interface MailDTORepository extends JpaRepository<MailDTO, Integer> {
-
-    public static final String getAllMailQuery = "select mail.id, mail.title, \n" +
+@Repository
+public interface MailDTORepository extends JpaRepository<MailDTO,Integer> {
+    @Query(value = "select mail.id, mail.title, \n" +
             "mail.priority,\n" +
             "mail.status,\n" +
-            "em_info.name as sender_name,\n" +
+            "em_info.name ,\n" +
             "mail.content,\n" +
-            "mail.time\n" +
-            "from is_agency_db.mail as mail, is_agency_db.employee_info as em_info\n" +
+            "mail.time,\n" +
+            "mail.receiver_id,\n" +
+            "mail.sender_id,\n" +
+            "em_acc.code\n" +
+            "from is_agency_db.mail as mail, is_agency_db.employee_info as em_info,is_agency_db.employee_acc as em_acc\n" +
             "where \n" +
             "mail.receiver_id = \n" +
-            "(select id from is_agency_db.employee_acc as em_acc where em_acc.code = :userCode)\n" +
-            "and\n" +
-            "mail.sender_id = em_info.id";
+            "(select id from is_agency_db.employee_acc as em_acc where em_acc.code = 'cuong' )\n" +
+            "and mail.sender_id = em_info.id_acc\n" +
+            "and em_acc.id = em_info.id_acc order by id desc ", nativeQuery = true)
+    public List<MailDTO> getAllMailReceived(String code);
 
-    @Query(value = getAllMailQuery, nativeQuery = true)
-    public List<MailDTO> getAllMail(@Param("userCode") String userCode);
-
-    public static final String getDetailMail = "select mail.id, \n" +
-            "mail.title, \n" +
-            "mail.content, \n" +
-            "mail.time,\n" +
+    @Query(value = "select mail.id, mail.title, \n" +
             "mail.priority,\n" +
             "mail.status,\n" +
-            "(select name from is_agency_db.employee_info where is_agency_db.employee_info.id = mail.receiver_id) as receiver_name,\n" +
-            "(select name from is_agency_db.employee_info where is_agency_db.employee_info.id = mail.sender_id) as sender_name\n" +
-            "from is_agency_db.mail as mail\n" +
-            "where mail.receiver_id = (select em_if.id from is_agency_db.employee_acc as em_acc, is_agency_db.employee_info as em_if\n" +
-            "where em_acc.id = em_if.id \n" +
-            "and \n" +
-            "em_acc.code = ?1)\n" +
-            "and mail.id = ?2";
+            "em_info.name ,\n" +
+            "mail.content,\n" +
+            "mail.time,\n" +
+            "mail.receiver_id,\n" +
+            "mail.sender_id,\n" +
+            "em_acc.code\n" +
+            "from is_agency_db.mail as mail, is_agency_db.employee_info as em_info,is_agency_db.employee_acc as em_acc\n" +
+            "where (mail.receiver_id = (select id from is_agency_db.employee_acc as em_acc where em_acc.code = ?1 ) and mail.time between ?2 and ?3)\n" +
+            "and mail.sender_id = em_info.id_acc\n" +
+            "and em_acc.id = em_info.id_acc\n" +
+            "and (mail.id LIKE ?4 or  mail.title LIKE ?4 or em_acc.code LIKE ?4 or em_info.name  LIKE ?4 )\n" +
+            "order by id desc  ", nativeQuery = true)
+    public List<MailDTO> searchAllMailReceived(String code,String dateFrom,String dateTo,String searchValue);
 
-    @Query(value = getDetailMail, nativeQuery = true)
-    public MailDTO getDetailMail(String userCode, Integer mailId);
 
 
-    public static final String addMailQuery = "insert into is_agency_db.mail (`title`, `sender_id`, `receiver_id`, `content`, `time`, `status`, `priority`) values \n" +
-            "(:title, \n" +
-            "(select id from is_agency_db.employee_acc as em_acc where em_acc.code = :senderNameCode),\n" +
-            "(select id from is_agency_db.employee_acc as em_acc where em_acc.code = :receiverNameCode),\n" +
-            ":content,\n" +
-            "now(),\n" +
-            ":status,\n" +
-            ":priority)";
+    @Query(value = "select mail.id, mail.title, \n" +
+            "mail.priority,\n" +
+            "mail.status,\n" +
+            "em_info.name,\n" +
+            "mail.content,\n" +
+            "mail.time,\n" +
+            "mail.receiver_id,\n" +
+            "mail.sender_id,\n" +
+            "em_acc.code\n" +
+            "from is_agency_db.mail as mail, is_agency_db.employee_info as em_info,is_agency_db.employee_acc as em_acc\n" +
+            "where \n" +
+            "mail.sender_id = \n" +
+            "(select id from is_agency_db.employee_acc as em_acc where em_acc.code = ?1 )\n" +
+            "and mail.receiver_id = em_info.id_acc\n" +
+            "and em_acc.id = em_info.id_acc order by id desc", nativeQuery = true)
+    public List<MailDTO> getAllMailSent(String code);
 
-    @Modifying
-    @Query(value = addMailQuery, nativeQuery = true)
-    public Integer addNewMail(@Param("title") String title,
-                              @Param("senderNameCode") String senderNameCode,
-                              @Param("receiverNameCode") String receiverNameCode,
-                              @Param("content") String content,
-                              @Param("status") Integer status,
-                              @Param("priority") Integer priority);
+
+
+    @Query(value = "select mail.id, mail.title, \n" +
+            "mail.priority,\n" +
+            "mail.status,\n" +
+            "em_info.name,\n" +
+            "mail.content,\n" +
+            "mail.time,\n" +
+            "mail.receiver_id,\n" +
+            "mail.sender_id,\n" +
+            "em_acc.code\n" +
+            "from is_agency_db.mail as mail, is_agency_db.employee_info as em_info,is_agency_db.employee_acc as em_acc\n" +
+            "where (mail.sender_id = (select id from is_agency_db.employee_acc as em_acc where em_acc.code = ?1) and mail.time between ?2 and ?3 )\n" +
+            "and mail.receiver_id = em_info.id_acc\n" +
+            "and em_acc.id = em_info.id_acc \n" +
+            "and (mail.id LIKE ?4 or  mail.title LIKE ?4 or em_acc.code LIKE ?4 or em_info.name  LIKE ?4 )\n" +
+            "order by id desc", nativeQuery = true)
+    public List<MailDTO> searchAllMailSent(String code,String dateFrom,String dateTo,String searchValue);
 }
