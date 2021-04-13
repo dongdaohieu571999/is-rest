@@ -1,5 +1,6 @@
 package com.is.issystem.repository.entity_repository;
 
+import com.is.issystem.entities.EmployeeAcc;
 import com.is.issystem.entities.EmployeeInfo;
 import com.is.issystem.dto.EmployeeDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -10,6 +11,7 @@ import java.util.List;
 
 @Repository
 public interface EmployeeInfoRepository extends JpaRepository<EmployeeInfo,Integer> {
-
+    @Query(value = "SELECT  * FROM employee_info where id_acc = ?1",nativeQuery = true)
+    EmployeeInfo getOneEmployeeInfo(int id_acc);
 
 }
