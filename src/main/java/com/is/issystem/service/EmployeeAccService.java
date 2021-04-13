@@ -5,9 +5,9 @@ import java.util.List;
 import java.util.Optional;
 
 import com.is.issystem.commons.Function;
-import com.is.issystem.entities.CustomerAcc;
-import com.is.issystem.entities.EmployeeAcc;
-import com.is.issystem.entities.EmployeeInfo;
+import com.is.issystem.entities.*;
+import com.is.issystem.repository.entity_repository.ContractRepository;
+import com.is.issystem.repository.entity_repository.CustomerInfoRepository;
 import com.is.issystem.repository.entity_repository.EmployeeInfoRepository;
 import io.jsonwebtoken.Jwts;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +30,30 @@ import static com.is.issystem.service.TokenAuthenticationService.TOKEN_PREFIX;
         private EmployeeAccRepository employeeAccRepository;
         @Autowired
         private EmployeeInfoRepository employeeInfoRepository;
+        @Autowired
+        private ContractRepository contractRepository;
+        @Autowired
+        private CustomerInfoRepository customerInfoRepository;
+
+        public void pauseEmployee(String codeEmployeeNew,Integer id_employee_old){
+            String codeEmployeeOld =  employeeAccRepository.findById(id_employee_old).get().getCode();
+            String email = employeeInfoRepository.getOneEmployeeInfo(id_employee_old).getEmail();
+            customerInfoRepository.updateEmployeeSupportCustomerInfo(codeEmployeeNew,codeEmployeeOld);
+            contractRepository.updateEmployeeSupportContract(codeEmployeeNew,codeEmployeeOld);
+            employeeAccRepository.updateStatusEmployeeAcc(codeEmployeeOld);
+
+            SimpleMailMessage message = new SimpleMailMessage();
+            message.setTo(email);
+            message.setSubject("[THÔNG BÁO TẠM NGƯNG TÀI KHOẢN NHÂN VIÊN]");
+            message.setText("Do bạn đã vi phạm một số quy định của công ty  " +
+                    "nên tài khoản của bạn đã bị tạm ngưng." +
+                    "Mọi thắc mắc thì xin hay liên hệ với email sau đây : daohieu571999@gmail.com");
+            try{
+                this.emailSender.send(message);
+            } catch (MailException e){
+                e.printStackTrace();
+            }
+        }
 
         public List<EmployeeAcc> findAll() {
             return employeeAccRepository.findAll();

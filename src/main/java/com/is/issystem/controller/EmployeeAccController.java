@@ -23,6 +23,8 @@ public class EmployeeAccController {
         return ResponseEntity.status(HttpStatus.OK).body(listAccEm);
     }
 
+
+
     @PostMapping(value = "/add_employee_acc")
     public ResponseEntity<?> addEmployeeAccount(@RequestBody String data){
         JSONObject jsonObject = new JSONObject(data);
@@ -48,6 +50,13 @@ public class EmployeeAccController {
     public ResponseEntity<?> updateEmployeeAccount(EmployeeAcc employee_acc){
         employeeAccService.updateEmployeeAccountByCode(employee_acc);
         return ResponseEntity.status(HttpStatus.OK).body(employee_acc);
+    }
+
+    @PostMapping(value = "/pause_employee_acc")
+    public ResponseEntity<?> pauseEmployeeAccount(@RequestBody String data ){
+        JSONObject employeeObject = new JSONObject(data);
+        employeeAccService.pauseEmployee(employeeObject.getString("codeEmployeeNew"),employeeObject.getInt("id_employee_old"));
+        return new ResponseEntity<>("Ngưng nhân viên thành công!", HttpStatus.OK);
     }
 
     @GetMapping(value = {"/get_one_employee_acc/{token_id}"})
