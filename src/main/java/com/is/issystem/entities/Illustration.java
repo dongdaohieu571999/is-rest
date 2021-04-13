@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.math.BigInteger;
 import java.util.Date;
 
 @Getter
@@ -23,7 +24,7 @@ public class Illustration {
     private Date create_time;
 
     @Column(name = "total_fee")
-    private Integer total_fee;
+    private BigInteger total_fee;
 
     @Column(name = "payment_period_id")
     private Integer payment_period_id;

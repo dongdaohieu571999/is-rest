@@ -3,6 +3,8 @@ import com.is.issystem.entities.IllustrationMainInterest;
 import com.is.issystem.entities.IllustrationSubInterest;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.math.BigInteger;
 import java.util.Date;
 import java.util.List;
 
@@ -15,7 +17,7 @@ public class IllustrationDTO {
     Date create_time;
     String interest_name;
     Integer payment_period_id;
-    Integer total_fee;
+    BigInteger total_fee;
 
 
     IllustrationMainInterest illustrationMainInterest;

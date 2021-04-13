@@ -10,7 +10,7 @@ import java.util.List;
 public interface IllustrationItemOfListRepository extends JpaRepository<IllustrationItemOfList,Integer> {
     @Query(value = "SELECT ill.*,mi.interest_name FROM is_agency_db.illustration as ill INNER JOIN is_agency_db.illustration_main_intserest\n" +
             "            as imi on ill.id = imi.id_illustration INNER JOIN is_agency_db.main_interest as mi on mi.id = imi.id_main_interest\n" +
-            "            LEFT JOIN contract as c on c.id_illustration = ill.id  where ill.id_customer_info = ?1 and c.id is null ",nativeQuery = true)
+            "            LEFT JOIN contract as c on c.id_illustration = ill.id  where ill.id_customer_info = ?1 and c.id is null order by id desc",nativeQuery = true)
     List<IllustrationItemOfList> listIllustrationCustomerOwn(int id);
 
     @Query(value = "SELECT  ill.*,mi.interest_name FROM is_agency_db.illustration as ill \n" +

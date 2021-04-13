@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.math.BigInteger;
 import java.util.Date;
 
 @Entity
@@ -34,9 +35,9 @@ public class IllustrationSubInterest {
     @Column(name = "carrier_group_extra_insured_person")
     Integer carrier_group_extra_insured_person;
     @Column(name = "denominations")
-    Integer denominations;
+    BigInteger denominations;
     @Column(name = "fee_value")
-    String fee_value;
+    BigInteger fee_value;
     @Column(name = "is_extra_insured_person")
     Boolean is_extra_insured_person;
     @Column(name = "id_related_person")

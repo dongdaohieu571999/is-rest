@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.math.BigInteger;
 import java.util.Date;
 
 @Getter
@@ -36,7 +37,7 @@ public class IllustrationMainInterest {
     @Column(name = "insurance_buyer_relation_insured_person")
     String insurance_buyer_relation_insured_person;
     @Column(name = "fee_value")
-    String fee_value;
+    BigInteger fee_value;
     @Column(name = "denominations")
-    Integer denominations;
+    BigInteger denominations;
 }
