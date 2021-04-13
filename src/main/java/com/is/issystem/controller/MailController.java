@@ -1,9 +1,8 @@
 package com.is.issystem.controller;
 
 import com.is.issystem.commons.Function;
-import com.is.issystem.dto.MailDTO;
-import com.is.issystem.dto.SendMailDTO;
 import com.is.issystem.service.MailService;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,41 +15,47 @@ public class MailController {
     @Autowired
     private MailService mailService;
 
-    @GetMapping("/all_mail/{token_key}")
-    public ResponseEntity<?> viewAllMail(@PathVariable String token_key){
-        String userCode = Function.getCodeInTokenKey(token_key);
-        return ResponseEntity.status(HttpStatus.OK).body(mailService.getAllMail(userCode));
+    @PostMapping(value = "/all_mail")
+    public ResponseEntity<?> viewAllMailReceived(@RequestBody String userCode){
+        return ResponseEntity.status(HttpStatus.OK).body(mailService.getAllMailReceived(userCode));
     }
 
-    @GetMapping("/view_detail_mail/{mailId}/{token_key}")
-    public ResponseEntity<?> viewDetailMail(@PathVariable("mailId") int mailID, @PathVariable("token_key") String token_key){
-        String userCode = Function.getCodeInTokenKey(token_key);
-        return ResponseEntity.status(HttpStatus.OK).body(mailService.getDetailMail(userCode, mailID));
+
+    @PostMapping(value = "/all_mail_sent")
+    public ResponseEntity<?> viewAllMailSent(@RequestBody String userCode){
+        return ResponseEntity.status(HttpStatus.OK).body(mailService.getAllMailSent(userCode));
     }
 
-//    @PostMapping("/add_mail/{token_key}")
-//    public ResponseEntity<?> addNewMail(@PathVariable("token_key") String token_key, @RequestBody MailDTO mail){
+    @PostMapping(value = "/search_mail_receive")
+    public ResponseEntity<?> searchAllMailReceive(@RequestBody String data){
+        JSONObject emailObject = new JSONObject(data);
+        return ResponseEntity.status(HttpStatus.OK).body(
+                mailService.searchAllMailReceived(emailObject.getString("userCode"),emailObject.getString("dateFrom"),emailObject.getString("dateTo"),emailObject.getString("searchValue")));
+    }
+
+    @PostMapping(value = "/search_mail_sent")
+    public ResponseEntity<?> searchAllMailSent(@RequestBody String data){
+        JSONObject emailObject = new JSONObject(data);
+        return ResponseEntity.status(HttpStatus.OK).body(
+                mailService.searchAllMailSent(emailObject.getString("userCode"),emailObject.getString("dateFrom"),emailObject.getString("dateTo"),emailObject.getString("searchValue")));
+    }
+
+
+//    @GetMapping("/view_detail_mail/{mailId}/{token_key}")
+//    public ResponseEntity<?> viewDetailMail(@PathVariable("mailId") int mailID, @PathVariable("token_key") String token_key){
 //        String userCode = Function.getCodeInTokenKey(token_key);
-//        System.out.println(mail.toString());
-//        mailService.addNewMail(mail.getTitle(),
-//                userCode,
-//                mail.getReceiverName(),
-//                mail.getContent(),
-//                1,
-//                1);
-//        return ResponseEntity.status(HttpStatus.OK).body(mail);
+//        return ResponseEntity.status(HttpStatus.OK).body(mailService.getDetailMail(userCode, mailID));
 //    }
 
-    @PostMapping("/add_mail/{token_key}")
-    public ResponseEntity<?> addNewMail(@PathVariable("token_key") String token_key, @RequestBody SendMailDTO mail){
-        String senderNameCode = Function.getCodeInTokenKey(token_key);
-        mailService.addNewMail(mail.getTitle(),
-                senderNameCode,
-                mail.getReceiverNameCode(),
-                mail.getContent(),
+    @PostMapping("/add_mail/")
+    public ResponseEntity<?> addNewMail(@RequestBody String data){
+        JSONObject jsonObject = new JSONObject(data);
+        return ResponseEntity.status(HttpStatus.OK).body(mailService.addNewMail(
+                jsonObject.getString("title"),
+                jsonObject.getString("senderCode"),
+                jsonObject.getString("recieverCode"),
+                jsonObject.getString("content"),
                 1,
-                1);
-        System.out.println("code: " + mail.getReceiverNameCode());
-        return ResponseEntity.status(HttpStatus.OK).body(null);
+                1));
     }
 }
