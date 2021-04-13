@@ -1,5 +1,6 @@
 package com.is.issystem.service;
 
+import com.is.issystem.commons.Function;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.json.JSONObject;
@@ -18,20 +19,15 @@ import java.util.Date;
 
 import static java.util.Collections.emptyList;
 public class TokenAuthenticationService {
-    static final long EXPIRATIONTIME = 864_000_000; // 10 days
+
     static final String SECRET = "ThisIsASecret";
     static final String TOKEN_PREFIX = "Bearer";
 
     public static void addAuthentication(HttpServletResponse res, String username) throws IOException {
-        String JWT = Jwts.builder()
-                .setSubject(username)
-                .setExpiration(new Date(System.currentTimeMillis() + EXPIRATIONTIME))
-                .signWith(SignatureAlgorithm.HS512, SECRET)
-                .compact();
         res.setContentType("application/json");
         PrintWriter out = res.getWriter();
         JSONObject obj = new JSONObject();
-        obj.put("token_key", TOKEN_PREFIX + JWT);
+        obj.put("token_key", TOKEN_PREFIX + Function.generateTokenKey(username));
         out.print(obj.toString());
     }
 

@@ -1,6 +1,7 @@
 package com.is.issystem.commons;
 
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import org.json.JSONObject;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +13,7 @@ import java.util.Random;
 import java.util.stream.Collectors;
 
 public class Function {
+    static final long EXPIRATIONTIME = 864_000_000; // 10 days
     static final String SECRET = "ThisIsASecret";
     static final String TOKEN_PREFIX = "Bearer";
     public static String getCodeInTokenKey(String token){
@@ -22,6 +24,15 @@ public class Function {
                 .getSubject();
         return user;
 
+    }
+
+    public static String generateTokenKey(String username){
+        String JWT = Jwts.builder()
+                .setSubject(username)
+                .setExpiration(new Date(System.currentTimeMillis() + EXPIRATIONTIME))
+                .signWith(SignatureAlgorithm.HS512, SECRET)
+                .compact();
+        return JWT;
     }
 
     public static String generateAccCust(String id){
