@@ -1,4 +1,4 @@
-package com.is.issystem.controller;
+package com.is.issystem.controller.EmployeeController;
 
 import com.is.issystem.commons.Function;
 import com.is.issystem.entities.EmployeeAcc;

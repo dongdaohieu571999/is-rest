@@ -38,7 +38,7 @@ public class IllustrationService {
     @Autowired
     private MainInterestRepository mainInterestRepository;
 
-    public IllustrationDTO getIllustrationContractCreate(Integer id){
+    public IllustrationDTO getDetailIllustration(Integer id){
         IllustrationDTO illustrationDTO = new IllustrationDTO();
 
         // lấy thông tin cơ bản của bản minh họa

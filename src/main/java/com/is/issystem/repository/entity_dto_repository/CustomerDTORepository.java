@@ -28,11 +28,11 @@ public interface CustomerDTORepository extends JpaRepository<CustomerDTO,Integer
 
 
     @Query(nativeQuery = true,name = "getCustomerInfoDetail")
-    List<CustomerDTO> getCustomerInfobyID(int id,String code);
+    List<CustomerDTO> getCustomerInfobyIDAndCodeEmSupport(int id, String code);
 
 
-    @Query(nativeQuery = true,name = "getCustomerInfoDetailByAdmin")
-    List<CustomerDTO> getCustomerInfobyIDAdmin(int id);
+    @Query(nativeQuery = true,name = "getCustomerInfoDetailByIdCustomer")
+    List<CustomerDTO> getCustomerInfobyIdCustomer(int id);
 
     // lấy tất cả thông tin khácsh hàng phục vụ cho việc chọn khách hàng ở dialog thêm hợp đồng
     @Query(nativeQuery = true,name = "getCustomerInfoDetailForSaler")

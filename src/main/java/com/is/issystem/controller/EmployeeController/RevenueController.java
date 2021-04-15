@@ -1,4 +1,4 @@
-package com.is.issystem.controller;
+package com.is.issystem.controller.EmployeeController;
 
 import com.is.issystem.entities.Revenue;
 import com.is.issystem.service.RevenueService;

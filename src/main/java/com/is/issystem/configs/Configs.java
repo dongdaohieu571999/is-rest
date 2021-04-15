@@ -37,6 +37,7 @@ public class Configs extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/api/changePassword/**").permitAll()
                 // request có dạng /api/sendSimpleEmail/ sẽ được chấp thuận ko cần token
                 .antMatchers(HttpMethod.POST, "/api/sendSimpleEmail/").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/customer-api/**").permitAll()
                 .anyRequest().authenticated() // Các request còn lại đều cần được authenticated
                 .and()
                 .addFilterBefore(new JWTLoginFilter("/api/login", authenticationManager()), UsernamePasswordAuthenticationFilter.class)

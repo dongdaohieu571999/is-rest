@@ -1,4 +1,4 @@
-package com.is.issystem.controller;
+package com.is.issystem.controller.EmployeeController;
 
 import com.is.issystem.dto.ContractDTO;
 import com.is.issystem.entities.Contract;
@@ -61,7 +61,7 @@ public class ContractController {
     @PostMapping(value = "/get_detail_contract")
     ContractDTO getDetailContract(@RequestBody String data){
         JSONObject jsonObject = new JSONObject(data);
-        return contractService.getDetailContract(jsonObject.getString("code"),jsonObject.getInt("id"));
+        return contractService.getDetailContractForSaler(jsonObject.getString("code"),jsonObject.getInt("id"));
     }
 
     @GetMapping(value = "/get_detail_contract_change_history/{id}")
