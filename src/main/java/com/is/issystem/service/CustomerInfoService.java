@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -207,12 +206,12 @@ public class CustomerInfoService {
         }
     }
 
-    public List<CustomerDTO> getOneInfo(Integer id,String code){
-        return customerDTORepository.getCustomerInfobyID(id,code);
+    public List<CustomerDTO> getOneInfo(Integer id,String code_em_suport){
+        return customerDTORepository.getCustomerInfobyIDAndCodeEmSupport(id,code_em_suport);
     }
 
     public List<CustomerDTO> getOneInfo(Integer id){
-        return customerDTORepository.getCustomerInfobyIDAdmin(id);
+        return customerDTORepository.getCustomerInfobyIdCustomer(id);
     }
 
     // query tất cả khách hàng và illustration, contract các khách hàng đó

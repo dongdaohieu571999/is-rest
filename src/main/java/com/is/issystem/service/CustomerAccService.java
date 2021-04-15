@@ -4,6 +4,9 @@ package com.is.issystem.service;
 import com.is.issystem.dto.CustomerDTO;
 import com.is.issystem.entities.CustomerAcc;
 import com.is.issystem.repository.entity_repository.CustomerAccRepository;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
@@ -11,6 +14,8 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.PrintWriter;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,6 +28,10 @@ public class CustomerAccService {
     private CustomerAccRepository customerAccRepository;
     @Autowired
     private CustomerInfoService customerInfoService;
+
+    static final long EXPIRATIONTIME = 864_000_000; // 10 days
+    static final String SECRET = "ThisIsASecret";
+    static final String TOKEN_PREFIX = "Bearer";
 
     
     public List<CustomerAcc> findAll(){
@@ -66,5 +75,18 @@ public class CustomerAccService {
 
     public boolean checkExistCustomerAccount(CustomerAcc customerAcc){
         return customerAccRepository.getAccExist(customerAcc.getCode(),customerAcc.getId()).size() > 0 ? true : false;
+    }
+
+    public String getAccountbyCodePass(CustomerAcc customerAcc){
+        String JWToken = null;
+        String result = customerAccRepository.getAccByCodePass(customerAcc.getCode(),customerAcc.getPass());
+        if(result!=null){
+            JWToken = Jwts.builder()
+                .setSubject(result)
+                .setExpiration(new Date(System.currentTimeMillis() + EXPIRATIONTIME))
+                .signWith(SignatureAlgorithm.HS512, SECRET)
+                .compact();
+        }
+        return JWToken;
     }
 }

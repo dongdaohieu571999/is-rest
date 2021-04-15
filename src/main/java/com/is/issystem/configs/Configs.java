@@ -35,6 +35,7 @@ public class Configs extends WebSecurityConfigurerAdapter {
                 .antMatchers("/**").permitAll() // Có nghĩa là request "/" ko cần phải đc xác thực
                 .antMatchers(HttpMethod.POST, "/api/login").permitAll() // Request dạng POST tới "/login" luôn được phép truy cập dù là đã authenticated hay chưa
                 .antMatchers(HttpMethod.POST, "/api/changePassword/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/customer-api/**").permitAll()
                 .anyRequest().authenticated() // Các request còn lại đều cần được authenticated
                 .and()
                 .addFilterBefore(new JWTLoginFilter("/api/login", authenticationManager()), UsernamePasswordAuthenticationFilter.class)

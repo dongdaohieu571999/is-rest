@@ -24,5 +24,13 @@ public interface ContractDTORepository extends JpaRepository<ContractDTO,Integer
 
     @Query(nativeQuery = true,value = "SELECT c.*,ca.code FROM is_agency_db.contract as c inner join customer_info as ci \n" +
             "on ci.id = c.id_customer inner join customer_acc as ca on ca.id = ci.id_account where c.code_em_support = ?1 and c.id = ?2 order by id desc")
-    public ContractDTO getDetailContract(String code,Integer id);
+    public ContractDTO getDetailContractForSaler(String code, Integer id);
+
+    @Query(nativeQuery = true,value = "SELECT c.*,ca.code FROM is_agency_db.contract as c inner join customer_info as ci \n" +
+            "on ci.id = c.id_customer inner join customer_acc as ca on ca.id = ci.id_account where c.id = ?1 order by id desc")
+    public ContractDTO getDetailContractForCustomer(Integer id);
+
+    @Query(nativeQuery = true,value = "SELECT c.*,ca.code FROM is_agency_db.contract as c inner join customer_info as ci \n" +
+            "on ci.id = c.id_customer inner join customer_acc as ca on ca.id = ci.id_account where c.id_customer = ?1 order by id desc")
+    public List<ContractDTO> getAllContractDTOForCustomer(Integer id_customer);
 }

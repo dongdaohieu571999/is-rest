@@ -1,4 +1,4 @@
-package com.is.issystem.controller;
+package com.is.issystem.controller.EmployeeController;
 
 import com.is.issystem.dto.IllustrationItemOfList;
 import com.is.issystem.dto.IllustrationDTO;
@@ -15,9 +15,9 @@ public class IllustrationController {
     @Autowired
     private IllustrationService illustrationService;
 
-    @PostMapping(value = "/get_illustration_contract_create/")
-    IllustrationDTO getIllustrationContractCreate(@RequestBody Integer id){
-        return illustrationService.getIllustrationContractCreate(id);
+    @PostMapping(value = "/get_detail_illustration/")
+    IllustrationDTO getDetailIllustration(@RequestBody Integer id){
+        return illustrationService.getDetailIllustration(id);
     }
 
     @GetMapping(value = "/get_all_illustration_belong_customer/{id}")

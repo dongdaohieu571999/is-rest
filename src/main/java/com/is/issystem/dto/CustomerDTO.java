@@ -143,7 +143,7 @@ import java.util.Date;
         resultSetMapping = "stock_akhir_dto"
 )
 @NamedNativeQuery(
-        name = "getCustomerInfoDetailByAdmin",
+        name = "getCustomerInfoDetailByIdCustomer",
         query =
                 "SELECT ci.*,code ,ca.status ,\n" +
                         "ct.id as id_contract, il.id as id_illustration,\n" +

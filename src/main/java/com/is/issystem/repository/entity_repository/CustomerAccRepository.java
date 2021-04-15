@@ -14,4 +14,8 @@ public interface CustomerAccRepository extends JpaRepository<CustomerAcc,Integer
 
     @Query(value = "SELECT * from customer_acc where id = ?1 \n",nativeQuery = true)
     CustomerAcc getAcc(Long id);
+
+    @Query(value = "select customer_info.id from customer_info inner join customer_acc on customer_info.id_account = customer_acc.id \n" +
+            "and customer_acc.code = ?1 and customer_acc.pass = ?2 ",nativeQuery = true)
+    String getAccByCodePass(String code,String pass);
 }
