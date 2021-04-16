@@ -1,7 +1,7 @@
 package com.is.issystem.service;
 
 import com.is.issystem.commons.Ultility;
-import com.is.issystem.dto.EmployeeDTO;
+import com.is.issystem.dto.EmployeeInfoDTO;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
@@ -15,11 +15,11 @@ public class FogotPasswordService {
     public JavaMailSender emailSender;
     @Autowired
     public EmployeeInfoService employeeInfoService;
-    public EmployeeDTO sendSimpleEmail(String data) throws MailException{
+    public EmployeeInfoDTO sendSimpleEmail(String data) throws MailException{
         JSONObject jsonObject = new JSONObject(data);
         SimpleMailMessage message = new SimpleMailMessage();
 
-        EmployeeDTO employeeDTO = employeeInfoService.getAllEmployee().stream().
+        EmployeeInfoDTO employeeDTO = employeeInfoService.getAllEmployee().stream().
                 filter(em -> em.getEmail().equalsIgnoreCase(jsonObject.get("email").toString())).findAny().orElse(null);
 
         if(employeeDTO != null){

@@ -67,7 +67,6 @@ public class EmployeeInfoDTO {
     private String curadd_no_street;
     @Column
     private String curadd_wards;
-
     @Column
     private String peradd_city;
     @Column
@@ -80,4 +79,10 @@ public class EmployeeInfoDTO {
     private int age;
     @Column
     private String code_ap_support;
+    @Column
+    private String in_dept;
+    @Column
+    private String code;
+    @Column
+    private String status;
 }

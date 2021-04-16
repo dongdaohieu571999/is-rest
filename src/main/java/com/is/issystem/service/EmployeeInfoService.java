@@ -2,8 +2,7 @@ package com.is.issystem.service;
 
 import com.is.issystem.dto.EmployeeInfoDTO;
 import com.is.issystem.entities.*;
-import com.is.issystem.dto.EmployeeDTO;
-import com.is.issystem.repository.*;
+import com.is.issystem.repository.entity_dto_repository.EmployeeInfoDTORepository;
 import com.is.issystem.repository.entity_repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,9 +17,7 @@ public class EmployeeInfoService {
     @Autowired
     EmployeeInfoRepository employeeInfoRepository;
     @Autowired
-    EmployeeInfoAccRepository employeeInfoAccRepository;
-    @Autowired
-    EmployeeDTORepository employeeDTORepository;
+    EmployeeInfoDTORepository employeeInfoDTORepository;
     @Autowired
     EmployeeAccRepository employeeAccRepository;
     @Autowired
@@ -30,20 +27,20 @@ public class EmployeeInfoService {
     @Autowired
     CurrentAddressRepository currentAddressRepository;
 
-    public List<EmployeeDTO> getAllEmployee(){
-        return employeeDTORepository.getEmployeeInfo();
+    public List<EmployeeInfoDTO> getAllEmployee(){
+        return employeeInfoDTORepository.getEmployeeInfo();
     }
 
-    public List<EmployeeDTO> searchAllEmployee(String dateFrom,String dateTo,String searchValue){
-        return employeeDTORepository.searchEmployeeInfo(dateFrom,dateTo,searchValue);
+    public List<EmployeeInfoDTO> searchAllEmployee(String dateFrom,String dateTo,String searchValue){
+        return employeeInfoDTORepository.searchEmployeeInfo(dateFrom,dateTo,searchValue);
     }
 
     public EmployeeInfoDTO getDetailEmployeebyID(int id){
-        return employeeInfoAccRepository.getDetailEmployeeInfobyID(id);
+        return employeeInfoDTORepository.getDetailEmployeeInfobyID(id);
     }
 
     public EmployeeInfoDTO getDetailEmployeebyCode(String code){
-        return employeeInfoAccRepository.getDetailEmployeeInfobyCode(code);
+        return employeeInfoDTORepository.getDetailEmployeeInfobyCode(code);
     }
 
 
