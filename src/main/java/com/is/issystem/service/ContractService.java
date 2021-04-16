@@ -35,6 +35,12 @@ public class ContractService {
         return  contractDTORepository.getAllContractDTOForCustomer(id_cust_info);
     }
 
+    public List<ContractDTO> searchAllContractForCustomer(int id,String dateFrom,String dateTo,String searchValue){
+        return  contractDTORepository.searchAllContractDTOForCustomer(id,dateFrom,dateTo,searchValue);
+    }
+
+
+
     public List<ContractDTO> searchAllContract(String code_em_support,String dateFrom,String dateTo,String searchValue){
         return contractDTORepository.searchAllContractDTO(code_em_support,dateFrom,dateTo,searchValue);
     }

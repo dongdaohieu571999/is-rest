@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.math.BigInteger;
 import java.sql.Date;
 
 @Entity
@@ -36,7 +37,7 @@ public class ContractDTO {
     @Column
     private String approval_status;
     @Column
-    private Integer contract_total_value;
+    private BigInteger contract_total_value;
     @Column
     private String code_em_support;
     @Column

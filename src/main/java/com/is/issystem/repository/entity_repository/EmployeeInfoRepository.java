@@ -1,8 +1,5 @@
 package com.is.issystem.repository.entity_repository;
-
-import com.is.issystem.entities.EmployeeAcc;
 import com.is.issystem.entities.EmployeeInfo;
-import com.is.issystem.dto.EmployeeDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

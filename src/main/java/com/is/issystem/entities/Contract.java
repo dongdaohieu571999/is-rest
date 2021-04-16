@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.math.BigInteger;
 import java.sql.Date;
 
 @Entity
@@ -38,7 +39,7 @@ public class Contract {
     @Column(name = "approval_status")
     private String approval_status;
     @Column(name = "contract_total_value")
-    private Integer contract_total_value;
+    private BigInteger contract_total_value;
     @Column(name = "code_em_support")
     private String code_em_support;
 }
