@@ -45,6 +45,12 @@ public class CustomerController {
         return ResponseEntity.status(HttpStatus.OK).body(contractService.getAllContractForCustomer(id_Cust_Info));
     }
 
+    @PostMapping(value = "/search-contract-list")
+    public ResponseEntity<?> searchAllContractForCust(@RequestBody String data){
+        JSONObject contractObject = new JSONObject(data);
+        return ResponseEntity.status(HttpStatus.OK).body(contractService.searchAllContractForCustomer(Integer.parseInt(contractObject.getString("id_customer")),contractObject.getString("dateFrom"),contractObject.getString("dateTo"),contractObject.getString("searchValue")));
+    }
+
     @PostMapping(value = "/get_one_customer_info")
     public ResponseEntity<?> getOneCustomerInfoByIdCustomer(@RequestBody Integer id_cust_info){
         return ResponseEntity.status(HttpStatus.OK).body(customerInfoService.getOneInfo(id_cust_info));
@@ -54,6 +60,13 @@ public class CustomerController {
     public ResponseEntity<?> getAllIllustrationByIdCustomer(@RequestBody Integer id_cust_info){
         return ResponseEntity.status(HttpStatus.OK).body(illustrationService.getAllIllustration(id_cust_info));
     }
+
+    @PostMapping(value = "/search_all_illustration_customer")
+    public ResponseEntity<?> searchAllIllustrationByIdCustomer(@RequestBody String data){
+        JSONObject customerObject = new JSONObject(data);
+        return ResponseEntity.status(HttpStatus.OK).body(illustrationService.searchAllIllustration(Integer.parseInt(customerObject.getString("id_customer")),customerObject.getString("dateFrom"),customerObject.getString("dateTo"),customerObject.getString("searchValue")));
+    }
+
 
     @PostMapping(value = "/get_detail_illustration/")
     IllustrationDTO getDetailIllustration(@RequestBody Integer id){

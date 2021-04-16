@@ -1,14 +1,8 @@
 package com.is.issystem.repository.entity_repository;
-
-import com.is.issystem.dto.CustomerDTO;
-import com.is.issystem.dto.EmployeeDTO;
 import com.is.issystem.dto.EmployeeInfoDTO;
-import com.is.issystem.entities.EmployeeInfo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
 
 @Repository
 public interface EmployeeInfoAccRepository extends JpaRepository<EmployeeInfoDTO,Integer>
