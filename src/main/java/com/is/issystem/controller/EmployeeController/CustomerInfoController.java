@@ -1,8 +1,7 @@
 package com.is.issystem.controller.EmployeeController;
 
-import com.is.issystem.commons.Function;
+import com.is.issystem.commons.Ultility;
 import com.is.issystem.dto.CustomerDTO;
-import com.is.issystem.entities.CustomerInfo;
 import com.is.issystem.service.CustomerInfoService;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,7 +71,7 @@ public class CustomerInfoController {
     @PostMapping(value = "/get_one_customer_info")
     public ResponseEntity<?> getOneCustomerInfoForSaler(@RequestBody String data1){
         JSONObject data = new JSONObject(data1);
-        return ResponseEntity.status(HttpStatus.OK).body(customerInfoService.getOneInfo( Integer.parseInt(data.get("id").toString()),Function.getCodeInTokenKey(data.get("token_key").toString())));
+        return ResponseEntity.status(HttpStatus.OK).body(customerInfoService.getOneInfo( Integer.parseInt(data.get("id").toString()), Ultility.getCodeInTokenKey(data.get("token_key").toString())));
     }
 
 

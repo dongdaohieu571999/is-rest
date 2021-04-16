@@ -1,6 +1,5 @@
 package com.is.issystem.controller.EmployeeController;
 
-import com.is.issystem.commons.Function;
 import com.is.issystem.service.MailService;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +42,7 @@ public class MailController {
 
 //    @GetMapping("/view_detail_mail/{mailId}/{token_key}")
 //    public ResponseEntity<?> viewDetailMail(@PathVariable("mailId") int mailID, @PathVariable("token_key") String token_key){
-//        String userCode = Function.getCodeInTokenKey(token_key);
+//        String userCode = Ultility.getCodeInTokenKey(token_key);
 //        return ResponseEntity.status(HttpStatus.OK).body(mailService.getDetailMail(userCode, mailID));
 //    }
 

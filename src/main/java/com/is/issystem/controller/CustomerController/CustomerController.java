@@ -1,6 +1,6 @@
 package com.is.issystem.controller.CustomerController;
 
-import com.is.issystem.commons.Function;
+import com.is.issystem.commons.Ultility;
 import com.is.issystem.dto.ContractDTO;
 import com.is.issystem.dto.IllustrationDTO;
 import com.is.issystem.entities.CustomerAcc;
@@ -68,7 +68,7 @@ public class CustomerController {
 
     @PostMapping(value = "/get_all_reference_table")
     public ResponseEntity<?> getAllReference(@RequestBody String token){
-        if(Function.getCodeInTokenKey(token)!=null){
+        if(Ultility.getCodeInTokenKey(token)!=null){
             return ResponseEntity.status(HttpStatus.OK).body(new Referencetable(referenceTableService.findAllMultiplierForAge(),
                     referenceTableService.findAllMultiplierForCareerGroup(),referenceTableService.findAllMultiplierForGenders()
                     , referenceTableService.findAllMultiplierForMainInterest(),referenceTableService.findAllMultiplierForPaymentPeriod()

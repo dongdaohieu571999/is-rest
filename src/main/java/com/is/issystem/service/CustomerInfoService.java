@@ -1,6 +1,6 @@
 package com.is.issystem.service;
 
-import com.is.issystem.commons.Function;
+import com.is.issystem.commons.Ultility;
 import com.is.issystem.dto.CustomerDTO;
 import com.is.issystem.entities.*;
 import com.is.issystem.repository.entity_dto_repository.CustomerDTORepository;
@@ -144,11 +144,11 @@ public class CustomerInfoService {
         // thêm acc tạm thời cho customer
         CustomerAcc customerAcc = new CustomerAcc();
         customerAcc.setStatus(false);
-        customerAcc.setPass(Function.generatePassword(8));
+        customerAcc.setPass(Ultility.generatePassword(8));
         customerAccRepository.save(customerAcc);
         // lưu xong acc và lấy ID acc đó để dùng generate code cho khách
         Optional<CustomerAcc> customerAcc1 = customerAccRepository.findById(customerAcc.getId());
-        customerAcc1.get().setCode(Function.generateAccCust(String.valueOf(customerAcc.getId())));
+        customerAcc1.get().setCode(Ultility.generateAccCust(String.valueOf(customerAcc.getId())));
         customerAccRepository.save(customerAcc1.get());
 
         // lưu Id acc vào bảng customer_info cột Id_account

@@ -1,13 +1,12 @@
 package com.is.issystem.service;
 
 
-import com.is.issystem.commons.Function;
+import com.is.issystem.commons.Ultility;
 import com.is.issystem.dto.CustomerDTO;
 import com.is.issystem.entities.CustomerAcc;
 import com.is.issystem.repository.entity_repository.CustomerAccRepository;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
@@ -15,7 +14,6 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.io.PrintWriter;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -64,7 +62,7 @@ public class CustomerAccService {
 
     public CustomerAcc resetAccountPasswordCustomer(CustomerDTO customerDTO){
         CustomerAcc customerAcc = customerAccRepository.getAcc(customerDTO.getId_account());
-        customerAcc.setPass(Function.generatePassword(8));
+        customerAcc.setPass(Ultility.generatePassword(8));
         CustomerAcc customerAcc1 = customerAccRepository.save(customerAcc);
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(customerDTO.getEmail());

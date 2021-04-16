@@ -1,6 +1,6 @@
 package com.is.issystem.service;
 
-import com.is.issystem.commons.Function;
+import com.is.issystem.commons.Ultility;
 import com.is.issystem.dto.EmployeeDTO;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +26,7 @@ public class FogotPasswordService {
             message.setTo(jsonObject.get("email").toString());
             message.setSubject("YÊU CẦU THAY ĐỔI MẬT KHẨU");
             message.setText("Để được cấp lại mật khẩu, quý khách vui lòng đi tới đường dẫn sau để" +
-                    " thay đổi mật khẩu: http://localhost:4200/confirm-change-pass?active_key="+ Function.generateTokenKey(employeeDTO.getCode())+", cảm ơn quý khách ! ");
+                    " thay đổi mật khẩu: http://localhost:4200/confirm-change-pass?active_key="+ Ultility.generateTokenKey(employeeDTO.getCode())+", cảm ơn quý khách ! ");
 
             try{
                 this.emailSender.send(message);

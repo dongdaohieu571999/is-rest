@@ -1,21 +1,15 @@
 package com.is.issystem.service;
 
-import com.is.issystem.commons.Function;
+import com.is.issystem.commons.Ultility;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import org.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.env.Environment;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Date;
 
 import static java.util.Collections.emptyList;
 public class TokenAuthenticationService {
@@ -27,7 +21,7 @@ public class TokenAuthenticationService {
         res.setContentType("application/json");
         PrintWriter out = res.getWriter();
         JSONObject obj = new JSONObject();
-        obj.put("token_key", TOKEN_PREFIX + Function.generateTokenKey(username));
+        obj.put("token_key", TOKEN_PREFIX + Ultility.generateTokenKey(username));
         out.print(obj.toString());
     }
 

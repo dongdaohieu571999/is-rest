@@ -4,7 +4,7 @@ package com.is.issystem.service;
 import java.util.List;
 import java.util.Optional;
 
-import com.is.issystem.commons.Function;
+import com.is.issystem.commons.Ultility;
 import com.is.issystem.entities.*;
 import com.is.issystem.repository.entity_repository.ContractRepository;
 import com.is.issystem.repository.entity_repository.CustomerInfoRepository;
@@ -65,7 +65,7 @@ import static com.is.issystem.service.TokenAuthenticationService.TOKEN_PREFIX;
             employeeAcc.setStatus(true);
             employeeAcc.setCode(employee_acc.getCode());
             employeeAcc.setId_role(employee_acc.getId_role());
-            employeeAcc.setPass(Function.generatePassword(8));
+            employeeAcc.setPass(Ultility.generatePassword(8));
             employeeAccRepository.save(employeeAcc);
 
             // thêm code của người giám sát cho nhân viên
