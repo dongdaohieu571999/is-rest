@@ -3,6 +3,8 @@ import com.is.issystem.dto.EmployeeInfoDTO;
 import com.is.issystem.service.EmployeeInfoService;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -24,8 +26,13 @@ public class EmployeeInfoController {
     }
 
     @PostMapping(value = "/add_employee_info")
-    public void addEmployeeInfo(@RequestBody EmployeeInfoDTO employeeInfoDTO){
-        employeeInfoService.addEmployeeInfo(employeeInfoDTO);
+    public ResponseEntity<?> addEmployeeInfo(@RequestBody EmployeeInfoDTO employeeInfoDTO){
+        if(employeeInfoService.addEmployeeInfo(employeeInfoDTO)){
+            return ResponseEntity.status(HttpStatus.OK).body(employeeInfoDTO);
+        }else{
+            return ResponseEntity.status(HttpStatus.OK).body(null);
+        }
+
     }
     @GetMapping(value = {"/get_detail_employee_info/{id}"})
     public EmployeeInfoDTO getDetailEmployeeInfo(@PathVariable("id") int id){
