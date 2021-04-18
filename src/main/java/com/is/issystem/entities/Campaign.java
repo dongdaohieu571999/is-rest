@@ -9,8 +9,8 @@ import java.util.Date;
 @Entity
 @Getter
 @Setter
-@Table(name = "customer_own_illustration")
-public class CustomerOwnIllustration {
+@Table(name = "campaign")
+public class Campaign {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
