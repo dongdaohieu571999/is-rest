@@ -43,8 +43,20 @@ public class EmployeeInfoService {
         return employeeInfoDTORepository.getDetailEmployeeInfobyCode(code);
     }
 
+    public boolean checkEmployeeInfoExist(EmployeeInfoDTO employeeInfoDTO){
+        List<EmployeeInfo> listEmployee =  employeeInfoRepository.getAllEmployeeInfo();
+        for(EmployeeInfo employeeInfo :listEmployee ){
+            if(employeeInfoDTO.getEmail().equals(employeeInfo.getEmail())  || employeeInfoDTO.getId_card().equals(employeeInfo.getId_card())){
+                return false;
+            }
+        }
+        return true;
+    }
 
-    public void addEmployeeInfo(EmployeeInfoDTO employeeInfoDTO){
+    public boolean addEmployeeInfo(EmployeeInfoDTO employeeInfoDTO){
+        if(!checkEmployeeInfoExist(employeeInfoDTO)){
+            return  false;
+        }
         EmployeeInfo employeeInfo = new EmployeeInfo();
         employeeInfo.setName(employeeInfoDTO.getName());
         employeeInfo.setAddress(employeeInfoDTO.getAddress());
@@ -96,6 +108,7 @@ public class EmployeeInfoService {
 
             employeeInfoRepository.save(employeeInfo);
         }
+        return true;
     }
 
     public void updateEmployeeInfo(EmployeeInfoDTO employeeInfoDTO){

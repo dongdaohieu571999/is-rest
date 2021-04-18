@@ -11,4 +11,8 @@ public interface EmployeeInfoRepository extends JpaRepository<EmployeeInfo,Integ
     @Query(value = "SELECT  * FROM employee_info where id_acc = ?1",nativeQuery = true)
     EmployeeInfo getOneEmployeeInfo(int id_acc);
 
+    @Query(value = "SELECT  * FROM employee_info ",nativeQuery = true)
+    List<EmployeeInfo> getAllEmployeeInfo();
+
+
 }
