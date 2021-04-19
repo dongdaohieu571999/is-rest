@@ -2,11 +2,11 @@ version: '3.3'
 
 services:
     web:
-        image: dongdaohieu/is_rest:latest
+        image: is_rest:latest
         networks:
           - web
     frontend:
-        image: dongdaohieu/angular_ui_docker:latest
+        image: angular_ui_docker:latest
         ports:
           - "80:80"
         networks:

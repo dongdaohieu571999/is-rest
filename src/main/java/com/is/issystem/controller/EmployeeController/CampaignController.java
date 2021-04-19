@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = {"/api/illustration"})
+@RequestMapping(value = {"/api/campaign"})
 public class CampaignController {
     @Autowired
     CampaignService campaignService;
