@@ -1,5 +1,6 @@
 package com.is.issystem.controller.EmployeeController;
 
+import com.is.issystem.entities.Attachment;
 import com.is.issystem.entities.CustomerAttachment;
 import com.is.issystem.service.AttachmentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,11 @@ public class AttachmentController {
     @PostMapping(value = "/save_customer_attachment")
     public ResponseEntity<?> saveCustomerAttachment(@RequestBody List<CustomerAttachment> customerAttachments){
         return ResponseEntity.status(HttpStatus.OK).body(attachmentService.updateAttachment(customerAttachments));
+    }
+
+    @PostMapping(value = "/save_attachment")
+    public ResponseEntity<?> saveAttachment(@RequestBody List<Attachment> Attachments){
+        return ResponseEntity.status(HttpStatus.OK).body(attachmentService.updateAttachmentAll(Attachments));
     }
 
 }

@@ -6,9 +6,7 @@ import java.util.Optional;
 
 import com.is.issystem.commons.Ultility;
 import com.is.issystem.entities.*;
-import com.is.issystem.repository.entity_repository.ContractRepository;
-import com.is.issystem.repository.entity_repository.CustomerInfoRepository;
-import com.is.issystem.repository.entity_repository.EmployeeInfoRepository;
+import com.is.issystem.repository.entity_repository.*;
 import io.jsonwebtoken.Jwts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
@@ -16,7 +14,6 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import com.is.issystem.repository.entity_repository.EmployeeAccRepository;
 
 import static com.is.issystem.service.TokenAuthenticationService.SECRET;
 import static com.is.issystem.service.TokenAuthenticationService.TOKEN_PREFIX;
@@ -34,6 +31,8 @@ import static com.is.issystem.service.TokenAuthenticationService.TOKEN_PREFIX;
         private ContractRepository contractRepository;
         @Autowired
         private CustomerInfoRepository customerInfoRepository;
+        @Autowired
+        private PauseReasonHistoryRepository pauseReasonHistoryRepository;
 
         public void pauseEmployee(String codeEmployeeNew,Integer id_employee_old){
             String codeEmployeeOld =  employeeAccRepository.findById(id_employee_old).get().getCode();
@@ -54,6 +53,13 @@ import static com.is.issystem.service.TokenAuthenticationService.TOKEN_PREFIX;
                 e.printStackTrace();
             }
         }
+
+    public List<PauseReason> updatePauseReason(List<PauseReason> pauseReasons){
+        for(PauseReason pauseReason : pauseReasons){
+            pauseReasonHistoryRepository.save(pauseReason);
+        }
+        return pauseReasons;
+    }
 
         public List<EmployeeAcc> findAll() {
             return employeeAccRepository.findAll();

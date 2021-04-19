@@ -3,6 +3,7 @@ package com.is.issystem.controller.EmployeeController;
 import com.google.gson.Gson;
 import com.is.issystem.entities.EmployeeAcc;
 import com.is.issystem.entities.EmployeeInfo;
+import com.is.issystem.entities.PauseReason;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -57,6 +58,12 @@ public class EmployeeAccController {
         JSONObject employeeObject = new JSONObject(data);
         employeeAccService.pauseEmployee(employeeObject.getString("codeEmployeeNew"),employeeObject.getInt("id_employee_old"));
         return new ResponseEntity<>("Ngưng nhân viên thành công!", HttpStatus.OK);
+    }
+
+    @PostMapping(value = "/pause_reason_employee")
+    public ResponseEntity<?> pauseReasonEmployee(@RequestBody List<PauseReason> pauseReasons ){
+        employeeAccService.updatePauseReason(pauseReasons);
+        return ResponseEntity.status(HttpStatus.OK).body(pauseReasons);
     }
 
     @GetMapping(value = {"/get_one_employee_acc/{token_id}"})

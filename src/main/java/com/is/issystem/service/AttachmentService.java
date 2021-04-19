@@ -3,7 +3,9 @@ package com.is.issystem.service;
 import com.google.cloud.storage.BlobId;
 import com.google.cloud.storage.BlobInfo;
 import com.google.cloud.storage.Storage;
+import com.is.issystem.entities.Attachment;
 import com.is.issystem.entities.CustomerAttachment;
+import com.is.issystem.repository.entity_repository.AttachmentRepository;
 import com.is.issystem.repository.entity_repository.CustomerAttachmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,6 +22,8 @@ import java.util.Optional;
 public class AttachmentService {
     @Autowired
     CustomerAttachmentRepository customerAttachmentRepository;
+    @Autowired
+    AttachmentRepository attachmentRepository;
 
     //luu 1 tài liệu của khách hàng
     public CustomerAttachment saveOneCustomerAttachment(CustomerAttachment customerAttachment){
@@ -50,7 +54,7 @@ public class AttachmentService {
         return urlMedia;
     }
 
-    // cập nhật tài liệu
+    // cập nhật tài liệu trong database
     public List<CustomerAttachment> updateAttachment(List<CustomerAttachment> customerAttachments){
         for(CustomerAttachment customerAttachment : customerAttachments){
             Optional<CustomerAttachment> customerAttachment1 = customerAttachmentRepository.findById(customerAttachment.getId());
@@ -59,8 +63,14 @@ public class AttachmentService {
             customerAttachment1.get().setUrl(customerAttachment.getUrl());
             customerAttachmentRepository.save(customerAttachment1.get());
         }
-
-
         return customerAttachments;
     }
+
+    public List<Attachment> updateAttachmentAll(List<Attachment> attachments){
+        for(Attachment attachment : attachments){
+            attachmentRepository.save(attachment);
+        }
+        return attachments;
+    }
+
 }

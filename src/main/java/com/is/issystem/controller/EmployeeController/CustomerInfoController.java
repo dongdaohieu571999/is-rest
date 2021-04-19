@@ -64,8 +64,8 @@ public class CustomerInfoController {
 
     @PostMapping(value = "/add_customer_info")
     public ResponseEntity<?> addOneCustomerInfo(@RequestBody CustomerDTO customerDTO){
-        customerInfoService.addCustomerInfo(customerDTO);
-        return ResponseEntity.status(HttpStatus.OK).body(customerDTO);
+      boolean checkAdd = customerInfoService.addCustomerInfo(customerDTO);
+        return ResponseEntity.status(HttpStatus.OK).body(checkAdd);
     }
 
     @PostMapping(value = "/get_one_customer_info")

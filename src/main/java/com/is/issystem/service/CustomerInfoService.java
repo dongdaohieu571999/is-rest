@@ -113,7 +113,13 @@ public class CustomerInfoService {
         }
     }
 
-    public void addCustomerInfo(CustomerDTO customerDTO){
+    public boolean addCustomerInfo(CustomerDTO customerDTO){
+        List<CustomerInfo> customerInfos = customerInfoRepository.findAll();
+        for (CustomerInfo customerInfo : customerInfos){
+              if(customerInfo.getEmail().equals(customerDTO.getEmail()) || customerInfo.getId_card().equals(customerInfo.getId_card()))
+            return false;
+        }
+
         CustomerInfo customerInfo = new CustomerInfo();
         customerInfo.setBirth_date(customerDTO.getBirth_date());
         customerInfo.setAge(customerDTO.getAge());
@@ -204,6 +210,7 @@ public class CustomerInfoService {
 
 
         }
+        return true;
     }
 
     public List<CustomerDTO> getOneInfo(Integer id,String code_em_suport){
