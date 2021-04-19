@@ -25,4 +25,5 @@ public class AttachmentController {
     public ResponseEntity<?> saveCustomerAttachment(@RequestBody List<CustomerAttachment> customerAttachments){
         return ResponseEntity.status(HttpStatus.OK).body(attachmentService.updateAttachment(customerAttachments));
     }
+
 }
