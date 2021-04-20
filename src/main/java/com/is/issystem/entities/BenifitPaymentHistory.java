@@ -11,7 +11,7 @@ import java.util.Date;
 @Entity
 @Getter
 @Setter
-public class IntersetPaymentHistory {
+public class BenifitPaymentHistory {
     @Column
     @Id
     private int id;

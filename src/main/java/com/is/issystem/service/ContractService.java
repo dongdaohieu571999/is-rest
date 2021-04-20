@@ -23,7 +23,7 @@ public class ContractService {
     @Autowired
     private FeePaymentHistoryRepository feePaymentHistoryRepository;
     @Autowired
-    private IntersetPaymentHistoryRepository benifitPaymentHistoryRepository;
+    private BenifitPaymentHistoryRepository benifitPaymentHistoryRepository;
     @Autowired
     private RequestRepository requestRepository;
 
@@ -68,7 +68,7 @@ public class ContractService {
         return feePaymentHistoryRepository.getAllFeePayment(id);
     }
 
-    public List<IntersetPaymentHistory> getAllIntersetPaymentHistory(int id){
+    public List<BenifitPaymentHistory> getAllIntersetPaymentHistory(int id){
         return benifitPaymentHistoryRepository.getAllIntersetPayment(id);
     }
     public void setUpdateContract(int id_contract,Integer id_request,String description,String approval_status){

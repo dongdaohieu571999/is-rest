@@ -20,7 +20,6 @@ public class EmployeeAcc implements Serializable {
     private String pass;
     @Column(name = "status")
     private boolean status;
-
     @Column(name = "id_role")
     private Integer id_role;
 }

@@ -89,4 +89,16 @@ public class CustomerController {
         }
         return ResponseEntity.status(HttpStatus.OK).body(null);
     }
+
+    @PostMapping(value = "/change_pass")
+    public ResponseEntity<?> changePass(@RequestBody String data){
+        JSONObject jsonObject =  new JSONObject(data);
+        String[] data1 = {jsonObject.getString("id_customer_info"),jsonObject.getString("old_pass")};
+        CustomerAcc customerAcc = customerAccService.checkExistCustomerAccountByIdPass(data1);
+        if(customerAcc!=null){
+            customerAcc.setPass(jsonObject.getString("new_pass"));
+            return ResponseEntity.status(HttpStatus.OK).body(customerAccService.updateCustomerAccount(customerAcc));
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(null);
+    }
 }

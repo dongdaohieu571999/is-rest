@@ -11,7 +11,6 @@ import java.util.List;
 public class SubBenifitService {
     @Autowired
     SubBenifitRepository subBenifitRepository;
-
     public List<SubBenifit> getAllSubBenifit(){
         return subBenifitRepository.findAll();
     }

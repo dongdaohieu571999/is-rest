@@ -1,5 +1,4 @@
 package com.is.issystem.entities;
-
 import lombok.*;
 
 @Getter

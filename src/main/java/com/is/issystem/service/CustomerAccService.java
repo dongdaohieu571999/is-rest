@@ -43,27 +43,27 @@ public class CustomerAccService {
 
     public CustomerAcc sendCustomerAccount(Integer id){
         List<CustomerDTO> customerInfo = customerInfoService.getOneInfo(id);
-        CustomerAcc customerAcc = customerAccRepository.getAcc(customerInfo.get(0).getId_account());
-        customerAcc.setStatus(true);
-        customerAccRepository.save(customerAcc);
+        Optional<CustomerAcc> customerAcc = customerAccRepository.findById(customerInfo.get(0).getId_account().intValue());
+        customerAcc.get().setStatus(true);
+        customerAccRepository.save(customerAcc.get());
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(customerInfo.get(0).getEmail());
         message.setSubject("THÔNG TIN TÀI KHOẢN KHÁCH HÀNG");
-        message.setText("Dưới đây là tài khoản và mật khẩu đăng nhập của Quý Khách:\nMã Đăng Nhập: " + customerAcc.getCode() + "\n" +
-                "Mật Khẩu Đăng Nhập: "+customerAcc.getPass() + "\nQuý Khách vui lòng dùng thông tin trên để đăng nhập tài khoản của mình, cảm ơn quý khách ! ");
+        message.setText("Dưới đây là tài khoản và mật khẩu đăng nhập của Quý Khách:\nMã Đăng Nhập: " + customerAcc.get().getCode() + "\n" +
+                "Mật Khẩu Đăng Nhập: "+customerAcc.get().getPass() + "\nQuý Khách vui lòng dùng thông tin trên để đăng nhập tài khoản của mình, cảm ơn quý khách ! ");
 
         try{
             this.emailSender.send(message);
         } catch (MailException e){
             e.printStackTrace();
         }
-        return customerAccRepository.getAcc(customerInfo.get(0).getId_account());
+        return customerAcc.get();
     }
 
     public CustomerAcc resetAccountPasswordCustomer(CustomerDTO customerDTO){
-        CustomerAcc customerAcc = customerAccRepository.getAcc(customerDTO.getId_account());
-        customerAcc.setPass(Ultility.generatePassword(8));
-        CustomerAcc customerAcc1 = customerAccRepository.save(customerAcc);
+        Optional<CustomerAcc> customerAcc = customerAccRepository.findById(customerDTO.getId_account().intValue());
+        customerAcc.get().setPass(Ultility.generatePassword(8));
+        CustomerAcc customerAcc1 = customerAccRepository.save(customerAcc.get());
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(customerDTO.getEmail());
         message.setSubject("THÔNG TIN MẬT KHẨU ĐĂNG NHẬP");
@@ -77,20 +77,21 @@ public class CustomerAccService {
         return customerAcc1;
     }
 
-    public void updateCustomerAccount(CustomerAcc customerAcc){
+    public CustomerAcc updateCustomerAccount(CustomerAcc customerAcc){
         Optional<CustomerAcc> acc = customerAccRepository.findById(customerAcc.getId());
         acc.get().setCode(customerAcc.getCode());
         acc.get().setPass(customerAcc.getPass());
         acc.get().setStatus(customerAcc.isStatus());
-        customerAccRepository.save(acc.get());
-    }
 
-    public void findCustomerAccountById(Integer id){
-        customerAccRepository.findById(id);
+        return customerAccRepository.save(acc.get());
     }
 
     public boolean checkExistCustomerAccount(CustomerAcc customerAcc){
         return customerAccRepository.getAccExist(customerAcc.getCode(),customerAcc.getId()).size() > 0 ? true : false;
+    }
+
+    public CustomerAcc checkExistCustomerAccountByIdPass(String data[]){
+        return customerAccRepository.getAccByIdPass(Integer.parseInt(data[0]),data[1]);
     }
 
     public String getAccountbyCodePass(CustomerAcc customerAcc){

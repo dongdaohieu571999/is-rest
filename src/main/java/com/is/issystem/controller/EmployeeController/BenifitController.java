@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = "api/benifit/")
+@RequestMapping(value = "api/interest/")
 public class BenifitController {
 
     @Autowired
@@ -19,13 +19,13 @@ public class BenifitController {
     @Autowired
     SubBenifitService subBenifitService;
 
-    @GetMapping(value = "/get_all_main_benifit")
-    public ResponseEntity<?> getAllMainBenifit(){
+    @GetMapping(value = "/get_all_main_interest")
+    public ResponseEntity<?> getAllMainInterest(){
         return ResponseEntity.status(HttpStatus.OK).body(mainBenifitService.getAllMainInterst());
     }
 
-    @GetMapping(value = "/get_all_sub_benifit")
-    public ResponseEntity<?> getAllSubBenifit(){
+    @GetMapping(value = "/get_all_sub_interest")
+    public ResponseEntity<?> getAllSubInterest(){
         System.out.println(subBenifitService.getAllSubBenifit());
         return ResponseEntity.status(HttpStatus.OK).body(subBenifitService.getAllSubBenifit());
     }
