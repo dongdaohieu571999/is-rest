@@ -11,15 +11,15 @@ public class Referencetable {
     private List<MultiplierForAge> multiplierForAge;
     private List<MultiplierForCareerGroup> multiplierForCareerGroup;
     private List<MultiplierForGenders> multiplierForGenders;
-    private List<MultiplierForMainInterest> multiplierForMainInterest;
+    private List<MultiplierForMainBenifit> multiplierForMainBenifit;
     private List<MultiplierForPaymentPeriod> multiplierForPaymentPeriod;
-    private List<MultiplierForSubInterests> multiplierForSubInterests;
+    private List<MultiplierForSubBenifit> multiplierForSubInterests;
 
-    public Referencetable(List<MultiplierForAge> multiplierForAge, List<MultiplierForCareerGroup> multiplierForCareerGroup, List<MultiplierForGenders> multiplierForGenders, List<MultiplierForMainInterest> multiplierForMainInterest, List<MultiplierForPaymentPeriod> multiplierForPaymentPeriod, List<MultiplierForSubInterests> multiplierForSubInterests) {
+    public Referencetable(List<MultiplierForAge> multiplierForAge, List<MultiplierForCareerGroup> multiplierForCareerGroup, List<MultiplierForGenders> multiplierForGenders, List<MultiplierForMainBenifit> multiplierForMainBenifit, List<MultiplierForPaymentPeriod> multiplierForPaymentPeriod, List<MultiplierForSubBenifit> multiplierForSubInterests) {
         this.multiplierForAge = multiplierForAge;
         this.multiplierForCareerGroup = multiplierForCareerGroup;
         this.multiplierForGenders = multiplierForGenders;
-        this.multiplierForMainInterest = multiplierForMainInterest;
+        this.multiplierForMainBenifit = multiplierForMainBenifit;
         this.multiplierForPaymentPeriod = multiplierForPaymentPeriod;
         this.multiplierForSubInterests = multiplierForSubInterests;
     }

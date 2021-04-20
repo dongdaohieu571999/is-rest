@@ -1,7 +1,7 @@
 package com.is.issystem.controller.EmployeeController;
 
-import com.is.issystem.service.MainInterestService;
-import com.is.issystem.service.SubInterestService;
+import com.is.issystem.service.MainBenifitService;
+import com.is.issystem.service.SubBenifitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,22 +11,22 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(value = "api/interest/")
-public class InterestController {
+public class BenifitController {
 
     @Autowired
-    MainInterestService mainInterestService;
+    MainBenifitService mainBenifitService;
 
     @Autowired
-    SubInterestService subInterestService;
+    SubBenifitService subBenifitService;
 
     @GetMapping(value = "/get_all_main_interest")
     public ResponseEntity<?> getAllMainInterest(){
-        return ResponseEntity.status(HttpStatus.OK).body(mainInterestService.getAllMainInterst());
+        return ResponseEntity.status(HttpStatus.OK).body(mainBenifitService.getAllMainInterst());
     }
 
     @GetMapping(value = "/get_all_sub_interest")
     public ResponseEntity<?> getAllSubInterest(){
-        System.out.println(subInterestService.getAllSubInterest());
-        return ResponseEntity.status(HttpStatus.OK).body(subInterestService.getAllSubInterest());
+        System.out.println(subBenifitService.getAllSubInterest());
+        return ResponseEntity.status(HttpStatus.OK).body(subBenifitService.getAllSubInterest());
     }
 }

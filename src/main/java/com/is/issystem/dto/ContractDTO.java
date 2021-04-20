@@ -23,7 +23,7 @@ public class ContractDTO {
     @Column
     private String insurance_type;
     @Column
-    private Integer id_main_interest;
+    private Integer id_main_benifit;
     @Column
     private Integer id_illustration;
     @Column

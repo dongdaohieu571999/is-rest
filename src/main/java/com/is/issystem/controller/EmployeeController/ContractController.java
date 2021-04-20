@@ -4,7 +4,7 @@ import com.is.issystem.dto.ContractDTO;
 import com.is.issystem.entities.Contract;
 import com.is.issystem.entities.ContractChangeHistory;
 import com.is.issystem.entities.FeePaymentHistory;
-import com.is.issystem.entities.IntersetPaymentHistory;
+import com.is.issystem.entities.BenifitPaymentHistory;
 import com.is.issystem.repository.entity_repository.ContractRepository;
 import com.is.issystem.service.ContractService;
 import org.json.JSONObject;
@@ -54,7 +54,7 @@ public class ContractController {
     }
 
     @GetMapping(value = "/get_all_interset_payment_history/{id}")
-    List<IntersetPaymentHistory> getAllIntersetPaymentHistory(@PathVariable("id") int id){
+    List<BenifitPaymentHistory> getAllIntersetPaymentHistory(@PathVariable("id") int id){
         return contractService.getAllIntersetPaymentHistory(id);
     }
     // lấy hợp đồng của 1 saler

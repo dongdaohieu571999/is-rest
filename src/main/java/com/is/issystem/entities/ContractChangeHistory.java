@@ -32,8 +32,8 @@ public class ContractChangeHistory {
     private Integer payment_period_id;
     @Column(name = "insurance_type")
     private String insurance_type;
-    @Column(name = "id_main_interest")
-    private Integer id_main_interest;
+    @Column(name = "id_main_benifit")
+    private Integer id_main_benifit;
     @Column(name = "id_illustration")
     private Integer id_illustration;
     @Column(name = "start_time")

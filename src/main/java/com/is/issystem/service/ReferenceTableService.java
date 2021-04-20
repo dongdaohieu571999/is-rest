@@ -16,11 +16,11 @@ public class ReferenceTableService {
     @Autowired
     MultiplierForGendersRepository multiplierForGendersRepository;
     @Autowired
-    MultiplierForMainInterestRepository multiplierForMainInterestRepository;
+    MultiplierForMainBenifitRepository multiplierForMainBenifitRepository;
     @Autowired
     MultiplierForPaymentPeriodRepository multiplierForPaymentPeriodRepository;
     @Autowired
-    MultiplierForSubInterestsRepository multiplierForSubInterestsRepository;
+    MultiplierForSubBenifitRepository multiplierForSubBenifitRepository;
 
 
     public List<MultiplierForAge> findAllMultiplierForAge(){
@@ -35,15 +35,15 @@ public class ReferenceTableService {
         return multiplierForGendersRepository.findAll();
     }
 
-    public List<MultiplierForMainInterest> findAllMultiplierForMainInterest(){
-        return multiplierForMainInterestRepository.findAll();
+    public List<MultiplierForMainBenifit> findAllMultiplierForMainInterest(){
+        return multiplierForMainBenifitRepository.findAll();
     }
 
     public List<MultiplierForPaymentPeriod> findAllMultiplierForPaymentPeriod(){
         return multiplierForPaymentPeriodRepository.findAll();
     }
 
-    public List<MultiplierForSubInterests> findAllMultiplierForSubInterests(){
-        return multiplierForSubInterestsRepository.findAll();
+    public List<MultiplierForSubBenifit> findAllMultiplierForSubInterests(){
+        return multiplierForSubBenifitRepository.findAll();
     }
 }

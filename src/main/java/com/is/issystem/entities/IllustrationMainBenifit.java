@@ -12,16 +12,16 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name = "illustration_main_intserest")
-public class IllustrationMainInterest {
+@Table(name = "illustration_main_benifit")
+public class IllustrationMainBenifit {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
     @Column(name = "id_illustration")
     Integer id_illustration;
-    @Column(name = "id_main_interest")
-    Integer id_main_interest;
+    @Column(name = "id_main_benifit")
+    Integer id_main_benifit;
     @Column(name = "full_name_insured_person")
     String full_name_insured_person;
     @Column(name = "birth_date_insured_person")

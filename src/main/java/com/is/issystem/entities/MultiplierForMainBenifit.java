@@ -8,13 +8,13 @@ import javax.persistence.*;
 @Setter
 @Getter
 @Entity
-@Table(name = "multiplier_for_main_interest")
-public class MultiplierForMainInterest {
+@Table(name = "multiplier_for_main_benifit")
+public class MultiplierForMainBenifit {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id")
     private Integer id;
-    @Column(name = "main_interest_id")
+    @Column(name = "main_benifit_id")
     private Integer main_interest_id;
     @Column(name = "multiplier")
     private Float multiplier;
