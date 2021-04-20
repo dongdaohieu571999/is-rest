@@ -84,8 +84,8 @@ public class CustomerController {
         if(Ultility.getCodeInTokenKey(token)!=null){
             return ResponseEntity.status(HttpStatus.OK).body(new Referencetable(referenceTableService.findAllMultiplierForAge(),
                     referenceTableService.findAllMultiplierForCareerGroup(),referenceTableService.findAllMultiplierForGenders()
-                    , referenceTableService.findAllMultiplierForMainInterest(),referenceTableService.findAllMultiplierForPaymentPeriod()
-                    ,referenceTableService.findAllMultiplierForSubInterests()));
+                    , referenceTableService.findAllMultiplierForMainBenifit(),referenceTableService.findAllMultiplierForPaymentPeriod()
+                    ,referenceTableService.findAllMultiplierForSubBenifit()));
         }
         return ResponseEntity.status(HttpStatus.OK).body(null);
     }

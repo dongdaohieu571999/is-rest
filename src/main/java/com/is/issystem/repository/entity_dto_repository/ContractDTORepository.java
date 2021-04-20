@@ -18,7 +18,7 @@ public interface ContractDTORepository extends JpaRepository<ContractDTO,Integer
             "            FROM is_agency_db.contract as c inner join customer_info as ci \n" +
             "            on ci.id = c.id_customer inner join customer_acc as ca on ca.id = ci.id_account\n" +
             "            where (ci.code_em_support=?1 and (start_time >= ?2 and end_time <= ?3))\n" +
-            "            and (c.id LIKE ?4 or id_customer LIKE ?4 or name_contract_owner LIKE ?4 or insurance_type LIKE ?4 or id_main_interest LIKE ?4 or id_illustration LIKE ?4  )\n" +
+            "            and (c.id LIKE ?4 or id_customer LIKE ?4 or name_contract_owner LIKE ?4 or insurance_type LIKE ?4 or id_main_benifit LIKE ?4 or id_illustration LIKE ?4  )\n" +
             "            order by id desc")
     public List<ContractDTO> searchAllContractDTO(String code_em_support,String dateFrom,String dateTo,String searchValue);
 

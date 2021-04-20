@@ -3,13 +3,13 @@ package com.is.issystem.service;
 import com.is.issystem.dto.IllustrationDTO;
 import com.is.issystem.dto.IllustrationItemOfList;
 import com.is.issystem.entities.Illustration;
-import com.is.issystem.entities.IllustrationMainInterest;
-import com.is.issystem.entities.IllustrationSubInterest;
+import com.is.issystem.entities.IllustrationMainBenifit;
+import com.is.issystem.entities.IllustrationSubBenifit;
 import com.is.issystem.repository.entity_dto_repository.IllustrationItemOfListRepository;
-import com.is.issystem.repository.entity_repository.IllustrationMainInterestRepository;
+import com.is.issystem.repository.entity_repository.IllustrationMainBenifitRepository;
 import com.is.issystem.repository.entity_repository.IllustrationRepository;
-import com.is.issystem.repository.entity_repository.IllustrationSubInterestRepository;
-import com.is.issystem.repository.entity_repository.MainInterestRepository;
+import com.is.issystem.repository.entity_repository.IllustrationSubBenifitRepository;
+import com.is.issystem.repository.entity_repository.MainBenifitRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,16 +27,16 @@ public class IllustrationService {
     private IllustrationItemOfListRepository illustrationItemOfListRepository;
 
     @Autowired
-    private IllustrationMainInterestRepository illustMainInterestRepository;
+    private IllustrationMainBenifitRepository illustMainBenifitRepository;
 
     @Autowired
-    private IllustrationSubInterestRepository illustSubInterestRepository;
+    private IllustrationSubBenifitRepository illustSubBenifitRepository;
 
     public List<IllustrationItemOfList> getAllIllustrationCustOwn(int id){
         return illustrationItemOfListRepository.listIllustrationCustomerOwn(id);
     }
     @Autowired
-    private MainInterestRepository mainInterestRepository;
+    private MainBenifitRepository mainBenifitRepository;
 
     public IllustrationDTO getDetailIllustration(Integer id){
         IllustrationDTO illustrationDTO = new IllustrationDTO();
@@ -52,13 +52,13 @@ public class IllustrationService {
 
 
         // lấy thông tin người hưởng quyền lợi chính
-        IllustrationMainInterest illustrationMainInterest = illustMainInterestRepository.getIllustrationMainInterestByillustID(id);
-        illustrationDTO.setIllustrationMainInterest(illustrationMainInterest);
-        illustrationDTO.setInterest_name(mainInterestRepository.findById(illustrationMainInterest.getId_main_interest()).get().getInterest_name());
+        IllustrationMainBenifit illustrationMainBenifit = illustMainBenifitRepository.getIllustrationMainBenifitByillustID(id);
+        illustrationDTO.setIllustrationMainBenifit(illustrationMainBenifit);
+        illustrationDTO.setBenifit_name(mainBenifitRepository.findById(illustrationMainBenifit.getId_main_benifit()).get().getBenifit_name());
 
         // lấy thông tin các gói quyền lợi phụ của những người liên quan
-        List<IllustrationSubInterest> illustrationSubInterests = illustSubInterestRepository.getAllIllustrationSubByIllustID(id);
-        illustrationDTO.setIllustrationSubInterestList(illustrationSubInterests);
+        List<IllustrationSubBenifit> illustrationSubBenifits = illustSubBenifitRepository.getAllIllustrationSubByIllustID(id);
+        illustrationDTO.setIllustrationSubBenifitList(illustrationSubBenifits);
 
         return illustrationDTO;
     }
@@ -82,14 +82,14 @@ public class IllustrationService {
 
         illRepository.save(illustration);
 
-        illustrationDTO.getIllustrationMainInterest().setId_illustration(illustration.getId());
+        illustrationDTO.getIllustrationMainBenifit().setId_illustration(illustration.getId());
 
-        illustMainInterestRepository.save(illustrationDTO.getIllustrationMainInterest());
+        illustMainBenifitRepository.save(illustrationDTO.getIllustrationMainBenifit());
 
-        if(illustrationDTO.getIllustrationSubInterestList() != null && illustrationDTO.getIllustrationSubInterestList().size() != 0){
-            for(IllustrationSubInterest illustSub : illustrationDTO.getIllustrationSubInterestList()){
+        if(illustrationDTO.getIllustrationSubBenifitList() != null && illustrationDTO.getIllustrationSubBenifitList().size() != 0){
+            for(IllustrationSubBenifit illustSub : illustrationDTO.getIllustrationSubBenifitList()){
                 illustSub.setId_illustration(illustration.getId());
-                illustSubInterestRepository.save(illustSub  );
+                illustSubBenifitRepository.save(illustSub  );
             }
         }
     }
@@ -107,16 +107,16 @@ public class IllustrationService {
 
         illRepository.save(illustration.get());
 
-        Optional<IllustrationMainInterest> illustrationMainInterest = illustMainInterestRepository.findById(illustrationDTO.getIllustrationMainInterest().getId());
-        illustMainInterestRepository.save(illustrationMainInterest.get());
+        Optional<IllustrationMainBenifit> illustrationMainBenifit = illustMainBenifitRepository.findById(illustrationDTO.getIllustrationMainBenifit().getId());
+        illustMainBenifitRepository.save(illustrationMainBenifit.get());
 
-        if(illustrationDTO.getIllustrationSubInterestList() != null && illustrationDTO.getIllustrationSubInterestList().size() != 0){
-            for(IllustrationSubInterest item : illustrationDTO.getIllustrationSubInterestList()){
-                if(illustSubInterestRepository.existsById(item.getId())){
-                    Optional<IllustrationSubInterest> illustrationSubInterest = illustSubInterestRepository.findById(item.getId());
-                    illustSubInterestRepository.save(illustrationSubInterest.get());
+        if(illustrationDTO.getIllustrationSubBenifitList() != null && illustrationDTO.getIllustrationSubBenifitList().size() != 0){
+            for(IllustrationSubBenifit item : illustrationDTO.getIllustrationSubBenifitList()){
+                if(illustSubBenifitRepository.existsById(item.getId())){
+                    Optional<IllustrationSubBenifit> illustrationSubBenifit = illustSubBenifitRepository.findById(item.getId());
+                    illustSubBenifitRepository.save(illustrationSubBenifit.get());
                 } else {
-                    illustSubInterestRepository.save(item);
+                    illustSubBenifitRepository.save(item);
                 }
             }
 

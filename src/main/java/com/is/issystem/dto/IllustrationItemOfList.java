@@ -21,5 +21,5 @@ public class IllustrationItemOfList {
     private Date create_time;
 
     @Column
-    private String interest_name;
+    private String benifit_name;
 }

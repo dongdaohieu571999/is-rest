@@ -5,17 +5,17 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-@Setter
 @Getter
+@Setter
 @Entity
-@Table(name = "multiplier_for_main_interest")
-public class MultiplierForMainInterest {
+@Table(name = "multiplier_for_sub_benifits")
+public class MultiplierForSubBenifit {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id")
     private Integer id;
-    @Column(name = "main_interest_id")
-    private Integer main_interest_id;
+    @Column(name = "sub_benifit_id")
+    private Integer sub_benifit_id;
     @Column(name = "multiplier")
     private Float multiplier;
 }

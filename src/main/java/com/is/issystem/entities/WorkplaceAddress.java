@@ -1,8 +1,13 @@
 package com.is.issystem.entities;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 @Entity
+@Getter
+@Setter
 @Table(name="workplace_address")
 public class WorkplaceAddress {
     @Id
@@ -17,44 +22,4 @@ public class WorkplaceAddress {
     private String workadd_district;
     @Column(name = "workadd_wards")
     private String workadd_wards;
-
-    public Integer getWorkadd_id() {
-        return workadd_id;
-    }
-
-    public void setWorkadd_id(Integer workadd_id) {
-        this.workadd_id = workadd_id;
-    }
-
-    public String getWorkadd_no_street() {
-        return workadd_no_street;
-    }
-
-    public void setWorkadd_no_street(String workadd_no_street) {
-        this.workadd_no_street = workadd_no_street;
-    }
-
-    public String getWorkadd_city() {
-        return workadd_city;
-    }
-
-    public void setWorkadd_city(String workadd_city) {
-        this.workadd_city = workadd_city;
-    }
-
-    public String getWorkadd_district() {
-        return workadd_district;
-    }
-
-    public void setWorkadd_district(String workadd_district) {
-        this.workadd_district = workadd_district;
-    }
-
-    public String getWorkadd_wards() {
-        return workadd_wards;
-    }
-
-    public void setWorkadd_wards(String workadd_wards) {
-        this.workadd_wards = workadd_wards;
-    }
 }

@@ -23,7 +23,7 @@ public class ContractService {
     @Autowired
     private FeePaymentHistoryRepository feePaymentHistoryRepository;
     @Autowired
-    private IntersetPaymentHistoryRepository intersetPaymentHistoryRepository;
+    private IntersetPaymentHistoryRepository benifitPaymentHistoryRepository;
     @Autowired
     private RequestRepository requestRepository;
 
@@ -38,8 +38,6 @@ public class ContractService {
     public List<ContractDTO> searchAllContractForCustomer(int id,String dateFrom,String dateTo,String searchValue){
         return  contractDTORepository.searchAllContractDTOForCustomer(id,dateFrom,dateTo,searchValue);
     }
-
-
 
     public List<ContractDTO> searchAllContract(String code_em_support,String dateFrom,String dateTo,String searchValue){
         return contractDTORepository.searchAllContractDTO(code_em_support,dateFrom,dateTo,searchValue);
@@ -71,7 +69,7 @@ public class ContractService {
     }
 
     public List<IntersetPaymentHistory> getAllIntersetPaymentHistory(int id){
-        return intersetPaymentHistoryRepository.getAllIntersetPayment(id);
+        return benifitPaymentHistoryRepository.getAllIntersetPayment(id);
     }
     public void setUpdateContract(int id_contract,Integer id_request,String description,String approval_status){
         Optional<Contract> contract = contractRepository.findById(id_contract);
@@ -102,7 +100,7 @@ public class ContractService {
         HistoryContract.setName_contract_owner(oldContract.get().getName_contract_owner());
         HistoryContract.setPayment_period_id(oldContract.get().getPayment_period_id());
         HistoryContract.setInsurance_type(oldContract.get().getInsurance_type());
-        HistoryContract.setId_main_interest(oldContract.get().getId_main_interest());
+        HistoryContract.setId_main_benifitt(oldContract.get().getId_main_benifit());
         HistoryContract.setId_illustration(oldContract.get().getId_illustration());
         HistoryContract.setStart_time(oldContract.get().getStart_time());
         HistoryContract.setEnd_time(oldContract.get().getEnd_time());
@@ -120,7 +118,7 @@ public class ContractService {
         oldContract.get().setPayment_period_id(cont.getPayment_period_id());
         oldContract.get().setId_illustration(cont.getId_illustration());
         oldContract.get().setInsurance_type(cont.getInsurance_type());
-        oldContract.get().setId_main_interest(cont.getId_illustration());
+        oldContract.get().setId_main_benifit(cont.getId_illustration());
 
     }
 }

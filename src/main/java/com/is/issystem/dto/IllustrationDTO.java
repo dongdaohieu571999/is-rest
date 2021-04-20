@@ -1,6 +1,6 @@
 package com.is.issystem.dto;
-import com.is.issystem.entities.IllustrationMainInterest;
-import com.is.issystem.entities.IllustrationSubInterest;
+import com.is.issystem.entities.IllustrationMainBenifit;
+import com.is.issystem.entities.IllustrationSubBenifit;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,11 +15,11 @@ public class IllustrationDTO {
     Integer id;
     Integer id_customer_info;
     Date create_time;
-    String interest_name;
+    String benifit_name;
     Integer payment_period_id;
     BigInteger total_fee;
 
 
-    IllustrationMainInterest illustrationMainInterest;
-    List<IllustrationSubInterest> illustrationSubInterestList;
+    IllustrationMainBenifit illustrationMainBenifit;
+    List<IllustrationSubBenifit> illustrationSubBenifitList;
 }

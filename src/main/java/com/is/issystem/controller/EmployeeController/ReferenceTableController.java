@@ -19,7 +19,7 @@ public class ReferenceTableController {
     public ResponseEntity<?> getAllReference(){
         return ResponseEntity.status(HttpStatus.OK).body(new Referencetable(referenceTableService.findAllMultiplierForAge(),
                 referenceTableService.findAllMultiplierForCareerGroup(),referenceTableService.findAllMultiplierForGenders()
-        , referenceTableService.findAllMultiplierForMainInterest(),referenceTableService.findAllMultiplierForPaymentPeriod()
-        ,referenceTableService.findAllMultiplierForSubInterests()));
+        , referenceTableService.findAllMultiplierForMainBenifit(),referenceTableService.findAllMultiplierForPaymentPeriod()
+        ,referenceTableService.findAllMultiplierForSubBenifit()));
     }
 }
