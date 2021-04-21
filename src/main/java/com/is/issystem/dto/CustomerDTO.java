@@ -236,6 +236,11 @@ import java.util.Date;
         )
 )
 public class CustomerDTO {
+
+    public CustomerDTO(Long id) {
+        this.id = id;
+    }
+
     @Id
     @Column
     private Long id;
