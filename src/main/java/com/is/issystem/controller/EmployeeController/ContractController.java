@@ -64,6 +64,11 @@ public class ContractController {
         return contractService.getDetailContractForSaler(jsonObject.getString("code"),jsonObject.getInt("id"));
     }
 
+    @PostMapping(value = "/get_detail_contract_for_customer")
+    ContractDTO getDetailContractForCustomer(@RequestBody Integer id){
+        return contractService.getDetailContractForCustomer(id);
+    }
+
     @GetMapping(value = "/get_detail_contract_change_history/{id}")
     Optional<ContractChangeHistory> getDetailContractChange(@PathVariable("id") int id){
         return contractService.getDetailContractChange(id);
