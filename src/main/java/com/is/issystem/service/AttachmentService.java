@@ -27,7 +27,12 @@ public class AttachmentService {
 
     //luu 1 tài liệu của khách hàng
     public CustomerAttachment saveOneCustomerAttachment(CustomerAttachment customerAttachment){
-        return customerAttachmentRepository.save(customerAttachment);
+        try{
+            return customerAttachmentRepository.save(customerAttachment);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     // lấy tất cả tài liệu của khách hàng theo id hợp đồng

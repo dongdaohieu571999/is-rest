@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-@Table(name = "multiplier_for_sub_benifits")
+@Table(name = "multiplier_for_sub_benifit")
 public class MultiplierForSubBenifit {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id

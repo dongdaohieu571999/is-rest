@@ -14,8 +14,8 @@ public class MultiplierForMainBenifit {
     @Id
     @Column(name = "id")
     private Integer id;
-    @Column(name = "sub_benifit_id")
-    private Integer sub_benifit_id;
+    @Column(name = "main_benifit_id")
+    private Integer main_benifit_id;
     @Column(name = "multiplier")
     private Float multiplier;
 }
