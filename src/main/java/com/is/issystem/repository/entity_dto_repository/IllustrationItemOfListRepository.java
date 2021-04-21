@@ -14,7 +14,7 @@ public interface IllustrationItemOfListRepository extends JpaRepository<Illustra
     List<IllustrationItemOfList> listIllustrationCustomerOwn(int id);
 
     @Query(value = "SELECT  ill.*,mi.benifit_name FROM is_agency_db.illustration as ill \n" +
-            "            INNER JOIN is_agency_db.illustration_main_intserest as imi on ill.id = imi.id_illustration \n" +
+            "            INNER JOIN is_agency_db.illustration_main_benifit as imi on ill.id = imi.id_illustration \n" +
             "            INNER JOIN is_agency_db.main_benifit as mi on mi.id = imi.id_main_benifit\n" +
             "\t\t\tLEFT JOIN contract as c on c.id_illustration = ill.id  \n" +
             "\t\t\twhere (ill.id_customer_info = ?1 and ill.create_time between ?2 and ?3 and c.id is null)\n" +
