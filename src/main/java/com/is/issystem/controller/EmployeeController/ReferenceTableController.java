@@ -17,9 +17,12 @@ public class ReferenceTableController {
 
     @GetMapping(value = "/get_all_reference_table")
     public ResponseEntity<?> getAllReference(){
-        return ResponseEntity.status(HttpStatus.OK).body(new Referencetable(referenceTableService.findAllMultiplierForAge(),
-                referenceTableService.findAllMultiplierForCareerGroup(),referenceTableService.findAllMultiplierForGenders()
-        , referenceTableService.findAllMultiplierForMainBenifit(),referenceTableService.findAllMultiplierForPaymentPeriod()
+        return ResponseEntity.status(HttpStatus.OK).body(new Referencetable(
+                referenceTableService.findAllMultiplierForAge(),
+                referenceTableService.findAllMultiplierForCareerGroup(),
+                referenceTableService.findAllMultiplierForGenders()
+        , referenceTableService.findAllMultiplierForMainBenifit(),
+                referenceTableService.findAllMultiplierForPaymentPeriod()
         ,referenceTableService.findAllMultiplierForSubBenifit()));
     }
 }
