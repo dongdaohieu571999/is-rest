@@ -26,7 +26,7 @@ import java.util.Date;
                 "INNER JOIN current_address as curadd ON curadd.curadd_id = ci.id_current_address \n" +
                 "INNER JOIN permanent_address as peradd on peradd.peradd_id = ci.id_permanent_address \n" +
                 "INNER JOIN workplace_address as workadd ON workadd.workadd_id = ci.id_workplace_address \n" +
-                "where ci.code_em_support = 'hieuddhe130570' order by created_time desc",
+                "where ci.code_em_support = ?1 order by created_time desc",
         resultSetMapping = "stock_akhir_dto"
 )
 @NamedNativeQuery(
@@ -47,8 +47,8 @@ import java.util.Date;
                 "INNER JOIN permanent_address as peradd on peradd.peradd_id = ci.id_permanent_address \n" +
                 "INNER JOIN workplace_address as workadd ON workadd.workadd_id = ci.id_workplace_address \n" +
                 "where (ci.code_em_support = ?1 and created_time between ?2 and ?3)\n" +
-                "and (ci.full_name LIKE ?4 or ci.id LIKE ?4  or code LIKE ?4 or ct.id LIKE ?4 or conadd_city LIKE ?4 or il.id LIKE ?4 or ci.phone_1 LIKE ?4\n" +
-                "tor workadd_no_street LIKE ?4)\n" +
+                "and (ci.full_name LIKE ?4 or ci.id LIKE ?4  or code LIKE ?4 or conadd_city LIKE ?4 or ci.phone_1 LIKE ?4\n" +
+                "or workadd_no_street LIKE ?4)\n" +
                 "order by created_time desc",
         resultSetMapping = "stock_akhir_dto"
 )
@@ -176,7 +176,7 @@ import java.util.Date;
                         @ColumnResult(name = "company_name", type = String.class),
                         @ColumnResult(name = "main_business", type = String.class),
                         @ColumnResult(name = "specific_work", type = String.class),
-                        @ColumnResult(name = "monthly_income", type = Float.class),
+                        @ColumnResult(name = "monthly_income", type = Long.class),
                         @ColumnResult(name = "email", type = String.class),
                         @ColumnResult(name = "phone_1", type = String.class),
                         @ColumnResult(name = "phone_2", type = String.class),
@@ -262,7 +262,7 @@ public class CustomerDTO {
     @Column
     private String specific_work;
     @Column
-    private Float monthly_income;
+    private Long monthly_income;
     @Column
     private String email;
     @Column
