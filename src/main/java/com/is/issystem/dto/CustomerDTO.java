@@ -176,7 +176,7 @@ import java.util.Date;
                         @ColumnResult(name = "company_name", type = String.class),
                         @ColumnResult(name = "main_business", type = String.class),
                         @ColumnResult(name = "specific_work", type = String.class),
-                        @ColumnResult(name = "monthly_income", type = Float.class),
+                        @ColumnResult(name = "monthly_income", type = Long.class),
                         @ColumnResult(name = "email", type = String.class),
                         @ColumnResult(name = "phone_1", type = String.class),
                         @ColumnResult(name = "phone_2", type = String.class),
@@ -267,7 +267,7 @@ public class CustomerDTO {
     @Column
     private String specific_work;
     @Column
-    private Float monthly_income;
+    private Long monthly_income;
     @Column
     private String email;
     @Column
