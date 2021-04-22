@@ -116,8 +116,9 @@ public class CustomerInfoService {
     public boolean addCustomerInfo(CustomerDTO customerDTO){
         List<CustomerInfo> customerInfos = customerInfoRepository.findAll();
         for (CustomerInfo customerInfo : customerInfos){
-              if(customerInfo.getEmail().equals(customerDTO.getEmail()) || customerInfo.getId_card().equals(customerInfo.getId_card()))
-            return false;
+              if(customerInfo.getEmail().equals(customerDTO.getEmail()) || customerInfo.getId_card().equals(customerDTO.getId_card())) {
+                  return false;
+              }
         }
 
         CustomerInfo customerInfo = new CustomerInfo();
@@ -142,7 +143,7 @@ public class CustomerInfoService {
         customerInfo.setPhone_2(customerDTO.getPhone_2());
         customerInfo.setCode_em_support(customerDTO.getCode_em_support());
         customerInfo.setFull_name(customerDTO.getFull_name());
-        customerInfo.setCode_em_support(customerDTO.getCode_em_support());
+        customerInfo.setGender(customerDTO.getGender());
         customerInfo.setCreated_time(new Date());
         customerInfo.setMarital_status(customerDTO.getMarital_status());
         customerInfo.setSource(customerDTO.getSource());

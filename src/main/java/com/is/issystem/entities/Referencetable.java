@@ -21,6 +21,6 @@ public class Referencetable {
         this.multiplierForGenders = multiplierForGenders;
         this.multiplierForMainBenifit = multiplierForMainBenifit;
         this.multiplierForPaymentPeriod = multiplierForPaymentPeriod;
-        this.multiplierForSubBenifit = this.multiplierForSubBenifit;
+        this.multiplierForSubBenifit = multiplierForSubBenifit;
     }
 }

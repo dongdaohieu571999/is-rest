@@ -46,7 +46,7 @@ public class CustomerInfo {
     @Column(name = "specific_work")
     private String specific_work;
     @Column(name = "monthly_income")
-    private float monthly_income;
+    private Long monthly_income;
     @Column(name = "id_current_address")
     private Integer id_current_address;
     @Column(name = "id_permanent_address")
