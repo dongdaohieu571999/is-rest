@@ -24,6 +24,10 @@ public class MailService {
         return mailDTORepository.getAllMailReceived(userCode);
     }
 
+    public MailDTO getDetailMail(int id){
+        return mailDTORepository.getDetailMail(id);
+    }
+
     public List<MailDTO> getAllMailSent(String userCode){
         return mailDTORepository.getAllMailSent(userCode);
     }

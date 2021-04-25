@@ -1,11 +1,14 @@
 package com.is.issystem.controller.EmployeeController;
 
+import com.is.issystem.dto.CustomerDTO;
 import com.is.issystem.service.MailService;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/mail")
@@ -17,6 +20,12 @@ public class MailController {
     @PostMapping(value = "/all_mail")
     public ResponseEntity<?> viewAllMailReceived(@RequestBody String userCode){
         return ResponseEntity.status(HttpStatus.OK).body(mailService.getAllMailReceived(userCode));
+    }
+
+
+    @GetMapping(value = "/get_detail_mail/{id}")
+    public ResponseEntity<?> getDetailMail(@PathVariable("id") int id){
+        return ResponseEntity.status(HttpStatus.OK).body(mailService.getDetailMail(id));
     }
 
 

@@ -29,6 +29,24 @@ public interface MailDTORepository extends JpaRepository<MailDTO,Integer> {
     public List<MailDTO> getAllMailReceived(String code);
 
     @Query(value = "select mail.id, mail.title, \n" +
+            "            mail.priority,\n" +
+            "            mail.status,\n" +
+            "            em_info.name ,\n" +
+            "            mail.content,\n" +
+            "            mail.time,\n" +
+            "            mail.receiver_id,\n" +
+            "            mail.sender_id,\n" +
+            "            em_acc.code\n" +
+            "            from is_agency_db.mail as mail, is_agency_db.employee_info as em_info,is_agency_db.employee_acc as em_acc\n" +
+            "            where \n" +
+            "            mail.sender_id = em_info.id_acc\n" +
+            "            and em_acc.id = em_info.id_acc \n" +
+            "            and mail.id = ?1\n" +
+            "            order by id desc ", nativeQuery = true)
+    public MailDTO getDetailMail(int id);
+
+
+    @Query(value = "select mail.id, mail.title, \n" +
             "mail.priority,\n" +
             "mail.status,\n" +
             "em_info.name ,\n" +

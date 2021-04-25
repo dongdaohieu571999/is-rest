@@ -74,7 +74,14 @@ public class ContractService {
     public void setUpdateContract(int id_contract,Integer id_request,String description,String approval_status){
         Optional<Contract> contract = contractRepository.findById(id_contract);
         contract.get().setApproval_status(approval_status);
-        contract.get().setStatus(approval_status.equals("DD")?true:false);
+        switch (approval_status){
+            case "DD" :  contract.get().setStatus(true); break;
+            case "CXD" :  contract.get().setStatus(false); break;
+            case "DXD" :  contract.get().setStatus(false); break;
+            case "TC" :  contract.get().setStatus(false); break;
+            case "YCT" :  contract.get().setStatus(false); break;
+        }
+
         contractRepository.save(contract.get());
 
         if(id_request != -1){
