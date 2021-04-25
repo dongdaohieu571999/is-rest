@@ -38,6 +38,12 @@ public class RevenueController {
         return ResponseEntity.status(HttpStatus.OK).body(revenueService.getAllRevenueEmployeeYearBefore(monthRevenue.get("code_em_support").toString(),Integer.parseInt(monthRevenue.get("yearDate").toString())));
     }
 
+    // tính thu nhập của năm hiện tại trong đó bao gồm các dự đoán trước thu nhập cho các tháng tương lai
+    @PostMapping(value = "/get_all_income_saler")
+    public ResponseEntity getAllIncomeSaler(@RequestBody String code_em_support){
+        return ResponseEntity.status(HttpStatus.OK).body(revenueService.getAllIncomeForSaler(code_em_support));
+    }
+
 
 
 }
