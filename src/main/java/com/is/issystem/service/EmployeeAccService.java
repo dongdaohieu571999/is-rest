@@ -47,22 +47,35 @@ import static com.is.issystem.service.TokenAuthenticationService.TOKEN_PREFIX;
             message.setText("Do bạn đã vi phạm một số quy định của công ty  " +
                     "nên tài khoản của bạn đã bị tạm ngưng." +
                     "Mọi thắc mắc thì xin hay liên hệ với email sau đây : daohieu571999@gmail.com");
+
+            System.out.println("pauseEmployee(String codeEmployeeNew,Integer id_employee_old)");
+
             try{
                 this.emailSender.send(message);
+                System.out.println("pause successfully");
             } catch (MailException e){
                 e.printStackTrace();
+                System.out.println("pause unsuccessfully");
             }
+            System.out.println("---------------");
         }
 
     public List<PauseReason> updatePauseReason(List<PauseReason> pauseReasons){
         for(PauseReason pauseReason : pauseReasons){
             pauseReasonHistoryRepository.save(pauseReason);
         }
+        System.out.println("updatePauseReason(List<PauseReason> pauseReasons)");
+        System.out.println(pauseReasons.toString());
+        System.out.println("---------------");
         return pauseReasons;
     }
 
         public List<EmployeeAcc> findAll() {
-            return employeeAccRepository.findAll();
+            List<EmployeeAcc> result = employeeAccRepository.findAll();
+            System.out.println("List<EmployeeAcc> findAll()");
+            System.out.println(result.toString());
+            System.out.println("---------------");
+            return result;
         }
 
         public EmployeeAcc addEmployeeAccount(EmployeeAcc employee_acc,String email,String code_ap_support,Integer id_custInfo) {
@@ -86,28 +99,41 @@ import static com.is.issystem.service.TokenAuthenticationService.TOKEN_PREFIX;
             +"Tài Khoản: "+employee_acc.getCode()+"\n"
             +"Mật Khẩu: "+employeeAcc.getPass());
 
+            System.out.println("addEmployeeAccount(EmployeeAcc employee_acc,String email,String code_ap_support,Integer id_custInfo)");
             try{
                 this.emailSender.send(message);
+                System.out.println("add successfully");
             } catch (MailException e){
                 e.printStackTrace();
+                System.out.println("add unsuccessfully");
             }
+            System.out.println("---------------");
         return employeeAcc;
         }
 
 
         public Optional<EmployeeAcc> findEmployeeAccountByID(Integer id) {
-            return employeeAccRepository.findById(id);
+            Optional<EmployeeAcc> result = employeeAccRepository.findById(id);
+            System.out.println("findEmployeeAccountByID(Integer id)");
+            System.out.println(result.toString());
+            System.out.println("---------------");
+            return result;
         }
 
         public EmployeeAcc findEmployeeAccountByCode(String token_id) {
+            System.out.println("findEmployeeAccountByCode(String token_id)");
             if (token_id != null) {
                 String user = Jwts.parser()
                         .setSigningKey(SECRET)
                         .parseClaimsJws(token_id.replace(TOKEN_PREFIX, ""))
                         .getBody()
                         .getSubject();
-                return employeeAccRepository.getOneAcc(user);
+                EmployeeAcc result = employeeAccRepository.getOneAcc(user);
+                System.out.println(result.toString());
+                System.out.println("---------------");
+                return result;
             }
+            System.out.println("---------------");
             return null;
         }
 
@@ -116,7 +142,11 @@ import static com.is.issystem.service.TokenAuthenticationService.TOKEN_PREFIX;
             existEmployeeAcc.setCode(employee_acc.getCode());
             existEmployeeAcc.setPass(employee_acc.getPass());
             existEmployeeAcc.setStatus(employee_acc.isStatus());
-            return employeeAccRepository.save(existEmployeeAcc);
+            EmployeeAcc result = employeeAccRepository.save(existEmployeeAcc);
+            System.out.println("updateEmployeeAccountByCode(EmployeeAcc employee_acc)");
+            System.out.println(result.toString());
+            System.out.println("---------------");
+            return result;
         }
 
     public EmployeeAcc updateEmployeeAccountById(EmployeeAcc employee_acc) {
@@ -124,15 +154,27 @@ import static com.is.issystem.service.TokenAuthenticationService.TOKEN_PREFIX;
         existEmployeeAcc.get().setCode(employee_acc.getCode());
         existEmployeeAcc.get().setPass(employee_acc.getPass());
         existEmployeeAcc.get().setStatus(employee_acc.isStatus());
-        return employeeAccRepository.save(existEmployeeAcc.get());
+        EmployeeAcc result = employeeAccRepository.save(existEmployeeAcc.get());
+        System.out.println("updateEmployeeAccountById(EmployeeAcc employee_acc)");
+        System.out.println(result.toString());
+        System.out.println("---------------");
+        return result;
     }
 
         public boolean checkExistEmployeeAccount(EmployeeAcc employee_acc) {
-            return employeeAccRepository.getOneAcc(employee_acc.getCode()) == null ?false:true;
+            boolean result = employeeAccRepository.getOneAcc(employee_acc.getCode()) == null ?false:true;
+            System.out.println("checkExistEmployeeAccount(EmployeeAcc employee_acc)");
+            System.out.println(result);
+            System.out.println("---------------");
+            return result;
         }
 
         public List<EmployeeAcc> getAllEmployeeByIdRole(Integer id_role){
-            return employeeAccRepository.getAllEmaccByIdRole(id_role);
+            List<EmployeeAcc> result = employeeAccRepository.getAllEmaccByIdRole(id_role);
+            System.out.println("getAllEmployeeByIdRole(Integer id_role)");
+            System.out.println(result.toString());
+            System.out.println("---------------");
+            return result;
         }
 
 
