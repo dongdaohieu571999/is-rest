@@ -34,7 +34,11 @@ public class CustomerAccService {
 
     
     public List<CustomerAcc> findAll(){
-        return customerAccRepository.findAll();
+        List<CustomerAcc> result = customerAccRepository.findAll();
+        System.out.println("List<CustomerAcc> findAll()");
+        System.out.println(result.toString());
+        System.out.println("---------------");
+        return result;
     }
 
     public void addCustomerAccount(CustomerAcc customerAcc){

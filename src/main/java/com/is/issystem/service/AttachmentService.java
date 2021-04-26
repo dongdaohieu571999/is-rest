@@ -28,6 +28,9 @@ public class AttachmentService {
     //luu 1 tài liệu của khách hàng
     public CustomerAttachment saveOneCustomerAttachment(CustomerAttachment customerAttachment){
         try{
+            CustomerAttachment attachment = customerAttachmentRepository.save(customerAttachment);
+            System.out.println("------test saveOneCustomerAttachment()--------");
+            System.out.println(attachment.toString());
             return customerAttachmentRepository.save(customerAttachment);
         } catch (Exception e) {
             e.printStackTrace();

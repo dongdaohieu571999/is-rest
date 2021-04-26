@@ -28,67 +28,114 @@ public class ContractService {
     private RequestRepository requestRepository;
 
     public List<ContractDTO> getAllContract(String code_em_support){
-        return contractDTORepository.getAllContractDTO(code_em_support);
+        List<ContractDTO> result = contractDTORepository.getAllContractDTO(code_em_support);
+        System.out.println("getAllContract(String code_em_support)");
+        System.out.println(result.toString());
+        System.out.println("---------------");
+        return result;
     }
 
     public List<ContractDTO> getAllContractForCustomer(Integer id_cust_info){
-        return  contractDTORepository.getAllContractDTOForCustomer(id_cust_info);
+        List<ContractDTO> result = contractDTORepository.getAllContractDTOForCustomer(id_cust_info);
+        System.out.println("getAllContractForCustomer(Integer id_cust_info)");
+        System.out.println(result.toString());
+        System.out.println("---------------");
+        return  result;
     }
 
     public List<ContractDTO> searchAllContractForCustomer(int id,String dateFrom,String dateTo,String searchValue){
-        return  contractDTORepository.searchAllContractDTOForCustomer(id,dateFrom,dateTo,searchValue);
+        List<ContractDTO> result = contractDTORepository.searchAllContractDTOForCustomer(id,dateFrom,dateTo,searchValue);
+        System.out.println("searchAllContractForCustomer(int id,String dateFrom,String dateTo,String searchValue)");
+        System.out.println(result.toString());
+        System.out.println("---------------");
+        return  result;
     }
 
     public List<ContractDTO> searchAllContract(String code_em_support,String dateFrom,String dateTo,String searchValue){
-        return contractDTORepository.searchAllContractDTO(code_em_support,dateFrom,dateTo,searchValue);
+        List<ContractDTO> result = contractDTORepository.searchAllContractDTO(code_em_support,dateFrom,dateTo,searchValue);
+        System.out.println("contractDTORepository.searchAllContractDTO(code_em_support,dateFrom,dateTo,searchValue)");
+        System.out.println(result.toString());
+        System.out.println("---------------");
+        return result;
     }
 
     public Integer getCountNewContract(String code_em_support,Integer monthDate){
-        return contractRepository.getAllContractCount(code_em_support,monthDate);   
+        Integer result = contractRepository.getAllContractCount(code_em_support,monthDate);
+        System.out.println("getCountNewContract(String code_em_support,Integer monthDate)");
+        System.out.println(result.toString());
+        System.out.println("---------------");
+        return result;
     }
 
     public ContractDTO getDetailContractForSaler(String code_em_support, Integer id){
-         return contractDTORepository.getDetailContractForSaler(code_em_support,id);
+        ContractDTO result = contractDTORepository.getDetailContractForSaler(code_em_support,id);
+        System.out.println("getDetailContractForSaler(String code_em_support, Integer id)");
+        System.out.println(result.toString());
+        System.out.println("---------------");
+        return result;
     }
 
     // lấy detail contract cho 1 khách hàng ở trang website của customer
     public ContractDTO getDetailContractForCustomer(Integer id){
-        return contractDTORepository.getDetailContractForCustomer(id);
+        ContractDTO result = contractDTORepository.getDetailContractForCustomer(id);
+        System.out.println("contractDTORepository.getDetailContractForCustomer(id)");
+        System.out.println(result.toString());
+        System.out.println("---------------");
+        return result;
     }
 
     public Optional<ContractChangeHistory> getDetailContractChange(int id){
-        return contractChangeHistoryRepository.findById(id);
+        Optional<ContractChangeHistory> result = contractChangeHistoryRepository.findById(id);
+        System.out.println("getDetailContractChange(int id)");
+        System.out.println(result.toString());
+        System.out.println("---------------");
+        return result;
     }
 
     public List<ContractChangeHistory> getAllContractHistory(int id){
-       return contractChangeHistoryRepository.getAllContractChange(id);
+        List<ContractChangeHistory> result = contractChangeHistoryRepository.getAllContractChange(id);
+        System.out.println("getAllContractHistory(int id)");
+        System.out.println(result.toString());
+        System.out.println("---------------");
+        return result;
     }
 
     public List<FeePaymentHistory> getAllFeePaymentHistory(int id){
-        return feePaymentHistoryRepository.getAllFeePayment(id);
+        List<FeePaymentHistory> result = feePaymentHistoryRepository.getAllFeePayment(id);
+        System.out.println("getAllFeePaymentHistory(int id)");
+        System.out.println(result.toString());
+        System.out.println("---------------");
+        return result;
     }
 
     public List<BenifitPaymentHistory> getAllIntersetPaymentHistory(int id){
-        return benifitPaymentHistoryRepository.getAllIntersetPayment(id);
+        List<BenifitPaymentHistory> result = benifitPaymentHistoryRepository.getAllIntersetPayment(id);
+        System.out.println("getAllIntersetPaymentHistory(int id)");
+        System.out.println(result.toString());
+        System.out.println("---------------");
+        return result;
     }
     public void setUpdateContract(int id_contract,Integer id_request,String description,String approval_status){
+        System.out.println("setUpdateContract(int id_contract,Integer id_request,String description,String approval_status)");
         Optional<Contract> contract = contractRepository.findById(id_contract);
         contract.get().setApproval_status(approval_status);
         contract.get().setStatus(approval_status.equals("DD")?true:false);
         contractRepository.save(contract.get());
-
+        System.out.println("save successfully id = 1");
         if(id_request != -1){
             Optional<Request> request = requestRepository.findById(id_request);
             request.get().setDescription(description);
             request.get().setStatus(approval_status);
             requestRepository.save(request.get());
+            System.out.println("save successfully id != 1");
         }
-
+        System.out.println("---------------");
 
     }
 
 
     public void updateContract(Contract cont){
+        System.out.println("updateContract(Contract cont)");
         Optional<Contract> oldContract = contractRepository.findById(cont.getId());
 
         ContractChangeHistory HistoryContract = new ContractChangeHistory();
@@ -109,8 +156,9 @@ public class ContractService {
         HistoryContract.setCreate_time(oldContract.get().getCreate_time());
         HistoryContract.setCode_em_support(oldContract.get().getCode_em_support());
         contractChangeHistoryRepository.save(HistoryContract);
+        System.out.println("save history successfully");
 
-
+        System.out.println("---------------");
         oldContract.get().setContract_total_value(cont.getContract_total_value());
         oldContract.get().setName_contract_owner(cont.getName_contract_owner());
         oldContract.get().setCreate_time(cont.getCreate_time());
