@@ -13,6 +13,10 @@ public class DetailCommissionService {
     DetailCommissionRepository detailCommissionRepository;
 
     public DetailCommission getOneDetailComission(Integer payment_period_id,BigInteger denomination){
-        return detailCommissionRepository.getOneDetaiCommisson(payment_period_id,denomination);
+        DetailCommission result = detailCommissionRepository.getOneDetaiCommisson(payment_period_id,denomination);
+        System.out.println("getOneDetailComission(Integer payment_period_id,BigInteger denomination)");
+        System.out.println(result.toString());
+        System.out.println("---------------");
+        return result;
     }
 }
