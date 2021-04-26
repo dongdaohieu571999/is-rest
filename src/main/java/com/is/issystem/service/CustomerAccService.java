@@ -43,6 +43,9 @@ public class CustomerAccService {
 
     public void addCustomerAccount(CustomerAcc customerAcc){
         customerAccRepository.save(customerAcc);
+        System.out.println("addCustomerAccount(CustomerAcc customerAcc)");
+        System.out.println("add customer successfully");
+        System.out.println("---------------");
     }
 
     public CustomerAcc sendCustomerAccount(Integer id){
@@ -61,7 +64,12 @@ public class CustomerAccService {
         } catch (MailException e){
             e.printStackTrace();
         }
-        return customerAcc.get();
+        CustomerAcc result = customerAcc.get();
+        System.out.println("sendCustomerAccount(Integer id)");
+        System.out.println("send customer account success");
+        System.out.println(result.toString());
+        System.out.println("---------------");
+        return result;
     }
 
     public CustomerAcc resetAccountPasswordCustomer(CustomerDTO customerDTO){
@@ -78,6 +86,10 @@ public class CustomerAccService {
         } catch (MailException e){
             e.printStackTrace();
         }
+        System.out.println("resetAccountPasswordCustomer(CustomerDTO customerDTO)");
+        System.out.println("reset password success");
+        System.out.println(customerAcc1.toString());
+        System.out.println("---------------");
         return customerAcc1;
     }
 
@@ -86,16 +98,26 @@ public class CustomerAccService {
         acc.get().setCode(customerAcc.getCode());
         acc.get().setPass(customerAcc.getPass());
         acc.get().setStatus(customerAcc.isStatus());
-
+        System.out.println("updateCustomerAccount(CustomerAcc customerAcc)");
+        System.out.println("update successfully");
+        System.out.println("---------------");
         return customerAccRepository.save(acc.get());
     }
 
     public boolean checkExistCustomerAccount(CustomerAcc customerAcc){
-        return customerAccRepository.getAccExist(customerAcc.getCode(),customerAcc.getId()).size() > 0 ? true : false;
+        boolean result = customerAccRepository.getAccExist(customerAcc.getCode(),customerAcc.getId()).size() > 0 ? true : false;
+        System.out.println("checkExistCustomerAccount(CustomerAcc customerAcc)");
+        System.out.println(result);
+        System.out.println("---------------");
+        return result;
     }
 
     public CustomerAcc checkExistCustomerAccountByIdPass(String data[]){
-        return customerAccRepository.getAccByIdPass(Integer.parseInt(data[0]),data[1]);
+        CustomerAcc result = customerAccRepository.getAccByIdPass(Integer.parseInt(data[0]),data[1]);
+        System.out.println("checkExistCustomerAccountByIdPass(String data[])");
+        System.out.println(result.toString());
+        System.out.println("---------------");
+        return result;
     }
 
     public String getAccountbyCodePass(CustomerAcc customerAcc){
@@ -108,6 +130,9 @@ public class CustomerAccService {
                 .signWith(SignatureAlgorithm.HS512, SECRET)
                 .compact();
         }
+        System.out.println("getAccountbyCodePass(CustomerAcc customerAcc)");
+        System.out.println(JWToken);
+        System.out.println("---------------");
         return JWToken;
     }
 }

@@ -102,7 +102,7 @@ public class CustomerInfoService {
         workplaceAddress.get().setWorkadd_no_street(customerDTO.getWorkadd_no_street());
         workplaceAddress.get().setWorkadd_wards(customerDTO.getWorkadd_wards());
 
-
+        System.out.println("updateCustomerInfo(CustomerDTO customerDTO)");
 
         if(customerInfo != null && contactAddress != null && currentAddress != null && permanentAddress != null && workplaceAddress != null){
             customerInfoRepository.save(customerInfo.get());
@@ -110,7 +110,12 @@ public class CustomerInfoService {
             currentAddressRepository.save(currentAddress.get());
             permanentAddressRepository.save(permanentAddress.get());
             workplaceRepository.save(workplaceAddress.get());
+            System.out.println("update successfully");
+        } else {
+            System.out.println("update not successfully");
         }
+
+        System.out.println("---------------");
     }
 
     public boolean addCustomerInfo(CustomerDTO customerDTO){
@@ -194,7 +199,7 @@ public class CustomerInfoService {
         workplaceAddress.setWorkadd_no_street(customerDTO.getWorkadd_no_street());
         workplaceAddress.setWorkadd_wards(customerDTO.getWorkadd_wards());
 
-
+        System.out.println("addCustomerInfo(CustomerDTO customerDTO)");
 
         if(customerInfo != null && contactAddress != null && currentAddress != null && permanentAddress != null && workplaceAddress != null){
 
@@ -209,22 +214,38 @@ public class CustomerInfoService {
 
             customerInfoRepository.save(customerInfo);
 
-
+            System.out.println("add successfully");
+        } else {
+            System.out.println("add not successfully");
         }
+
+        System.out.println("---------------");
         return true;
     }
 
     public List<CustomerDTO> getOneInfo(Integer id,String code_em_suport){
-        return customerDTORepository.getCustomerInfobyIDAndCodeEmSupport(id,code_em_suport);
+        List<CustomerDTO> result = customerDTORepository.getCustomerInfobyIDAndCodeEmSupport(id,code_em_suport);
+        System.out.println("getOneInfo(Integer id,String code_em_suport)");
+        System.out.println(result.toString());
+        System.out.println("---------------");
+        return result;
     }
 
     public List<CustomerDTO> getOneInfo(Integer id){
-        return customerDTORepository.getCustomerInfobyIdCustomer(id);
+        List<CustomerDTO> result = customerDTORepository.getCustomerInfobyIdCustomer(id);
+        System.out.println("getOneInfo(Integer id)");
+        System.out.println(result.toString());
+        System.out.println("---------------");
+        return result;
     }
 
     // query tất cả khách hàng và illustration, contract các khách hàng đó
     public List<CustomerDTO> findAll(String code_em_support) {
-        return customerDTORepository.getAllCustomerInfo(code_em_support);
+        List<CustomerDTO> result = customerDTORepository.getAllCustomerInfo(code_em_support);
+        System.out.println("List<CustomerDTO> findAll(String code_em_support)");
+        System.out.println(result.toString());
+        System.out.println("---------------");
+        return result;
     }
 
     public List<CustomerDTO> findAllSearch(String code_em_support,String dateFrom,String dateTo,String searchValue) throws ParseException {
@@ -241,21 +262,37 @@ public class CustomerInfoService {
 //            return customerDTORepository.getAllCustomerInfoSearch(code_em_support,dateFrom,dateTo,searchValue);
 //        }
 
-        return customerDTORepository.getAllCustomerInfoSearch(code_em_support,dateFrom,dateTo,searchValue);
+        List<CustomerDTO> result = customerDTORepository.getAllCustomerInfoSearch(code_em_support,dateFrom,dateTo,searchValue);
+        System.out.println("findAllSearch(String code_em_support,String dateFrom,String dateTo,String searchValue)");
+        System.out.println(result.toString());
+        System.out.println("---------------");
+        return result;
 
     }
 
     // query tất cả khách hàng nhưng không có illustration, contract các khách hàng đó
     public List<CustomerDTO> findAllCust(String code_em_support) {
-        return customerDTORepository.getCustomerInfobySaler(code_em_support);
+        List<CustomerDTO> result = customerDTORepository.getCustomerInfobySaler(code_em_support);
+        System.out.println("findAllCust(String code_em_support)");
+        System.out.println(result.toString());
+        System.out.println("---------------");
+        return result;
     }
 
     public List<CustomerDTO> getAllCustomerInfoAdmin() {
-        return customerDTORepository.getAllCustomerInfoAdmin();
+        List<CustomerDTO> result = customerDTORepository.getAllCustomerInfoAdmin();
+        System.out.println("getAllCustomerInfoAdmin()");
+        System.out.println(result.toString());
+        System.out.println("---------------");
+        return result;
     }
 
     public List<CustomerDTO> searchAllCustomerInfoAdmin(String dateFrom,String dateTo,String searchValue) {
-        return customerDTORepository.searchAllCustomerInfoAdmin(dateFrom,dateTo,searchValue);
+        List<CustomerDTO> result = customerDTORepository.searchAllCustomerInfoAdmin(dateFrom,dateTo,searchValue);
+        System.out.println("searchAllCustomerInfoAdmin(String dateFrom,String dateTo,String searchValue)");
+        System.out.println(result.toString());
+        System.out.println("---------------");
+        return result;
     }
 
 
