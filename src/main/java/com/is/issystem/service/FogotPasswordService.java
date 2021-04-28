@@ -2,12 +2,15 @@ package com.is.issystem.service;
 
 import com.is.issystem.commons.Ultility;
 import com.is.issystem.dto.EmployeeInfoDTO;
+import com.sendgrid.*;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
+
+import java.io.IOException;
 
 @Service
 public class FogotPasswordService {
@@ -39,6 +42,6 @@ public class FogotPasswordService {
         }
 
 
-        return employeeDTO;
+        return new EmployeeInfoDTO();
     }
 }

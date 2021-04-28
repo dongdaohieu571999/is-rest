@@ -1,11 +1,20 @@
 package com.is.issystem.configs;
 
 import com.is.issystem.commons.Constant;
+import com.sendgrid.*;
+import org.apache.commons.codec.CharEncoding;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.mail.javamail.MimeMessageHelper;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.security.cert.CertificateException;
+import java.security.cert.CertificateFactory;
+import java.security.cert.X509Certificate;
 import java.util.Properties;
 
 @Configuration
@@ -16,8 +25,8 @@ public class HostMailConfig {
         mailSender.setHost("smtp.gmail.com");
         mailSender.setPort(587);
         mailSender.setDefaultEncoding("UTF-8");
-        mailSender.setUsername(Constant.MY_EMAIL);
-        mailSender.setPassword(Constant.MY_PASSWORD);
+        mailSender.setUsername("saler@isolution.asia");
+        mailSender.setPassword("daohieu571999");
 
         Properties props = mailSender.getJavaMailProperties();
         props.put("mail.transport.protocol", "smtp");
@@ -28,4 +37,6 @@ public class HostMailConfig {
 
         return mailSender;
     }
+
+
 }

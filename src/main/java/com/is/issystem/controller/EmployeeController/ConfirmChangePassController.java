@@ -11,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+
 @Controller
 public class ConfirmChangePassController {
     @Autowired
@@ -18,7 +20,7 @@ public class ConfirmChangePassController {
     @Autowired
     public EmployeeAccService employeeAccService;
     @PostMapping("/api/sendSimpleEmail")
-    public ResponseEntity sendSimpleEmail(@RequestBody String data)  {
+    public ResponseEntity sendSimpleEmail(@RequestBody String data) throws IOException {
         return ResponseEntity.status(HttpStatus.OK).body(fogotPasswordService.sendSimpleEmail(data));
 
     }
