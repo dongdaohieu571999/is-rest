@@ -2,7 +2,6 @@ package com.is.issystem.controller.EmployeeController;
 
 import com.google.gson.Gson;
 import com.is.issystem.entities.EmployeeAcc;
-import com.is.issystem.entities.EmployeeInfo;
 import com.is.issystem.entities.PauseReason;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,8 +42,10 @@ public class EmployeeAccController {
     }
 
     @PostMapping(value = "/get_all_employee_acc_by_idRole")
-    public ResponseEntity<?> getAllEmaccByIdRole(@RequestBody Integer id_role){
-        return ResponseEntity.status(HttpStatus.OK).body(employeeAccService.getAllEmployeeByIdRole(id_role));
+    public ResponseEntity<?> getAllEmaccByIdRole(@RequestBody String data){
+        JSONObject jsonObject = new JSONObject(data);
+        return ResponseEntity.status(HttpStatus.OK).body(employeeAccService.
+                getAllEmployeeByIdRoleCodeApSpp(jsonObject.getInt("id"),jsonObject.getString("code_app_support")));
     }
 
     @PostMapping(value = "/update_employee_acc")

@@ -37,8 +37,10 @@ import static com.is.issystem.service.TokenAuthenticationService.TOKEN_PREFIX;
         public void pauseEmployee(String codeEmployeeNew,Integer id_employee_old){
             String codeEmployeeOld =  employeeAccRepository.findById(id_employee_old).get().getCode();
             String email = employeeInfoRepository.getOneEmployeeInfo(id_employee_old).getEmail();
+
             customerInfoRepository.updateEmployeeSupportCustomerInfo(codeEmployeeNew,codeEmployeeOld);
             contractRepository.updateEmployeeSupportContract(codeEmployeeNew,codeEmployeeOld);
+
             employeeAccRepository.updateStatusEmployeeAcc(codeEmployeeOld);
 
             SimpleMailMessage message = new SimpleMailMessage();
@@ -131,8 +133,11 @@ import static com.is.issystem.service.TokenAuthenticationService.TOKEN_PREFIX;
             return employeeAccRepository.getOneAcc(employee_acc.getCode()) == null ?false:true;
         }
 
-        public List<EmployeeAcc> getAllEmployeeByIdRole(Integer id_role){
-            return employeeAccRepository.getAllEmaccByIdRole(id_role);
+        public List<EmployeeAcc> getAllEmployeeByIdRoleCodeApSpp(Integer id_role, String code_app_support){
+            if(code_app_support.isEmpty()){
+                return employeeAccRepository.getAllEmaccByIdRole(id_role);
+            }
+            return employeeAccRepository.getAllEmaccByIdRoleCodeApSpp(id_role,code_app_support);
         }
 
 

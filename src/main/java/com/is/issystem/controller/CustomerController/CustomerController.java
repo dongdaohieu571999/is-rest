@@ -22,6 +22,9 @@ public class CustomerController {
     ReferenceTableService referenceTableService;
 
     @Autowired
+    private AttachmentService attachmentService;
+
+    @Autowired
     ContractService contractService;
 
     @Autowired
@@ -100,5 +103,10 @@ public class CustomerController {
             return ResponseEntity.status(HttpStatus.OK).body(customerAccService.updateCustomerAccount(customerAcc));
         }
         return ResponseEntity.status(HttpStatus.OK).body(null);
+    }
+
+    @PostMapping(value = "/get_customer_attachment")
+    public ResponseEntity<?> getCustomerAttachment(@RequestBody Integer id_contract){
+        return ResponseEntity.status(HttpStatus.OK).body(attachmentService.getCustomerAttachment(id_contract));
     }
 }
