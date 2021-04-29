@@ -28,7 +28,7 @@ public interface EmployeeAccRepository extends JpaRepository<EmployeeAcc,Integer
 
     @Query(value = "SELECT * \n" +
             "FROM is_agency_db.employee_acc \n" +
-            "WHERE ea.id_role = ?1 ;",nativeQuery = true)
+            "WHERE id_role = ?1 ;",nativeQuery = true)
     public List<EmployeeAcc> getAllEmaccByIdRole(Integer id_role);
 
 
