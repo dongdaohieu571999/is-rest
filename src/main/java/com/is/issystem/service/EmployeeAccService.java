@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Optional;
 
 import com.is.issystem.commons.Ultility;
+import com.is.issystem.dto.CustomerDTO;
+import com.is.issystem.dto.EmployeeInfoDTO;
 import com.is.issystem.entities.*;
 import com.is.issystem.repository.entity_repository.*;
 import io.jsonwebtoken.Jwts;
@@ -34,6 +36,23 @@ import static com.is.issystem.service.TokenAuthenticationService.TOKEN_PREFIX;
         @Autowired
         private PauseReasonHistoryRepository pauseReasonHistoryRepository;
 
+        public EmployeeAcc resetAccountPasswordEmployee(EmployeeInfoDTO employeeInfoDTO){
+            EmployeeAcc employeeAcc = employeeAccRepository.getOneAcc(employeeInfoDTO.getCode());
+            employeeAcc.setPass(Ultility.generatePassword(8));
+            EmployeeAcc employeeAcc1 = employeeAccRepository.save(employeeAcc);
+            SimpleMailMessage message = new SimpleMailMessage();
+            message.setTo(employeeInfoDTO.getEmail());
+            message.setSubject("THÔNG TIN MẬT KHẨU ĐĂNG NHẬP");
+            message.setText("QUÝ KHÁCH ĐÃ YÊU CẦU ĐẶT LẠI MẬT KHẨU,\nDưới đây là tài khoản và mật khẩu đăng nhập của Quý Khách:\nMã Đăng Nhập: " + employeeAcc1.getCode() + "\n" +
+                    "Mật Khẩu Đăng Nhập: "+employeeAcc1.getPass() + "\nQuý Khách vui lòng dùng thông tin trên để đăng nhập tài khoản của mình, cảm ơn quý khách ! ");
+            try{
+                this.emailSender.send(message);
+            } catch (MailException e){
+                e.printStackTrace();
+            }
+            return employeeAcc1;
+        }
+
         public void pauseEmployee(String codeEmployeeNew,Integer id_employee_old){
             String codeEmployeeOld =  employeeAccRepository.findById(id_employee_old).get().getCode();
             String email = employeeInfoRepository.getOneEmployeeInfo(id_employee_old).getEmail();
@@ -48,7 +67,7 @@ import static com.is.issystem.service.TokenAuthenticationService.TOKEN_PREFIX;
             message.setSubject("[THÔNG BÁO TẠM NGƯNG TÀI KHOẢN NHÂN VIÊN]");
             message.setText("Do bạn đã vi phạm một số quy định của công ty  " +
                     "nên tài khoản của bạn đã bị tạm ngưng." +
-                    "Mọi thắc mắc thì xin hay liên hệ với email sau đây : daohieu571999@gmail.com");
+                    "Mọi thắc mắc thì xin hay liên hệ với email sau đây : saler@isolution.asia");
             try{
                 this.emailSender.send(message);
             } catch (MailException e){

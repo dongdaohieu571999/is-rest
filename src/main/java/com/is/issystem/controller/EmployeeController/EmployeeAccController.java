@@ -1,6 +1,8 @@
 package com.is.issystem.controller.EmployeeController;
 
 import com.google.gson.Gson;
+import com.is.issystem.dto.CustomerDTO;
+import com.is.issystem.dto.EmployeeInfoDTO;
 import com.is.issystem.entities.EmployeeAcc;
 import com.is.issystem.entities.PauseReason;
 import org.json.JSONObject;
@@ -70,5 +72,10 @@ public class EmployeeAccController {
     @GetMapping(value = {"/get_one_employee_acc/{token_id}"})
     public ResponseEntity<?> getOneEmployeeAccount(@PathVariable String token_id){
         return ResponseEntity.status(HttpStatus.OK).body(employeeAccService.findEmployeeAccountByCode(token_id));
+    }
+
+    @PostMapping(value = "/reset_acc_password_for_employee")
+    public ResponseEntity<?> resetCustomerAccount(@RequestBody EmployeeInfoDTO employeeInfoDTO){
+        return ResponseEntity.status(HttpStatus.OK).body(employeeAccService.resetAccountPasswordEmployee(employeeInfoDTO));
     }
 }
