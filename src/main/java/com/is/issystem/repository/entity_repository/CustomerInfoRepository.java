@@ -18,4 +18,7 @@ public interface CustomerInfoRepository extends JpaRepository<CustomerInfo,Integ
             "code_em_support= ?1\n" +
             "WHERE code_em_support = ?2",nativeQuery = true)
     void updateEmployeeSupportCustomerInfo(String codeEmployeeNew, String codeEmployeeOld);
+
+    @Query (nativeQuery = true, value = "select * from customer_info where id != ? and email = ? ")
+    List<CustomerInfo> checkDuplicateEmail(Long id_infor, String email);
 }

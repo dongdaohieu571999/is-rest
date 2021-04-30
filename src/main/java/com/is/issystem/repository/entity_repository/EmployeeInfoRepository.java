@@ -14,5 +14,6 @@ public interface EmployeeInfoRepository extends JpaRepository<EmployeeInfo,Integ
     @Query(value = "SELECT  * FROM employee_info ",nativeQuery = true)
     List<EmployeeInfo> getAllEmployeeInfo();
 
-
+    @Query(value = "SELECT * FROM is_agency_db.employee_info where id != ? and email = ? ",nativeQuery = true)
+    List<EmployeeInfo> checkDupEmail(Integer id_em_info, String email);
 }

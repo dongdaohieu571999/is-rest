@@ -10,16 +10,16 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = {"/api/customer-api"})
 public class CustomerController {
     @Autowired
     ReferenceTableService referenceTableService;
+
+    @Autowired
+    SubBenifitService subBenifitService;
 
     @Autowired
     private AttachmentService attachmentService;
@@ -108,5 +108,10 @@ public class CustomerController {
     @PostMapping(value = "/get_customer_attachment")
     public ResponseEntity<?> getCustomerAttachment(@RequestBody Integer id_contract){
         return ResponseEntity.status(HttpStatus.OK).body(attachmentService.getCustomerAttachment(id_contract));
+    }
+
+    @GetMapping(value = "/get_all_sub_benifit")
+    public ResponseEntity<?> getAllSubBenifit(){
+        return ResponseEntity.status(HttpStatus.OK).body(subBenifitService.getAllSubBenifit());
     }
 }

@@ -40,7 +40,12 @@ public class CustomerInfoService {
     CustomerAccRepository customerAccRepository;
 
 
-    public void updateCustomerInfo(CustomerDTO customerDTO){
+    public Boolean updateCustomerInfo(CustomerDTO customerDTO){
+
+        if(customerInfoRepository.checkDuplicateEmail(customerDTO.getId(),customerDTO.getEmail()).size() != 0){
+            return false;
+        }
+
         Optional<CustomerInfo> customerInfo = customerInfoRepository.findById(Math.toIntExact(customerDTO.getId()));
         customerInfo.get().setBirth_date(customerDTO.getBirth_date());
         customerInfo.get().setAge(customerDTO.getAge());
@@ -110,7 +115,9 @@ public class CustomerInfoService {
             currentAddressRepository.save(currentAddress.get());
             permanentAddressRepository.save(permanentAddress.get());
             workplaceRepository.save(workplaceAddress.get());
+            return true;
         }
+        return false;
     }
 
     public boolean addCustomerInfo(CustomerDTO customerDTO){

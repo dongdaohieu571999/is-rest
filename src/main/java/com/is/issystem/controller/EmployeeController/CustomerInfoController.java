@@ -59,8 +59,7 @@ public class CustomerInfoController {
 
     @PostMapping(value = "/update_one_customer_info")
     public ResponseEntity<?> updateOneCustomerInfo(@RequestBody CustomerDTO customerDTO){
-        customerInfoService.updateCustomerInfo(customerDTO);
-        return ResponseEntity.status(HttpStatus.OK).body(customerDTO);
+        return ResponseEntity.status(HttpStatus.OK).body(customerInfoService.updateCustomerInfo(customerDTO));
 
     }
 

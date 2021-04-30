@@ -111,7 +111,13 @@ public class EmployeeInfoService {
         return true;
     }
 
-    public void updateEmployeeInfo(EmployeeInfoDTO employeeInfoDTO){
+    public Boolean updateEmployeeInfo(EmployeeInfoDTO employeeInfoDTO){
+
+        if(employeeInfoRepository.checkDupEmail(employeeInfoDTO.getId(),employeeInfoDTO.getEmail()).size() != 0){
+            return false;
+        }
+
+
         Optional<EmployeeInfo> employeeInfo = employeeInfoRepository.findById(employeeInfoDTO.getId());
         employeeInfo.get().setName(employeeInfoDTO.getName());
         employeeInfo.get().setAddress(employeeInfoDTO.getAddress());
@@ -152,13 +158,15 @@ public class EmployeeInfoService {
         permanentAddress.get().setPeradd_no_street(employeeInfoDTO.getPeradd_no_street());
         permanentAddress.get().setPeradd_wards(employeeInfoDTO.getPeradd_wards());
 
-//        if(employeeInfo != null && contactAddress != null && currentAddress != null && permanentAddress != null ){
-//            employeeInfoRepository.save(employeeInfo.get());
-//            contactAddressRepository.save(contactAddress.get());
-//            currentAddressRepository.save(currentAddress.get());
-//            permanentAddressRepository.save(permanentAddress.get());
-//        }
+        if(employeeInfo != null && contactAddress != null && currentAddress != null && permanentAddress != null ){
+            employeeInfoRepository.save(employeeInfo.get());
+            contactAddressRepository.save(contactAddress.get());
+            currentAddressRepository.save(currentAddress.get());
+            permanentAddressRepository.save(permanentAddress.get());
 
+            return true;
+        }
 
+        return false;
     }
 }

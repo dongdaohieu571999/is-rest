@@ -45,7 +45,7 @@ public class EmployeeInfoController {
     }
 
     @PostMapping(value = "/update_employee_info")
-    public void updateEmployeeInfo(@RequestBody EmployeeInfoDTO employeeInfoDTO){
-        employeeInfoService.updateEmployeeInfo(employeeInfoDTO);
+    public ResponseEntity<?> updateEmployeeInfo(@RequestBody EmployeeInfoDTO employeeInfoDTO){
+        return ResponseEntity.status(HttpStatus.OK).body(employeeInfoService.updateEmployeeInfo(employeeInfoDTO));
     }
 }
