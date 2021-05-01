@@ -3,14 +3,19 @@ package com.is.issystem.controller.EmployeeController;
 import com.google.gson.Gson;
 import com.is.issystem.dto.CustomerDTO;
 import com.is.issystem.dto.EmployeeInfoDTO;
+import com.is.issystem.entities.Attachment;
 import com.is.issystem.entities.EmployeeAcc;
 import com.is.issystem.entities.PauseReason;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.is.issystem.service.EmployeeAccService;
+
+import javax.mail.MessagingException;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -57,10 +62,16 @@ public class EmployeeAccController {
     }
 
     @PostMapping(value = "/pause_employee_acc")
-    public ResponseEntity<?> pauseEmployeeAccount(@RequestBody String data ){
+    public ResponseEntity<?> pauseEmployeeAccount(@RequestBody String data ) throws MessagingException {
         JSONObject employeeObject = new JSONObject(data);
-        employeeAccService.pauseEmployee(employeeObject.getString("codeEmployeeNew"),employeeObject.getInt("id_employee_old"));
-        return new ResponseEntity<>("Ngưng nhân viên thành công!", HttpStatus.OK);
+        JSONArray attachmentList = employeeObject.getJSONArray("listFileAttackment");
+        List<String> attachmentURLList = new ArrayList<>();
+        for(int i=0 ; i<attachmentList.length();i++){
+            JSONObject jsonObject = attachmentList.getJSONObject(i);
+            attachmentURLList.add(jsonObject.getString("url"));
+        }
+        employeeAccService.pauseEmployee(employeeObject.getString("codeEmployeeNew"),employeeObject.getInt("id_employee_old"),attachmentURLList);
+        return ResponseEntity.status(HttpStatus.OK).body(data);
     }
 
     @PostMapping(value = "/pause_reason_employee")

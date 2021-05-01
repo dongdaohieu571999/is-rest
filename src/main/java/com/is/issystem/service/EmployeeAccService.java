@@ -14,8 +14,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
 
 import static com.is.issystem.service.TokenAuthenticationService.SECRET;
 import static com.is.issystem.service.TokenAuthenticationService.TOKEN_PREFIX;
@@ -53,7 +57,7 @@ import static com.is.issystem.service.TokenAuthenticationService.TOKEN_PREFIX;
             return employeeAcc1;
         }
 
-        public void pauseEmployee(String codeEmployeeNew,Integer id_employee_old){
+        public void pauseEmployee(String codeEmployeeNew,Integer id_employee_old,List<String> attachmentURLList) throws MessagingException {
             String codeEmployeeOld =  employeeAccRepository.findById(id_employee_old).get().getCode();
             String email = employeeInfoRepository.getOneEmployeeInfo(id_employee_old).getEmail();
 
@@ -62,14 +66,32 @@ import static com.is.issystem.service.TokenAuthenticationService.TOKEN_PREFIX;
 
             employeeAccRepository.updateStatusEmployeeAcc(codeEmployeeOld);
 
-            SimpleMailMessage message = new SimpleMailMessage();
-            message.setTo(email);
-            message.setSubject("[THÔNG BÁO TẠM NGƯNG TÀI KHOẢN NHÂN VIÊN]");
-            message.setText("Do bạn đã vi phạm một số quy định của công ty  " +
-                    "nên tài khoản của bạn đã bị tạm ngưng." +
-                    "Mọi thắc mắc thì xin hay liên hệ với email sau đây : saler@isolution.asia");
+            String listURL = "";
+            for(String url : attachmentURLList){
+                listURL += "<a href = "+url+"><i>Tài Liệu</i></a>"+"<br>";
+            }
+            String sign = "<br><br><br><br><img width= "+"128"+" src="+"\"https://storage.googleapis.com/is-solution.appspot.com/IS_Logo.png\""+">" +
+                    "<br>"+"<i style = "+"\"color:blue\""+">Mr.Ngoc Minh |Recruitment Specialist<br>" +
+                    "ISOLUTION | 8th & 9th Floor, Thanh Cong Tower, Duy Tan, Cau Giay, Hanoi<br>" +
+                    "Mobile: 0904.620.636<br>" +
+                    "Skype: minhnc1998<br>" +
+                    "<a>Email: minhnc@isolution.asia</a></i><br>"+
+                    "<i><br>IMPORTANT NOTICE:<br>" +
+                    "The information in this email is the property of ISOLUTION. This communication is confidential and intended solely for the addressee(s). Any unauthorized review, use, disclosure or distribution is prohibited. If you believe this message has been sent to you in error, please notify the sender by replying to this transmission and delete the message without disclosing it. Thank you.<br>" +
+                    "E-mail including attachments is susceptible to data corruption, interception, unauthorized amendment, tampering and viruses, and we only send and receive emails on the basis that we are not liable for any such corruption, interception, amendment, tampering or viruses or any consequences thereof.</i>";
+            MimeMessage message1 = emailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message1);
+            helper.setSubject("[THÔNG BÁO TẠM NGƯNG TÀI KHOẢN NHÂN VIÊN]");
+            helper.setTo(email);
+
+            boolean html = true;
+            helper.setText("Do bạn đã vi phạm một số quy định của công ty <br>" +
+                    "vì vậy tài khoản của bạn đã bị <span style = "+"\"color:red\""+">TẠM NGƯNG</span>." +
+                    "<br>Mọi thắc mắc xin liên hệ với email sau đây : saler@isolution.asia<br>" +
+                    "<br>DƯỚI ĐÂY LÀ CÁC TÀI LIỆU DÙNG CHO VIỆC QUYẾT ĐỊNH TẠM NGƯNG:<br>"+
+                    listURL+sign, html);
             try{
-                this.emailSender.send(message);
+                this.emailSender.send(message1);
             } catch (MailException e){
                 e.printStackTrace();
             }
