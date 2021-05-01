@@ -33,7 +33,7 @@ public class EmployeeAccController {
 
 
     @PostMapping(value = "/add_employee_acc")
-    public ResponseEntity<?> addEmployeeAccount(@RequestBody String data){
+    public ResponseEntity<?> addEmployeeAccount(@RequestBody String data) throws MessagingException {
         JSONObject jsonObject = new JSONObject(data);
         Gson gson=new Gson();
         EmployeeAcc employeeAcc = gson.fromJson(jsonObject.getJSONObject("emAcc").toString(),EmployeeAcc.class);
@@ -86,7 +86,7 @@ public class EmployeeAccController {
     }
 
     @PostMapping(value = "/reset_acc_password_for_employee")
-    public ResponseEntity<?> resetCustomerAccount(@RequestBody EmployeeInfoDTO employeeInfoDTO){
+    public ResponseEntity<?> resetCustomerAccount(@RequestBody EmployeeInfoDTO employeeInfoDTO) throws MessagingException {
         return ResponseEntity.status(HttpStatus.OK).body(employeeAccService.resetAccountPasswordEmployee(employeeInfoDTO));
     }
 }

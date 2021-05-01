@@ -4,6 +4,7 @@ package com.is.issystem.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.is.issystem.commons.Constant;
 import com.is.issystem.commons.Ultility;
 import com.is.issystem.dto.CustomerDTO;
 import com.is.issystem.dto.EmployeeInfoDTO;
@@ -40,17 +41,18 @@ import static com.is.issystem.service.TokenAuthenticationService.TOKEN_PREFIX;
         @Autowired
         private PauseReasonHistoryRepository pauseReasonHistoryRepository;
 
-        public EmployeeAcc resetAccountPasswordEmployee(EmployeeInfoDTO employeeInfoDTO){
+        public EmployeeAcc resetAccountPasswordEmployee(EmployeeInfoDTO employeeInfoDTO) throws MessagingException {
             EmployeeAcc employeeAcc = employeeAccRepository.getOneAcc(employeeInfoDTO.getCode());
             employeeAcc.setPass(Ultility.generatePassword(8));
             EmployeeAcc employeeAcc1 = employeeAccRepository.save(employeeAcc);
-            SimpleMailMessage message = new SimpleMailMessage();
-            message.setTo(employeeInfoDTO.getEmail());
-            message.setSubject("THÔNG TIN MẬT KHẨU ĐĂNG NHẬP");
-            message.setText("QUÝ KHÁCH ĐÃ YÊU CẦU ĐẶT LẠI MẬT KHẨU,\nDưới đây là tài khoản và mật khẩu đăng nhập của Quý Khách:\nMã Đăng Nhập: " + employeeAcc1.getCode() + "\n" +
-                    "Mật Khẩu Đăng Nhập: "+employeeAcc1.getPass() + "\nQuý Khách vui lòng dùng thông tin trên để đăng nhập tài khoản của mình, cảm ơn quý khách ! ");
+            MimeMessage message1 = emailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message1);
+            helper.setTo(employeeInfoDTO.getEmail());
+            helper.setSubject("THÔNG TIN MẬT KHẨU ĐĂNG NHẬP");
+            helper.setText("QUÝ KHÁCH ĐÃ YÊU CẦU ĐẶT LẠI MẬT KHẨU,<br>Dưới đây là tài khoản và mật khẩu đăng nhập của Quý Khách:<br>Mã Đăng Nhập: " +"<b>"+ employeeAcc1.getCode() +"</b>"+ "<br>" +
+                    "Mật Khẩu Đăng Nhập: "+"<b>"+employeeAcc1.getPass() +"</b>"+ " <br>Quý Khách vui lòng dùng thông tin trên để đăng nhập tài khoản của mình, cảm ơn quý khách ! "+ Constant.sign,true);
             try{
-                this.emailSender.send(message);
+                this.emailSender.send(message1);
             } catch (MailException e){
                 e.printStackTrace();
             }
@@ -68,17 +70,9 @@ import static com.is.issystem.service.TokenAuthenticationService.TOKEN_PREFIX;
 
             String listURL = "";
             for(String url : attachmentURLList){
-                listURL += "<a href = "+url+"><i>Tài Liệu</i></a>"+"<br>";
+                listURL += url+"<br>";
             }
-            String sign = "<br><br><br><br><img width= "+"128"+" src="+"\"https://storage.googleapis.com/is-solution.appspot.com/IS_Logo.png\""+">" +
-                    "<br>"+"<i style = "+"\"color:blue\""+">Mr.Ngoc Minh |Recruitment Specialist<br>" +
-                    "ISOLUTION | 8th & 9th Floor, Thanh Cong Tower, Duy Tan, Cau Giay, Hanoi<br>" +
-                    "Mobile: 0904.620.636<br>" +
-                    "Skype: minhnc1998<br>" +
-                    "<a>Email: minhnc@isolution.asia</a></i><br>"+
-                    "<i><br>IMPORTANT NOTICE:<br>" +
-                    "The information in this email is the property of ISOLUTION. This communication is confidential and intended solely for the addressee(s). Any unauthorized review, use, disclosure or distribution is prohibited. If you believe this message has been sent to you in error, please notify the sender by replying to this transmission and delete the message without disclosing it. Thank you.<br>" +
-                    "E-mail including attachments is susceptible to data corruption, interception, unauthorized amendment, tampering and viruses, and we only send and receive emails on the basis that we are not liable for any such corruption, interception, amendment, tampering or viruses or any consequences thereof.</i>";
+
             MimeMessage message1 = emailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message1);
             helper.setSubject("[THÔNG BÁO TẠM NGƯNG TÀI KHOẢN NHÂN VIÊN]");
@@ -89,7 +83,7 @@ import static com.is.issystem.service.TokenAuthenticationService.TOKEN_PREFIX;
                     "vì vậy tài khoản của bạn đã bị <span style = "+"\"color:red\""+">TẠM NGƯNG</span>." +
                     "<br>Mọi thắc mắc xin liên hệ với email sau đây : saler@isolution.asia<br>" +
                     "<br>DƯỚI ĐÂY LÀ CÁC TÀI LIỆU DÙNG CHO VIỆC QUYẾT ĐỊNH TẠM NGƯNG:<br>"+
-                    listURL+sign, html);
+                    listURL+ Constant.sign, html);
             try{
                 this.emailSender.send(message1);
             } catch (MailException e){
@@ -108,7 +102,7 @@ import static com.is.issystem.service.TokenAuthenticationService.TOKEN_PREFIX;
             return employeeAccRepository.findAll();
         }
 
-        public EmployeeAcc addEmployeeAccount(EmployeeAcc employee_acc,String email,String code_ap_support,Integer id_custInfo) {
+        public EmployeeAcc addEmployeeAccount(EmployeeAcc employee_acc,String email,String code_ap_support,Integer id_custInfo) throws MessagingException {
             // lưu tài khoản của nhân viên
             EmployeeAcc employeeAcc = new EmployeeAcc();
             employeeAcc.setStatus(true);
@@ -122,15 +116,16 @@ import static com.is.issystem.service.TokenAuthenticationService.TOKEN_PREFIX;
             employeeInfo.get().setCode_ap_support(code_ap_support);
             employeeInfoRepository.save(employeeInfo.get());
 
-            SimpleMailMessage message = new SimpleMailMessage();
-            message.setTo(email);
-            message.setSubject("THÔNG TIN TÀI KHOẢN NHÂN VIÊN");
-            message.setText("Bạn vui lòng dùng thông tin bên dưới để đăng nhập vào tài khoản của bạn:\n"
-            +"Tài Khoản: "+employee_acc.getCode()+"\n"
-            +"Mật Khẩu: "+employeeAcc.getPass());
+            MimeMessage message1 = emailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message1);
+            helper.setTo(email);
+            helper.setSubject("THÔNG TIN TÀI KHOẢN NHÂN VIÊN");
+            helper.setText("Bạn vui lòng dùng thông tin bên dưới để đăng nhập vào tài khoản:<br>"
+            +"Tài Khoản: "+"<b>"+employee_acc.getCode()+"<b>"+"<br>"
+            +"Mật Khẩu: "+"<b>"+employeeAcc.getPass() + Constant.sign,true);
 
             try{
-                this.emailSender.send(message);
+                this.emailSender.send(message1);
             } catch (MailException e){
                 e.printStackTrace();
             }
